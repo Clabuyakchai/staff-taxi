@@ -944,6 +944,7 @@ id unchecked
 id uniform
 id up
 id useLogo
+id verification_code
 id wide
 id withText
 id wrap
@@ -989,9 +990,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_login
+layout activity_auth
+layout auth_code_fragment
+layout auth_phone_fragment
 layout custom_dialog
-layout login_fragment
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1066,8 +1068,10 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hint_phone
 string project_id
 string search_menu_title
+string send_phone
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

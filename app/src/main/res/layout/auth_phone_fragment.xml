@@ -11,14 +11,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/send_phone"/>
+        app:layout_constraintBottom_toTopOf="@id/send_phone"
+        android:inputType="phone"
+        android:hint="@string/hint_phone"/>
 
     <Button
         android:id="@+id/send_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="test"
+        android:text="@string/send_phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

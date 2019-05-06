@@ -54,11 +54,11 @@ public class AuthCodeFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                if(count == 6){
-                    String code = verificationCodeEdt.getText().toString();
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-                    signInWithPhoneAuthCredential(credential);
-                }
+//                if(count == 6){
+//                    String code = verificationCodeEdt.getText().toString();
+//                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+//                    signInWithPhoneAuthCredential(credential);
+//                }
             }
 
             @Override
@@ -68,26 +68,7 @@ public class AuthCodeFragment extends BaseFragment {
         });
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "signInWithCredential:success");
 
-                            Toast.makeText(getContext(), "Succesful", Toast.LENGTH_LONG).show();
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                            }
-                        }
-                    }
-                });
-    }
 
     public static AuthCodeFragment newInstance(String verCode){
         Bundle bundle = new Bundle();
