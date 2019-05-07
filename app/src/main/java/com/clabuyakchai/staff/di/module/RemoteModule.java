@@ -1,5 +1,6 @@
 package com.clabuyakchai.staff.di.module;
 
+import com.clabuyakchai.staff.data.remote.StaffApi;
 import com.clabuyakchai.staff.di.scope.ApplicationScope;
 import com.google.gson.Gson;
 
@@ -19,9 +20,15 @@ public class RemoteModule {
 
     @ApplicationScope
     @Provides
+    public StaffApi provideStaffApi(Retrofit retrofit){
+        return retrofit.create(StaffApi.class);
+    }
+
+    @ApplicationScope
+    @Provides
     public Retrofit provideRetrofit(OkHttpClient okHttpClient){
         return new Retrofit.Builder()
-                .baseUrl("BASE")
+                .baseUrl("http://192.168.0.102:8090/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .client(okHttpClient)

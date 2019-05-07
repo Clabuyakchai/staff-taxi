@@ -2,6 +2,7 @@
 package com.clabuyakchai.staff.ui.fragment.auth.phone;
 
 import androidx.fragment.app.Fragment;
+import com.clabuyakchai.staff.ui.activity.FragmentStack;
 import com.clabuyakchai.staff.ui.base.BaseFragment_MembersInjector;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -11,20 +12,25 @@ public final class AuthPhoneFragment_MembersInjector implements MembersInjector<
   private final Provider<DispatchingAndroidInjector<Fragment>>
       fragmentDispatchingAndroidInjectorProvider;
 
-  private final Provider<AuthPhonePresenterImpl> presenterProvider;
+  private final Provider<AuthPhonePresenter> presenterProvider;
+
+  private final Provider<FragmentStack> fragmentStackProvider;
 
   public AuthPhoneFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<AuthPhonePresenterImpl> presenterProvider) {
+      Provider<AuthPhonePresenter> presenterProvider,
+      Provider<FragmentStack> fragmentStackProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
     this.presenterProvider = presenterProvider;
+    this.fragmentStackProvider = fragmentStackProvider;
   }
 
   public static MembersInjector<AuthPhoneFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<AuthPhonePresenterImpl> presenterProvider) {
+      Provider<AuthPhonePresenter> presenterProvider,
+      Provider<FragmentStack> fragmentStackProvider) {
     return new AuthPhoneFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider, fragmentStackProvider);
   }
 
   @Override
@@ -32,9 +38,14 @@ public final class AuthPhoneFragment_MembersInjector implements MembersInjector<
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectFragmentStack(instance, fragmentStackProvider.get());
   }
 
-  public static void injectPresenter(AuthPhoneFragment instance, AuthPhonePresenterImpl presenter) {
+  public static void injectPresenter(AuthPhoneFragment instance, AuthPhonePresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectFragmentStack(AuthPhoneFragment instance, FragmentStack fragmentStack) {
+    instance.fragmentStack = fragmentStack;
   }
 }

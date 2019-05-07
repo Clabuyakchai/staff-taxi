@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
 MERGED from [com.google.dagger:dagger-android-support:2.21] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\jetified-dagger-android-support-2.21.aar\73ce96dd69b3598c2859ed18a1b31319\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat:1.1.0-alpha04] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\appcompat-1.1.0-alpha04.aar\15a05a889bd2de993181c03f91fa2f3c\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\constraintlayout-1.1.3.aar\c5248acc7e036a89e24e45e3634a6ff1\AndroidManifest.xml:2:1-11:12
@@ -60,22 +60,22 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0-alpha04] C:\Users\Clab
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\documentfile-1.0.0.aar\d4d472124128fe77589c4a66cb4bfbb6\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-1.0.0.aar\ffcb85a11f45a4eca7a7f5283e6bcac6\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\print-1.0.0.aar\c96278e9165e6e37a9771a0d39438244\AndroidManifest.xml:17:1-22:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
 	package
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:4:5-37
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-28:12
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:11-69
@@ -94,7 +94,7 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.4.0] C:
 	android:name
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:8:5-24:19
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:8:5-26:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\constraintlayout-1.1.3.aar\c5248acc7e036a89e24e45e3634a6ff1\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\constraintlayout-1.1.3.aar\c5248acc7e036a89e24e45e3634a6ff1\AndroidManifest.xml:9:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.8] C:\Users\Clabuyakchai\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.8.aar\51256aeeee73fac70dfd2b38008c4497\AndroidManifest.xml:7:5-20
@@ -155,22 +155,28 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0-alpha02] C:\
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:15:9-40
+	android:usesCleartextTraffic
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:17:9-44
 	android:name
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:9:9-28
-activity#com.clabuyakchai.staff.ui.activity.AuthActivity
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:17:9-23:20
+activity#com.clabuyakchai.staff.ui.activity.auth.AuthActivity
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:18:9-24:20
 	android:name
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:17:19-59
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:18:19-64
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:18:13-22:29
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:19:17-69
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:19:25-66
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:22:27-74
+activity#com.clabuyakchai.staff.ui.activity.nav.NavActivity
+ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:25:9-64
+	android:name
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:25:19-62
 uses-sdk
 INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml

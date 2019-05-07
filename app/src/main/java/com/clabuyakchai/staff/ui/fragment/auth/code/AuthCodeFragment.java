@@ -1,40 +1,49 @@
 package com.clabuyakchai.staff.ui.fragment.auth.code;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.staff.R;
+import com.clabuyakchai.staff.ui.activity.FragmentStack;
+import com.clabuyakchai.staff.ui.activity.StartActivity;
+import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
+import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragment;
+import com.clabuyakchai.staff.util.Preferences;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class AuthCodeFragment extends BaseFragment {
-    private static final String KEY_VERIFICATION_CODE = "Verification_Code";
+public class AuthCodeFragment extends BaseFragment implements AuthCodeView {
     private EditText verificationCodeEdt;
-    private FirebaseAuth auth;
-    private String verificationId;
+    private Button sendCode;
+
+    @Inject
+    @InjectPresenter
+    AuthCodePresenter presenter;
+    @Inject
+    FragmentStack fragmentStack;
+    private StartActivity startNavActivity;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        verificationId = savedInstanceState.getString(KEY_VERIFICATION_CODE);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof AuthActivity){
+            startNavActivity = (AuthActivity)context;
+        }
     }
 
     @Nullable
@@ -45,37 +54,48 @@ public class AuthCodeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        presenter.onViewCreated();
+
         verificationCodeEdt = view.findViewById(R.id.verification_code);
-        verificationCodeEdt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-//                if(count == 6){
-//                    String code = verificationCodeEdt.getText().toString();
-//                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-//                    signInWithPhoneAuthCredential(credential);
-//                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
+        sendCode = view.findViewById(R.id.send_verify_code);
+        sendCode.setOnClickListener(v -> {
+            presenter.verifyCode(verificationCodeEdt.getText().toString(), Preferences.getTokenSharedPreferences(getContext()));
         });
     }
 
+    @ProvidePresenter
+    AuthCodePresenter provideAuthCodePresenter(){
+        return presenter;
+    }
 
+    @Override
+    public void showToast(String text) {
+        Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    }
 
-    public static AuthCodeFragment newInstance(String verCode){
-        Bundle bundle = new Bundle();
-        bundle.putString(KEY_VERIFICATION_CODE, verCode);
+    @Override
+    public void navActivity() {
+        startNavActivity.startActivity();
+    }
 
-        AuthCodeFragment fragment = new AuthCodeFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+    @Override
+    public void registrationFragment() {
+        fragmentStack.add(RegistrationFragment.newInstance(), false);
+    }
+
+    public static AuthCodeFragment newInstance(){
+        return new AuthCodeFragment();
+    }
+
+    @Override
+    public void onDestroyView() {
+        presenter.onViewDestroy();
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        startNavActivity = null;
+        super.onDetach();
     }
 }

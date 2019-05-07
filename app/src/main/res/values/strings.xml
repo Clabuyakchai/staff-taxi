@@ -2,4 +2,6 @@
     <string name="app_name">Staff</string>
     <string name="hint_phone">+375(XX)1231212</string>
     <string name="send_phone">Send Phone</string>
+    <string name="virification_code">Verification Code</string>
+    <string name="send_verify_code">Send Verififcation Code</string>
 </resources>

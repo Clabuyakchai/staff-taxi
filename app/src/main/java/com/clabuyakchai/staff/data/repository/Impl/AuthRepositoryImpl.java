@@ -2,6 +2,8 @@ package com.clabuyakchai.staff.data.repository.Impl;
 
 import android.util.Log;
 
+import com.clabuyakchai.staff.data.remote.StaffApi;
+import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import com.clabuyakchai.staff.data.repository.AuthRepository;
 import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
@@ -15,16 +17,22 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
+import io.reactivex.subjects.PublishSubject;
+import okhttp3.ResponseBody;
+
 public class AuthRepositoryImpl implements AuthRepository {
     private final FirebaseAuth auth;
     private final PhoneAuthProvider provider;
+    private final StaffApi staffApi;
     private String storedVerificationId;
     private PhoneAuthProvider.ForceResendingToken resendToken;
 
     @Inject
-    public AuthRepositoryImpl(FirebaseAuth auth, PhoneAuthProvider provider) {
+    public AuthRepositoryImpl(FirebaseAuth auth, PhoneAuthProvider provider, StaffApi staffApi) {
         this.auth = auth;
         this.provider = provider;
+        this.staffApi = staffApi;
     }
 
     @Override
@@ -47,9 +55,9 @@ public class AuthRepositoryImpl implements AuthRepository {
     }
 
     @Override
-    public void verifyWithCode(String code) {
+    public PublishSubject<Boolean> verifyWithCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(storedVerificationId, code);
-        signInWithPhoneAuthCredential(credential);
+        return signInWithPhoneAuthCredential(credential);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -93,14 +101,28 @@ public class AuthRepositoryImpl implements AuthRepository {
         }
     };
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    private PublishSubject<Boolean> signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        PublishSubject<Boolean> subject = PublishSubject.create();
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        //TODO
+                        subject.onNext(true);
                     } else {
-                        //TODO
+                        subject.onNext(false);
                     }
+                    subject.onComplete();
                 });
+
+        return subject;
+    }
+
+    @Override
+    public Single<ResponseBody> signIn(String phone) {
+        return staffApi.signIn(phone);
+    }
+
+    @Override
+    public Single<ResponseBody> signUp(StaffDto staffDto) {
+        return staffApi.signUp(staffDto);
     }
 }

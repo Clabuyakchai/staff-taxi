@@ -1476,6 +1476,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0-alpha04.aar\\15a05a889bd2de993181c03f91fa2f3c\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_nav.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\activity_nav.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0-alpha04.aar\\15a05a889bd2de993181c03f91fa2f3c\\res\\drawable-hdpi-v4\\abc_ic_star_black_48dp.png"
     },
@@ -1554,6 +1558,10 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0-alpha04.aar\\15a05a889bd2de993181c03f91fa2f3c\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_registration_fragment.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\registration_fragment.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",

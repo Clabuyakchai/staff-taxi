@@ -802,6 +802,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id address
 id adjust_height
 id adjust_width
 id alertTitle
@@ -838,6 +839,7 @@ id dimensions
 id direct
 id disableHome
 id edit_query
+id email
 id end
 id end_padder
 id expand_activities_button
@@ -846,6 +848,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id forever
+id gender
 id gone
 id group_divider
 id groups
@@ -870,6 +873,7 @@ id media_actions
 id message
 id middle
 id multiply
+id name
 id never
 id none
 id normal
@@ -882,6 +886,7 @@ id packed
 id parent
 id parentPanel
 id percent
+id phone
 id phone_number
 id progress_circular
 id progress_horizontal
@@ -905,10 +910,12 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id send_phone
+id send_verify_code
 id shortcut
 id showCustom
 id showHome
 id showTitle
+id sign_up
 id spacer
 id split_action_bar
 id spread
@@ -930,6 +937,7 @@ id tag_screen_reader_focusable
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
+id test
 id text
 id text2
 id textSpacerNoButtons
@@ -991,6 +999,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_auth
+layout activity_nav
 layout auth_code_fragment
 layout auth_phone_fragment
 layout custom_dialog
@@ -1009,6 +1018,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout registration_fragment
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -1072,7 +1082,9 @@ string hint_phone
 string project_id
 string search_menu_title
 string send_phone
+string send_verify_code
 string status_bar_notification_info_overflow
+string virification_code
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
