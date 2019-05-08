@@ -71,22 +71,6 @@ public class AuthPhoneView$$State extends MvpViewState<AuthPhoneView> implements
 		mViewCommands.afterApply(addTokenCommand);
 	}
 
-	@Override
-	public void checkToken() {
-		CheckTokenCommand checkTokenCommand = new CheckTokenCommand();
-		mViewCommands.beforeApply(checkTokenCommand);
-
-		if (mViews == null || mViews.isEmpty()) {
-			return;
-		}
-
-		for (AuthPhoneView view : mViews) {
-			view.checkToken();
-		}
-
-		mViewCommands.afterApply(checkTokenCommand);
-	}
-
 	public class CodeFragmentCommand extends ViewCommand<AuthPhoneView> {
 		CodeFragmentCommand() {
 			super("codeFragment", AddToEndStrategy.class);
@@ -136,17 +120,6 @@ public class AuthPhoneView$$State extends MvpViewState<AuthPhoneView> implements
 		@Override
 		public void apply(AuthPhoneView mvpView) {
 			mvpView.addToken(token);
-		}
-	}
-
-	public class CheckTokenCommand extends ViewCommand<AuthPhoneView> {
-		CheckTokenCommand() {
-			super("checkToken", AddToEndStrategy.class);
-		}
-
-		@Override
-		public void apply(AuthPhoneView mvpView) {
-			mvpView.checkToken();
 		}
 	}
 }

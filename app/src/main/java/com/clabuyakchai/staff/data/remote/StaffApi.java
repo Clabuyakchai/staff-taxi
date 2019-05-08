@@ -15,4 +15,7 @@ public interface StaffApi {
 
     @POST("/staff/signup")
     Single<ResponseBody> signUp(@Body StaffDto staffDto);
+
+    @GET("/staff/me")
+    Single<StaffDto> getStaff();
 }

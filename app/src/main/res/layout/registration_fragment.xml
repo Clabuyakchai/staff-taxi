@@ -15,6 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/phone"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:inputType="text"
         android:hint="name"/>
 
     <EditText
@@ -27,6 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintBottom_toTopOf="@id/email"
+        android:inputType="phone"
         android:hint="phone"/>
 
     <EditText
@@ -39,9 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/phone"
+        app:layout_constraintBottom_toTopOf="@id/gender"
+        android:inputType="textEmailAddress"
         android:hint="email"/>
 
-    <EditText
+    <RadioGroup
         android:id="@+id/gender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,7 +58,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email"
-        android:hint="gender"/>
+        app:layout_constraintBottom_toTopOf="@id/address"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:layout_weight="1"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:layout_weight="1"/>
+
+
+    </RadioGroup>
 
     <EditText
         android:id="@+id/address"
@@ -59,11 +85,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:hint="address"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gender"
-        android:hint="address"/>
+        app:layout_constraintBottom_toTopOf="@id/sign_up"/>
 
     <Button
         android:id="@+id/sign_up"
@@ -72,9 +99,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/address"
-        android:text="Sign Up"/>
+        app:layout_constraintTop_toBottomOf="@id/address" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,9 +2,8 @@ package com.clabuyakchai.staff.di.module;
 
 import com.clabuyakchai.staff.data.remote.StaffApi;
 import com.clabuyakchai.staff.di.scope.ApplicationScope;
+import com.clabuyakchai.staff.util.MyServiceInterceptor;
 import com.google.gson.Gson;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,7 +27,7 @@ public class RemoteModule {
     @Provides
     public Retrofit provideRetrofit(OkHttpClient okHttpClient){
         return new Retrofit.Builder()
-                .baseUrl("http://192.168.0.102:8090/")
+                .baseUrl("http://192.168.0.103:8090/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .client(okHttpClient)
@@ -37,9 +36,10 @@ public class RemoteModule {
 
     @ApplicationScope
     @Provides
-    public OkHttpClient provideOkHttpClient(){
+    public OkHttpClient provideOkHttpClient(MyServiceInterceptor myServiceInterceptor){
         return new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(myServiceInterceptor)
                 .build();
     }
 }

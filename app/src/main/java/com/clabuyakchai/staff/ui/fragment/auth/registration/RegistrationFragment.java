@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -27,9 +28,10 @@ public class RegistrationFragment extends BaseFragment implements RegistrationVi
     private EditText staffName;
     private EditText staffPhone;
     private EditText staffEmail;
-    private EditText staffGender;
+    private RadioGroup staffGender;
     private EditText staffAddress;
     private Button signUp;
+    private String gender = "male";
 
     @Inject
     @InjectPresenter
@@ -60,12 +62,29 @@ public class RegistrationFragment extends BaseFragment implements RegistrationVi
         staffGender = view.findViewById(R.id.gender);
         staffAddress = view.findViewById(R.id.address);
 
+        staffGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getId()){
+                    case R.id.male:
+                        gender = getString(R.string.male);
+                        break;
+                    case R.id.female:
+                        gender = getString(R.string.female);
+                        break;
+                    default:
+                        gender = getString(R.string.male);
+                        break;
+                }
+            }
+        });
+
         signUp = view.findViewById(R.id.sign_up);
         signUp.setOnClickListener(v -> {
             StaffDto staff = new StaffDto(1L,
                     staffPhone.getText().toString().substring(1),
                     staffEmail.getText().toString(),
-                    staffGender.getText().toString(),
+                    gender,
                     staffName.getText().toString(),
                     staffAddress.getText().toString());
 

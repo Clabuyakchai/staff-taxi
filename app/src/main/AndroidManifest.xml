@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.nav.NavActivity"/>
+        <activity android:name=".ui.activity.navigation.NavigationActivity"/>
     </application>
 
 </manifest>

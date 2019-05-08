@@ -6,13 +6,20 @@ import android.app.Fragment;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
+import android.content.Context;
 import com.clabuyakchai.staff.App;
+import com.clabuyakchai.staff.data.local.AppDatabase;
 import com.clabuyakchai.staff.data.remote.StaffApi;
 import com.clabuyakchai.staff.data.repository.AuthRepository;
+import com.clabuyakchai.staff.data.repository.HomeRepository;
 import com.clabuyakchai.staff.data.repository.Impl.AuthRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.AuthRepositoryImpl_Factory;
+import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl;
+import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl_Factory;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindLoginActivity;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindNavActivity;
+import com.clabuyakchai.staff.di.module.DatabaseModule;
+import com.clabuyakchai.staff.di.module.DatabaseModule_ProvideAppDatabaseFactory;
 import com.clabuyakchai.staff.di.module.FirebaseModule;
 import com.clabuyakchai.staff.di.module.FirebaseModule_ProvideFirebaseAuthFactory;
 import com.clabuyakchai.staff.di.module.FirebaseModule_ProvidePhoneAuthProviderFactory;
@@ -26,7 +33,7 @@ import com.clabuyakchai.staff.di.module.RemoteModule_ProvideRetrofitFactory;
 import com.clabuyakchai.staff.di.module.RemoteModule_ProvideStaffApiFactory;
 import com.clabuyakchai.staff.ui.activity.FragmentStack;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
-import com.clabuyakchai.staff.ui.activity.nav.NavActivity;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragment;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragmentProvider_BindAuthCodeFragment;
@@ -40,6 +47,14 @@ import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragment
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragmentProvider_BindRegistrationFragment;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationPresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider_BindHomeFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider_BindRouteFragment;
+import com.clabuyakchai.staff.util.MyServiceInterceptor;
+import com.clabuyakchai.staff.util.MyServiceInterceptor_Factory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthProvider;
 import dagger.android.AndroidInjector;
@@ -61,12 +76,18 @@ public final class DaggerAppComponent implements AppComponent {
   private Provider<ActivityModule_BindLoginActivity.AuthActivitySubcomponent.Builder>
       authActivitySubcomponentBuilderProvider;
 
-  private Provider<ActivityModule_BindNavActivity.NavActivitySubcomponent.Builder>
-      navActivitySubcomponentBuilderProvider;
+  private Provider<ActivityModule_BindNavActivity.NavigationActivitySubcomponent.Builder>
+      navigationActivitySubcomponentBuilderProvider;
 
   private Provider<FirebaseAuth> provideFirebaseAuthProvider;
 
   private Provider<PhoneAuthProvider> providePhoneAuthProvider;
+
+  private Provider<App> seedInstanceProvider;
+
+  private Provider<Context> bindContextProvider;
+
+  private Provider<MyServiceInterceptor> myServiceInterceptorProvider;
 
   private Provider<OkHttpClient> provideOkHttpClientProvider;
 
@@ -76,7 +97,7 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Provider<AuthRepositoryImpl> authRepositoryImplProvider;
 
-  private Provider<AuthRepository> provideAuthRepositoryProvider;
+  private Provider<AuthRepository> bindAuthRepositoryProvider;
 
   private Provider<AuthPhonePresenter> provideAuthPhonePresenterImplProvider;
 
@@ -84,13 +105,25 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Provider<RegistrationPresenter> provideRegistrationPresenterProvider;
 
+  private Provider<AppDatabase> provideAppDatabaseProvider;
+
+  private Provider<HomeRepositoryImpl> homeRepositoryImplProvider;
+
+  private Provider<HomeRepository> bindHomeRepositoryProvider;
+
   private DaggerAppComponent(
       PresenterModule presenterModuleParam,
       FirebaseModule firebaseModuleParam,
       RemoteModule remoteModuleParam,
-      App seedInstance) {
+      DatabaseModule databaseModuleParam,
+      App seedInstanceParam) {
 
-    initialize(presenterModuleParam, firebaseModuleParam, remoteModuleParam, seedInstance);
+    initialize(
+        presenterModuleParam,
+        firebaseModuleParam,
+        remoteModuleParam,
+        databaseModuleParam,
+        seedInstanceParam);
   }
 
   public static AppComponent.Builder builder() {
@@ -101,7 +134,7 @@ public final class DaggerAppComponent implements AppComponent {
       getMapOfClassOfAndProviderOfFactoryOf() {
     return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(2)
         .put(AuthActivity.class, (Provider) authActivitySubcomponentBuilderProvider)
-        .put(NavActivity.class, (Provider) navActivitySubcomponentBuilderProvider)
+        .put(NavigationActivity.class, (Provider) navigationActivitySubcomponentBuilderProvider)
         .build();
   }
 
@@ -149,7 +182,8 @@ public final class DaggerAppComponent implements AppComponent {
       final PresenterModule presenterModuleParam,
       final FirebaseModule firebaseModuleParam,
       final RemoteModule remoteModuleParam,
-      final App seedInstance) {
+      final DatabaseModule databaseModuleParam,
+      final App seedInstanceParam) {
     this.authActivitySubcomponentBuilderProvider =
         new Provider<ActivityModule_BindLoginActivity.AuthActivitySubcomponent.Builder>() {
           @Override
@@ -157,11 +191,11 @@ public final class DaggerAppComponent implements AppComponent {
             return new AuthActivitySubcomponentBuilder();
           }
         };
-    this.navActivitySubcomponentBuilderProvider =
-        new Provider<ActivityModule_BindNavActivity.NavActivitySubcomponent.Builder>() {
+    this.navigationActivitySubcomponentBuilderProvider =
+        new Provider<ActivityModule_BindNavActivity.NavigationActivitySubcomponent.Builder>() {
           @Override
-          public ActivityModule_BindNavActivity.NavActivitySubcomponent.Builder get() {
-            return new NavActivitySubcomponentBuilder();
+          public ActivityModule_BindNavActivity.NavigationActivitySubcomponent.Builder get() {
+            return new NavigationActivitySubcomponentBuilder();
           }
         };
     this.provideFirebaseAuthProvider =
@@ -169,8 +203,14 @@ public final class DaggerAppComponent implements AppComponent {
     this.providePhoneAuthProvider =
         DoubleCheck.provider(
             FirebaseModule_ProvidePhoneAuthProviderFactory.create(firebaseModuleParam));
+    this.seedInstanceProvider = InstanceFactory.create(seedInstanceParam);
+    this.bindContextProvider = DoubleCheck.provider((Provider) seedInstanceProvider);
+    this.myServiceInterceptorProvider =
+        DoubleCheck.provider(MyServiceInterceptor_Factory.create(bindContextProvider));
     this.provideOkHttpClientProvider =
-        DoubleCheck.provider(RemoteModule_ProvideOkHttpClientFactory.create(remoteModuleParam));
+        DoubleCheck.provider(
+            RemoteModule_ProvideOkHttpClientFactory.create(
+                remoteModuleParam, myServiceInterceptorProvider));
     this.provideRetrofitProvider =
         DoubleCheck.provider(
             RemoteModule_ProvideRetrofitFactory.create(
@@ -181,20 +221,26 @@ public final class DaggerAppComponent implements AppComponent {
     this.authRepositoryImplProvider =
         AuthRepositoryImpl_Factory.create(
             provideFirebaseAuthProvider, providePhoneAuthProvider, provideStaffApiProvider);
-    this.provideAuthRepositoryProvider =
-        DoubleCheck.provider((Provider) authRepositoryImplProvider);
+    this.bindAuthRepositoryProvider = DoubleCheck.provider((Provider) authRepositoryImplProvider);
     this.provideAuthPhonePresenterImplProvider =
         DoubleCheck.provider(
             PresenterModule_ProvideAuthPhonePresenterImplFactory.create(
-                presenterModuleParam, provideAuthRepositoryProvider));
+                presenterModuleParam, bindAuthRepositoryProvider));
     this.provideAuthCodePresenterProvider =
         DoubleCheck.provider(
             PresenterModule_ProvideAuthCodePresenterFactory.create(
-                presenterModuleParam, provideAuthRepositoryProvider));
+                presenterModuleParam, bindAuthRepositoryProvider));
     this.provideRegistrationPresenterProvider =
         DoubleCheck.provider(
             PresenterModule_ProvideRegistrationPresenterFactory.create(
-                presenterModuleParam, provideAuthRepositoryProvider));
+                presenterModuleParam, bindAuthRepositoryProvider));
+    this.provideAppDatabaseProvider =
+        DoubleCheck.provider(
+            DatabaseModule_ProvideAppDatabaseFactory.create(
+                databaseModuleParam, bindContextProvider));
+    this.homeRepositoryImplProvider =
+        HomeRepositoryImpl_Factory.create(provideStaffApiProvider, provideAppDatabaseProvider);
+    this.bindHomeRepositoryProvider = DoubleCheck.provider((Provider) homeRepositoryImplProvider);
   }
 
   @Override
@@ -226,6 +272,8 @@ public final class DaggerAppComponent implements AppComponent {
 
     private RemoteModule remoteModule;
 
+    private DatabaseModule databaseModule;
+
     private App seedInstance;
 
     @Override
@@ -244,8 +292,12 @@ public final class DaggerAppComponent implements AppComponent {
       if (remoteModule == null) {
         this.remoteModule = new RemoteModule();
       }
+      if (databaseModule == null) {
+        this.databaseModule = new DatabaseModule();
+      }
       Preconditions.checkBuilderRequirement(seedInstance, App.class);
-      return new DaggerAppComponent(presenterModule, firebaseModule, remoteModule, seedInstance);
+      return new DaggerAppComponent(
+          presenterModule, firebaseModule, remoteModule, databaseModule, seedInstance);
     }
   }
 
@@ -296,8 +348,8 @@ public final class DaggerAppComponent implements AppComponent {
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
           .put(
-              NavActivity.class,
-              (Provider) DaggerAppComponent.this.navActivitySubcomponentBuilderProvider)
+              NavigationActivity.class,
+              (Provider) DaggerAppComponent.this.navigationActivitySubcomponentBuilderProvider)
           .put(AuthPhoneFragment.class, (Provider) authPhoneFragmentSubcomponentBuilderProvider)
           .put(AuthCodeFragment.class, (Provider) authCodeFragmentSubcomponentBuilderProvider)
           .put(
@@ -479,37 +531,163 @@ public final class DaggerAppComponent implements AppComponent {
     }
   }
 
-  private final class NavActivitySubcomponentBuilder
-      extends ActivityModule_BindNavActivity.NavActivitySubcomponent.Builder {
-    private NavActivity seedInstance;
+  private final class NavigationActivitySubcomponentBuilder
+      extends ActivityModule_BindNavActivity.NavigationActivitySubcomponent.Builder {
+    private NavigationActivity seedInstance;
 
     @Override
-    public void seedInstance(NavActivity arg0) {
+    public void seedInstance(NavigationActivity arg0) {
       this.seedInstance = Preconditions.checkNotNull(arg0);
     }
 
     @Override
-    public ActivityModule_BindNavActivity.NavActivitySubcomponent build() {
-      Preconditions.checkBuilderRequirement(seedInstance, NavActivity.class);
-      return new NavActivitySubcomponentImpl(seedInstance);
+    public ActivityModule_BindNavActivity.NavigationActivitySubcomponent build() {
+      Preconditions.checkBuilderRequirement(seedInstance, NavigationActivity.class);
+      return new NavigationActivitySubcomponentImpl(seedInstance);
     }
   }
 
-  private final class NavActivitySubcomponentImpl
-      implements ActivityModule_BindNavActivity.NavActivitySubcomponent {
-    private NavActivitySubcomponentImpl(NavActivity seedInstance) {}
+  private final class NavigationActivitySubcomponentImpl
+      implements ActivityModule_BindNavActivity.NavigationActivitySubcomponent {
+    private Provider<HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent.Builder>
+        homeFragmentSubcomponentBuilderProvider;
 
-    @Override
-    public void inject(NavActivity arg0) {
-      injectNavActivity(arg0);
+    private Provider<RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder>
+        routeFragmentSubcomponentBuilderProvider;
+
+    private NavigationActivitySubcomponentImpl(NavigationActivity seedInstance) {
+
+      initialize(seedInstance);
     }
 
-    private NavActivity injectNavActivity(NavActivity instance) {
+    private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
+        getMapOfClassOfAndProviderOfFactoryOf() {
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(4)
+          .put(
+              AuthActivity.class,
+              (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
+          .put(
+              NavigationActivity.class,
+              (Provider) DaggerAppComponent.this.navigationActivitySubcomponentBuilderProvider)
+          .put(HomeFragment.class, (Provider) homeFragmentSubcomponentBuilderProvider)
+          .put(RouteFragment.class, (Provider) routeFragmentSubcomponentBuilderProvider)
+          .build();
+    }
+
+    private DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+        getDispatchingAndroidInjectorOfFragment() {
+      return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(
+          getMapOfClassOfAndProviderOfFactoryOf(),
+          Collections.<String, Provider<AndroidInjector.Factory<?>>>emptyMap());
+    }
+
+    private DispatchingAndroidInjector<Fragment> getDispatchingAndroidInjectorOfFragment2() {
+      return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(
+          getMapOfClassOfAndProviderOfFactoryOf(),
+          Collections.<String, Provider<AndroidInjector.Factory<?>>>emptyMap());
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize(final NavigationActivity seedInstance) {
+      this.homeFragmentSubcomponentBuilderProvider =
+          new Provider<HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent.Builder>() {
+            @Override
+            public HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent.Builder get() {
+              return new HomeFragmentSubcomponentBuilder();
+            }
+          };
+      this.routeFragmentSubcomponentBuilderProvider =
+          new Provider<
+              RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder>() {
+            @Override
+            public RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder get() {
+              return new RouteFragmentSubcomponentBuilder();
+            }
+          };
+    }
+
+    @Override
+    public void inject(NavigationActivity arg0) {
+      injectNavigationActivity(arg0);
+    }
+
+    private NavigationActivity injectNavigationActivity(NavigationActivity instance) {
       DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
-          instance, DaggerAppComponent.this.getDispatchingAndroidInjectorOfFragment2());
+          instance, getDispatchingAndroidInjectorOfFragment());
       DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
-          instance, DaggerAppComponent.this.getDispatchingAndroidInjectorOfFragment());
+          instance, getDispatchingAndroidInjectorOfFragment2());
       return instance;
+    }
+
+    private final class HomeFragmentSubcomponentBuilder
+        extends HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent.Builder {
+      private HomeFragment seedInstance;
+
+      @Override
+      public void seedInstance(HomeFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent build() {
+        Preconditions.checkBuilderRequirement(seedInstance, HomeFragment.class);
+        return new HomeFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class HomeFragmentSubcomponentImpl
+        implements HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent {
+      private HomeFragmentSubcomponentImpl(HomeFragment seedInstance) {}
+
+      private HomePresenter getHomePresenter() {
+        return new HomePresenter(DaggerAppComponent.this.bindHomeRepositoryProvider.get());
+      }
+
+      @Override
+      public void inject(HomeFragment arg0) {
+        injectHomeFragment(arg0);
+      }
+
+      private HomeFragment injectHomeFragment(HomeFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        HomeFragment_MembersInjector.injectPresenter(instance, getHomePresenter());
+        return instance;
+      }
+    }
+
+    private final class RouteFragmentSubcomponentBuilder
+        extends RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder {
+      private RouteFragment seedInstance;
+
+      @Override
+      public void seedInstance(RouteFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent build() {
+        Preconditions.checkBuilderRequirement(seedInstance, RouteFragment.class);
+        return new RouteFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class RouteFragmentSubcomponentImpl
+        implements RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent {
+      private RouteFragmentSubcomponentImpl(RouteFragment seedInstance) {}
+
+      @Override
+      public void inject(RouteFragment arg0) {
+        injectRouteFragment(arg0);
+      }
+
+      private RouteFragment injectRouteFragment(RouteFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        return instance;
+      }
     }
   }
 }

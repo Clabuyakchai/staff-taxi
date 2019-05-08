@@ -3,7 +3,6 @@ package com.clabuyakchai.staff.di.module;
 
 import com.clabuyakchai.staff.data.repository.AuthRepository;
 import com.clabuyakchai.staff.ui.fragment.auth.phone.AuthPhonePresenter;
-
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
 import javax.inject.Provider;

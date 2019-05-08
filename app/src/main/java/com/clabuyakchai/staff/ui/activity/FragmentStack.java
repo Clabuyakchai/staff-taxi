@@ -1,5 +1,6 @@
 package com.clabuyakchai.staff.ui.activity;
 
+import androidx.annotation.IdRes;
 import androidx.fragment.app.Fragment;
 
 public interface FragmentStack {

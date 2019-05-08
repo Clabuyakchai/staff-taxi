@@ -2,6 +2,8 @@ package com.clabuyakchai.staff.di.component;
 
 import com.clabuyakchai.staff.App;
 import com.clabuyakchai.staff.di.module.ActivityModule;
+import com.clabuyakchai.staff.di.module.ApplicationModule;
+import com.clabuyakchai.staff.di.module.DatabaseModule;
 import com.clabuyakchai.staff.di.module.FirebaseModule;
 import com.clabuyakchai.staff.di.module.PresenterModule;
 import com.clabuyakchai.staff.di.module.RemoteModule;
@@ -19,7 +21,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
         FirebaseModule.class,
         RemoteModule.class,
         RepositoryModule.class,
-        PresenterModule.class
+        PresenterModule.class,
+        DatabaseModule.class,
+        ApplicationModule.class
 })
 public interface AppComponent extends AndroidInjector<App> {
 

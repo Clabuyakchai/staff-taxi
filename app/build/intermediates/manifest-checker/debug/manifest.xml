@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.clabuyakchai.staff.ui.activity.nav.NavActivity" />
+        <activity android:name="com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
