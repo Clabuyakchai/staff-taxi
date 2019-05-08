@@ -640,7 +640,9 @@ public final class DaggerAppComponent implements AppComponent {
       private HomeFragmentSubcomponentImpl(HomeFragment seedInstance) {}
 
       private HomePresenter getHomePresenter() {
-        return new HomePresenter(DaggerAppComponent.this.bindHomeRepositoryProvider.get());
+        return new HomePresenter(
+            DaggerAppComponent.this.bindHomeRepositoryProvider.get(),
+            DaggerAppComponent.this.bindAuthRepositoryProvider.get());
       }
 
       @Override

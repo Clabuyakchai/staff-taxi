@@ -6,6 +6,8 @@ import com.clabuyakchai.staff.data.remote.StaffApi;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import com.clabuyakchai.staff.data.repository.HomeRepository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.Single;
@@ -21,9 +23,8 @@ public class HomeRepositoryImpl implements HomeRepository {
         this.database = database;
     }
 
-    @Override
-    public Single<StaffDto> getInformationAboutMeFromServer() {
-        return staffApi.getStaff().subscribeOn(Schedulers.io());
+    private Single<StaffDto> getInformationAboutMeFromServer() {
+        return staffApi.getStaff();
     }
 
     @Override
@@ -32,7 +33,44 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public Single<Staff> getInformationAboutMeFromDb() {
-        return null;
+    public Single<StaffDto> getInformationAboutMeFromDb() {
+        return database.staffDao().getStaff().subscribeOn(Schedulers.io())
+                .flatMap(staff -> {
+                    if (staff.isEmpty()) {
+                        return getInformationAboutMeFromServer()
+                                .flatMap(staffDto -> {
+                                    Staff s = mapStaffDtotoStaff(staffDto);
+                                    database.staffDao().insert(s);
+                                    return Single.just(staffDto);
+                                });
+                    } else {
+                        return Single.just(mapStaffToStaffDto(staff));
+                    }
+                });
+    }
+
+    @Override
+    public void deleteStaffFromDb() {
+        new Thread(() -> database.staffDao().delete()).start();
+    }
+
+    private Staff mapStaffDtotoStaff(StaffDto staffDto) {
+        Staff staff = new Staff();
+        staff.setStaffID(staffDto.getStaffID());
+        staff.setName(staffDto.getName());
+        staff.setPhone(staffDto.getPhone());
+        staff.setEmail(staffDto.getEmail());
+        staff.setGender(staffDto.getGender());
+        staff.setAddress(staffDto.getAddress());
+        return staff;
+    }
+
+    private StaffDto mapStaffToStaffDto(List<Staff> staff) {
+        return new StaffDto(staff.get(0).getStaffID(),
+                staff.get(0).getPhone(),
+                staff.get(0).getEmail(),
+                staff.get(0).getGender(),
+                staff.get(0).getName(),
+                staff.get(0).getAddress());
     }
 }

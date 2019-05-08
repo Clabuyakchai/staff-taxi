@@ -27,7 +27,6 @@ public class MyServiceInterceptor implements Interceptor {
         this.sessionToken = sessionToken;
     }
 
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
@@ -36,11 +35,10 @@ public class MyServiceInterceptor implements Interceptor {
 
         sessionToken = Preferences.getTokenSharedPreferences(context);
 
-        if (request.header("Authorization") == null) {
-            // needs credentials
-            if (sessionToken != null) {
-                requestBuilder.addHeader("Authorization", sessionToken);
-            }
+        if (sessionToken != null) {
+            requestBuilder.addHeader("Authorization", sessionToken);
+        } else {
+            requestBuilder.removeHeader("Authorization");
         }
 
         return chain.proceed(requestBuilder.build());

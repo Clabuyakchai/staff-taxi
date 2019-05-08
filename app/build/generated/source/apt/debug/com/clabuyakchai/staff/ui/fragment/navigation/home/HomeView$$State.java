@@ -23,6 +23,22 @@ public class HomeView$$State extends MvpViewState<HomeView> implements HomeView 
 		mViewCommands.afterApply(setFieldCommand);
 	}
 
+	@Override
+	public void signOut() {
+		SignOutCommand signOutCommand = new SignOutCommand();
+		mViewCommands.beforeApply(signOutCommand);
+
+		if (mViews == null || mViews.isEmpty()) {
+			return;
+		}
+
+		for (HomeView view : mViews) {
+			view.signOut();
+		}
+
+		mViewCommands.afterApply(signOutCommand);
+	}
+
 	public class SetFieldCommand extends ViewCommand<HomeView> {
 		public final StaffDto staffDto;
 
@@ -35,6 +51,17 @@ public class HomeView$$State extends MvpViewState<HomeView> implements HomeView 
 		@Override
 		public void apply(HomeView mvpView) {
 			mvpView.setField(staffDto);
+		}
+	}
+
+	public class SignOutCommand extends ViewCommand<HomeView> {
+		SignOutCommand() {
+			super("signOut", AddToEndStrategy.class);
+		}
+
+		@Override
+		public void apply(HomeView mvpView) {
+			mvpView.signOut();
 		}
 	}
 }

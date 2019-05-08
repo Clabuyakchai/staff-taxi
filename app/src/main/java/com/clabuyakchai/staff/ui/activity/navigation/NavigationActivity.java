@@ -1,8 +1,11 @@
 package com.clabuyakchai.staff.ui.activity.navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.clabuyakchai.staff.R;
+import com.clabuyakchai.staff.ui.activity.StartActivity;
+import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.staff.ui.base.BaseActivity;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
@@ -11,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class NavigationActivity extends BaseActivity {
+public class NavigationActivity extends BaseActivity implements StartActivity {
 
 
     @Override
@@ -46,5 +49,12 @@ public class NavigationActivity extends BaseActivity {
     @Override
     public void setIdConteiner() {
         idConteiner = R.id.navigation_container;
+    }
+
+    @Override
+    public void startActivity() {
+        Intent intent = new Intent(NavigationActivity.this, AuthActivity.class);
+        startActivity(intent);
+//        finish();//TODO
     }
 }
