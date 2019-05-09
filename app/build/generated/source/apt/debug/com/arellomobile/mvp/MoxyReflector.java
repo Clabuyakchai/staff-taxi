@@ -17,6 +17,14 @@ import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment$$PresentersBinder;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter$$ViewStateProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment$$PresentersBinder;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RoutePresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RoutePresenter$$ViewStateProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment$$PresentersBinder;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter$$ViewStateProvider;
 import java.lang.Class;
 import java.lang.Object;
 import java.util.Arrays;
@@ -37,12 +45,16 @@ public final class MoxyReflector {
 		sViewStateProviders.put(AuthPhonePresenter.class, new AuthPhonePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RegistrationPresenter.class, new RegistrationPresenter$$ViewStateProvider());
 		sViewStateProviders.put(HomePresenter.class, new HomePresenter$$ViewStateProvider());
+		sViewStateProviders.put(RoutePresenter.class, new RoutePresenter$$ViewStateProvider());
+		sViewStateProviders.put(RouteDetailPresenter.class, new RouteDetailPresenter$$ViewStateProvider());
 
 		sPresenterBinders = new HashMap<>();
 		sPresenterBinders.put(AuthCodeFragment.class, Arrays.<Object>asList(new AuthCodeFragment$$PresentersBinder()));
 		sPresenterBinders.put(AuthPhoneFragment.class, Arrays.<Object>asList(new AuthPhoneFragment$$PresentersBinder()));
 		sPresenterBinders.put(RegistrationFragment.class, Arrays.<Object>asList(new RegistrationFragment$$PresentersBinder()));
 		sPresenterBinders.put(HomeFragment.class, Arrays.<Object>asList(new HomeFragment$$PresentersBinder()));
+		sPresenterBinders.put(RouteFragment.class, Arrays.<Object>asList(new RouteFragment$$PresentersBinder()));
+		sPresenterBinders.put(RouteDetailFragment.class, Arrays.<Object>asList(new RouteDetailFragment$$PresentersBinder()));
 
 		sStrategies = new HashMap<>();
 		sStrategies.put(AddToEndStrategy.class, new AddToEndStrategy());

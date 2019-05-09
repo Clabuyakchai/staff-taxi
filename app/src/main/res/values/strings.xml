@@ -13,4 +13,6 @@
     <string name="address">Address</string>
     <string name="phone">Phone</string>
     <string name="change_user">Change user</string>
+    <string name="edit">Edit user</string>
+    <string name="save">Save</string>
 </resources>

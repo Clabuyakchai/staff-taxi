@@ -55,6 +55,6 @@ public class NavigationActivity extends BaseActivity implements StartActivity {
     public void startActivity() {
         Intent intent = new Intent(NavigationActivity.this, AuthActivity.class);
         startActivity(intent);
-//        finish();//TODO
+        finish();
     }
 }

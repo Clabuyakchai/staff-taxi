@@ -798,6 +798,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color material_blue_grey_800
@@ -1306,6 +1307,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_person_black_24dp
+drawable ic_phone_black_24dp
 drawable ic_route_black_24dp
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
@@ -1448,6 +1450,7 @@ id direct
 id disableHome
 id dropdown_menu
 id edit_query
+id edit_user
 id email
 id end
 id end_padder
@@ -1541,13 +1544,23 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id recycler_route
 id right
 id right_icon
 id right_side
 id rounded
+id route_calendar
+id route_container
+id route_datetime
+id route_detail_name
+id route_detail_phone
+id route_detail_recycler
+id route_from_to
+id route_price
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
+id save_user
 id scale
 id screen
 id scroll
@@ -1603,7 +1616,6 @@ id tag_screen_reader_focusable
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
-id test
 id text
 id text2
 id textEnd
@@ -1722,6 +1734,8 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout home_fragment
+layout list_route_detail_item
+layout list_route_item
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -1754,6 +1768,7 @@ layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout registration_fragment
+layout route_detail_fragment
 layout route_fragment
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -1825,6 +1840,7 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string default_web_client_id
+string edit
 string email
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
@@ -1860,6 +1876,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string phone
 string project_id
+string save
 string search_menu_title
 string send_phone
 string send_verify_code

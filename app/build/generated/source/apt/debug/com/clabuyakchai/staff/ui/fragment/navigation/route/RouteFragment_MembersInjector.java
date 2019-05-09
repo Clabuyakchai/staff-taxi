@@ -11,19 +11,30 @@ public final class RouteFragment_MembersInjector implements MembersInjector<Rout
   private final Provider<DispatchingAndroidInjector<Fragment>>
       fragmentDispatchingAndroidInjectorProvider;
 
+  private final Provider<RoutePresenter> presenterProvider;
+
   public RouteFragment_MembersInjector(
-      Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider) {
+      Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
+      Provider<RoutePresenter> presenterProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
+    this.presenterProvider = presenterProvider;
   }
 
   public static MembersInjector<RouteFragment> create(
-      Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider) {
-    return new RouteFragment_MembersInjector(fragmentDispatchingAndroidInjectorProvider);
+      Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
+      Provider<RoutePresenter> presenterProvider) {
+    return new RouteFragment_MembersInjector(
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
   }
 
   @Override
   public void injectMembers(RouteFragment instance) {
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
+    injectPresenter(instance, presenterProvider.get());
+  }
+
+  public static void injectPresenter(RouteFragment instance, RoutePresenter presenter) {
+    instance.presenter = presenter;
   }
 }

@@ -1,7 +1,7 @@
 package com.clabuyakchai.staff.ui.fragment.navigation.home;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.clabuyakchai.staff.data.remote.request.StaffDto;
+import com.clabuyakchai.staff.data.local.entity.Staff;
 import com.clabuyakchai.staff.data.repository.AuthRepository;
 import com.clabuyakchai.staff.data.repository.HomeRepository;
 import com.clabuyakchai.staff.ui.base.BasePresenter;
@@ -38,10 +38,25 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     public void signOut(){
         authRepository.signOut();
+        deleteStaffFromDb();
         getViewState().signOut();
     }
 
-    public void deleteStaffFromDb(){
+    public void pressEditUser(Boolean enabled){
+        getViewState().setEnabledEdTxt(enabled);
+    }
+
+    public void updateUser(Staff staff){
+        Disposable disposable = homeRepository.updateInformationAboutMe(staff)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(staffDto -> {
+                    getViewState().setField(staffDto);
+                }, Throwable::printStackTrace);
+
+        compositeDisposable.add(disposable);
+    }
+
+    private void deleteStaffFromDb(){
         homeRepository.deleteStaffFromDb();
     }
 

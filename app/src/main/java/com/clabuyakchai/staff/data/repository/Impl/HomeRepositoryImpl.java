@@ -28,8 +28,23 @@ public class HomeRepositoryImpl implements HomeRepository {
     }
 
     @Override
-    public void updateInformationAboutMe(StaffDto staffDto) {
-
+    public Single<StaffDto> updateInformationAboutMe(Staff staff) {
+        return database.staffDao().getStaff().subscribeOn(Schedulers.io())
+                .flatMap(st -> {
+                    st.get(0).setName(staff.getName());
+                    st.get(0).setPhone(staff.getPhone());
+                    st.get(0).setEmail(staff.getEmail());
+                    st.get(0).setAddress(staff.getAddress());
+                    return staffApi.updateStaff(mapStaffToStaffDto(st))
+                            .flatMap(staffDto -> {
+                                if(staffDto != null){
+                                    database.staffDao().insert(mapStaffDtotoStaff(staffDto));
+                                    return Single.just(staffDto);
+                                } else {
+                                    return Single.just(mapStaffToStaffDto(st));
+                                }
+                            });
+                });
     }
 
     @Override

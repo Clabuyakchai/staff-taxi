@@ -36,7 +36,7 @@ public class MyServiceInterceptor implements Interceptor {
         sessionToken = Preferences.getTokenSharedPreferences(context);
 
         if (sessionToken != null) {
-            requestBuilder.addHeader("Authorization", sessionToken);
+            requestBuilder.addHeader("Authorization", "Bearer " + sessionToken);
         } else {
             requestBuilder.removeHeader("Authorization");
         }

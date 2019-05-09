@@ -6,4 +6,5 @@ import com.clabuyakchai.staff.data.remote.request.StaffDto;
 public interface HomeView extends MvpView {
     void setField(StaffDto staffDto);
     void signOut();
+    void setEnabledEdTxt(Boolean enabled);
 }

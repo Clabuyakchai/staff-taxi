@@ -11,11 +11,11 @@ import android.widget.TextView;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.staff.R;
+import com.clabuyakchai.staff.data.local.entity.Staff;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import com.clabuyakchai.staff.ui.activity.StartActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment;
-import com.clabuyakchai.staff.util.MyServiceInterceptor;
 import com.clabuyakchai.staff.util.Preferences;
 
 import javax.inject.Inject;
@@ -30,6 +30,8 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private EditText emailEdtx;
     private EditText addressEdtx;
     private TextView changeUserTxt;
+    private TextView editTxt;
+    private TextView saveTxt;
 
     @Inject
     @InjectPresenter
@@ -59,6 +61,23 @@ public class HomeFragment extends BaseFragment implements HomeView {
         emailEdtx = view.findViewById(R.id.home_email);
         addressEdtx = view.findViewById(R.id.home_address);
         changeUserTxt = view.findViewById(R.id.change_user);
+        editTxt = view.findViewById(R.id.edit_user);
+        saveTxt = view.findViewById(R.id.save_user);
+
+        editTxt.setOnClickListener(v -> {
+            presenter.pressEditUser(true);
+        });
+
+        saveTxt.setOnClickListener(v -> {
+            presenter.pressEditUser(false);
+            Staff staff = new Staff();
+            staff.setName(nameEdtx.getText().toString());
+            staff.setPhone(phoneEdtx.getText().toString());
+            staff.setEmail(emailEdtx.getText().toString());
+            staff.setAddress(addressEdtx.getText().toString());
+            presenter.updateUser(staff);
+        });
+
         changeUserTxt.setOnClickListener(view1 -> {
             presenter.signOut();
         });
@@ -80,8 +99,22 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void signOut() {
         Preferences.setTokenSharedPreferences(getContext(), null);
-        presenter.deleteStaffFromDb();
         startAuthActivity.startActivity();
+    }
+
+    @Override
+    public void setEnabledEdTxt(Boolean enabled) {
+        nameEdtx.setEnabled(enabled);
+        phoneEdtx.setEnabled(enabled);
+        emailEdtx.setEnabled(enabled);
+        addressEdtx.setEnabled(enabled);
+        if (enabled) {
+            editTxt.setVisibility(View.GONE);
+            saveTxt.setVisibility(View.VISIBLE);
+        } else {
+            editTxt.setVisibility(View.VISIBLE);
+            saveTxt.setVisibility(View.GONE);
+        }
     }
 
     public static HomeFragment newInstance(){

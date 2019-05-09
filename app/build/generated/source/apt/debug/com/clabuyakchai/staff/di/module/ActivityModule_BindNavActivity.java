@@ -4,6 +4,7 @@ import com.clabuyakchai.staff.di.scope.ActivityScope;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Subcomponent;
@@ -21,7 +22,13 @@ public abstract class ActivityModule_BindNavActivity {
   abstract AndroidInjector.Factory<?> bindAndroidInjectorFactory(
       NavigationActivitySubcomponent.Builder builder);
 
-  @Subcomponent(modules = {HomeFragmentProvider.class, RouteFragmentProvider.class})
+  @Subcomponent(
+    modules = {
+      HomeFragmentProvider.class,
+      RouteFragmentProvider.class,
+      RouteDetailFragmentProvider.class
+    }
+  )
   @ActivityScope
   public interface NavigationActivitySubcomponent extends AndroidInjector<NavigationActivity> {
     @Subcomponent.Builder

@@ -5,7 +5,6 @@ import com.clabuyakchai.staff.di.module.ActivityModule;
 import com.clabuyakchai.staff.di.module.ApplicationModule;
 import com.clabuyakchai.staff.di.module.DatabaseModule;
 import com.clabuyakchai.staff.di.module.FirebaseModule;
-import com.clabuyakchai.staff.di.module.PresenterModule;
 import com.clabuyakchai.staff.di.module.RemoteModule;
 import com.clabuyakchai.staff.di.module.RepositoryModule;
 import com.clabuyakchai.staff.di.scope.ApplicationScope;
@@ -21,7 +20,6 @@ import dagger.android.support.AndroidSupportInjectionModule;
         FirebaseModule.class,
         RemoteModule.class,
         RepositoryModule.class,
-        PresenterModule.class,
         DatabaseModule.class,
         ApplicationModule.class
 })

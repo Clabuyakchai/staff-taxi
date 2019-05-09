@@ -6,7 +6,7 @@ import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import io.reactivex.Single;
 
 public interface HomeRepository {
-    void updateInformationAboutMe(StaffDto staffDto);
+    Single<StaffDto> updateInformationAboutMe(Staff staff);
     Single<StaffDto> getInformationAboutMeFromDb();
     void deleteStaffFromDb();
 }

@@ -16,6 +16,9 @@ import com.clabuyakchai.staff.data.repository.Impl.AuthRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.AuthRepositoryImpl_Factory;
 import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl_Factory;
+import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl;
+import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl_Factory;
+import com.clabuyakchai.staff.data.repository.RouteRepository;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindLoginActivity;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindNavActivity;
 import com.clabuyakchai.staff.di.module.DatabaseModule;
@@ -23,16 +26,15 @@ import com.clabuyakchai.staff.di.module.DatabaseModule_ProvideAppDatabaseFactory
 import com.clabuyakchai.staff.di.module.FirebaseModule;
 import com.clabuyakchai.staff.di.module.FirebaseModule_ProvideFirebaseAuthFactory;
 import com.clabuyakchai.staff.di.module.FirebaseModule_ProvidePhoneAuthProviderFactory;
-import com.clabuyakchai.staff.di.module.PresenterModule;
-import com.clabuyakchai.staff.di.module.PresenterModule_ProvideAuthCodePresenterFactory;
-import com.clabuyakchai.staff.di.module.PresenterModule_ProvideAuthPhonePresenterImplFactory;
-import com.clabuyakchai.staff.di.module.PresenterModule_ProvideRegistrationPresenterFactory;
 import com.clabuyakchai.staff.di.module.RemoteModule;
 import com.clabuyakchai.staff.di.module.RemoteModule_ProvideOkHttpClientFactory;
 import com.clabuyakchai.staff.di.module.RemoteModule_ProvideRetrofitFactory;
 import com.clabuyakchai.staff.di.module.RemoteModule_ProvideStaffApiFactory;
 import com.clabuyakchai.staff.ui.activity.FragmentStack;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
+import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideAuthCodePresenterFactory;
+import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideAuthPhonePresenterImplFactory;
+import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideRegistrationPresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragment;
@@ -53,6 +55,12 @@ import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment_MembersIn
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider_BindRouteFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.navigation.route.RoutePresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider_BindRouteDetailFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter;
 import com.clabuyakchai.staff.util.MyServiceInterceptor;
 import com.clabuyakchai.staff.util.MyServiceInterceptor_Factory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -99,31 +107,23 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Provider<AuthRepository> bindAuthRepositoryProvider;
 
-  private Provider<AuthPhonePresenter> provideAuthPhonePresenterImplProvider;
-
-  private Provider<AuthCodePresenter> provideAuthCodePresenterProvider;
-
-  private Provider<RegistrationPresenter> provideRegistrationPresenterProvider;
-
   private Provider<AppDatabase> provideAppDatabaseProvider;
 
   private Provider<HomeRepositoryImpl> homeRepositoryImplProvider;
 
   private Provider<HomeRepository> bindHomeRepositoryProvider;
 
+  private Provider<RouteRepositoryImpl> routeRepositoryImplProvider;
+
+  private Provider<RouteRepository> bindRouteRepositoryProvider;
+
   private DaggerAppComponent(
-      PresenterModule presenterModuleParam,
       FirebaseModule firebaseModuleParam,
       RemoteModule remoteModuleParam,
       DatabaseModule databaseModuleParam,
       App seedInstanceParam) {
 
-    initialize(
-        presenterModuleParam,
-        firebaseModuleParam,
-        remoteModuleParam,
-        databaseModuleParam,
-        seedInstanceParam);
+    initialize(firebaseModuleParam, remoteModuleParam, databaseModuleParam, seedInstanceParam);
   }
 
   public static AppComponent.Builder builder() {
@@ -179,7 +179,6 @@ public final class DaggerAppComponent implements AppComponent {
 
   @SuppressWarnings("unchecked")
   private void initialize(
-      final PresenterModule presenterModuleParam,
       final FirebaseModule firebaseModuleParam,
       final RemoteModule remoteModuleParam,
       final DatabaseModule databaseModuleParam,
@@ -222,18 +221,6 @@ public final class DaggerAppComponent implements AppComponent {
         AuthRepositoryImpl_Factory.create(
             provideFirebaseAuthProvider, providePhoneAuthProvider, provideStaffApiProvider);
     this.bindAuthRepositoryProvider = DoubleCheck.provider((Provider) authRepositoryImplProvider);
-    this.provideAuthPhonePresenterImplProvider =
-        DoubleCheck.provider(
-            PresenterModule_ProvideAuthPhonePresenterImplFactory.create(
-                presenterModuleParam, bindAuthRepositoryProvider));
-    this.provideAuthCodePresenterProvider =
-        DoubleCheck.provider(
-            PresenterModule_ProvideAuthCodePresenterFactory.create(
-                presenterModuleParam, bindAuthRepositoryProvider));
-    this.provideRegistrationPresenterProvider =
-        DoubleCheck.provider(
-            PresenterModule_ProvideRegistrationPresenterFactory.create(
-                presenterModuleParam, bindAuthRepositoryProvider));
     this.provideAppDatabaseProvider =
         DoubleCheck.provider(
             DatabaseModule_ProvideAppDatabaseFactory.create(
@@ -241,6 +228,9 @@ public final class DaggerAppComponent implements AppComponent {
     this.homeRepositoryImplProvider =
         HomeRepositoryImpl_Factory.create(provideStaffApiProvider, provideAppDatabaseProvider);
     this.bindHomeRepositoryProvider = DoubleCheck.provider((Provider) homeRepositoryImplProvider);
+    this.routeRepositoryImplProvider =
+        RouteRepositoryImpl_Factory.create(provideStaffApiProvider, provideAppDatabaseProvider);
+    this.bindRouteRepositoryProvider = DoubleCheck.provider((Provider) routeRepositoryImplProvider);
   }
 
   @Override
@@ -266,8 +256,6 @@ public final class DaggerAppComponent implements AppComponent {
   }
 
   private static final class Builder extends AppComponent.Builder {
-    private PresenterModule presenterModule;
-
     private FirebaseModule firebaseModule;
 
     private RemoteModule remoteModule;
@@ -283,9 +271,6 @@ public final class DaggerAppComponent implements AppComponent {
 
     @Override
     public AppComponent build() {
-      if (presenterModule == null) {
-        this.presenterModule = new PresenterModule();
-      }
       if (firebaseModule == null) {
         this.firebaseModule = new FirebaseModule();
       }
@@ -296,8 +281,7 @@ public final class DaggerAppComponent implements AppComponent {
         this.databaseModule = new DatabaseModule();
       }
       Preconditions.checkBuilderRequirement(seedInstance, App.class);
-      return new DaggerAppComponent(
-          presenterModule, firebaseModule, remoteModule, databaseModule, seedInstance);
+      return new DaggerAppComponent(firebaseModule, remoteModule, databaseModule, seedInstance);
     }
   }
 
@@ -332,9 +316,15 @@ public final class DaggerAppComponent implements AppComponent {
                 .Builder>
         registrationFragmentSubcomponentBuilderProvider;
 
+    private Provider<AuthPhonePresenter> provideAuthPhonePresenterImplProvider;
+
     private Provider<AuthActivity> seedInstanceProvider;
 
     private Provider<FragmentStack> bindFragmentStackProvider;
+
+    private Provider<AuthCodePresenter> provideAuthCodePresenterProvider;
+
+    private Provider<RegistrationPresenter> provideRegistrationPresenterProvider;
 
     private AuthActivitySubcomponentImpl(AuthActivity seedInstanceParam) {
 
@@ -404,8 +394,20 @@ public final class DaggerAppComponent implements AppComponent {
               return new RegistrationFragmentSubcomponentBuilder();
             }
           };
+      this.provideAuthPhonePresenterImplProvider =
+          DoubleCheck.provider(
+              AuthActivityModule_ProvideAuthPhonePresenterImplFactory.create(
+                  DaggerAppComponent.this.bindAuthRepositoryProvider));
       this.seedInstanceProvider = InstanceFactory.create(seedInstanceParam);
       this.bindFragmentStackProvider = DoubleCheck.provider((Provider) seedInstanceProvider);
+      this.provideAuthCodePresenterProvider =
+          DoubleCheck.provider(
+              AuthActivityModule_ProvideAuthCodePresenterFactory.create(
+                  DaggerAppComponent.this.bindAuthRepositoryProvider));
+      this.provideRegistrationPresenterProvider =
+          DoubleCheck.provider(
+              AuthActivityModule_ProvideRegistrationPresenterFactory.create(
+                  DaggerAppComponent.this.bindAuthRepositoryProvider));
     }
 
     @Override
@@ -450,7 +452,8 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance, AuthActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         AuthPhoneFragment_MembersInjector.injectPresenter(
-            instance, DaggerAppComponent.this.provideAuthPhonePresenterImplProvider.get());
+            instance,
+            AuthActivitySubcomponentImpl.this.provideAuthPhonePresenterImplProvider.get());
         AuthPhoneFragment_MembersInjector.injectFragmentStack(
             instance, AuthActivitySubcomponentImpl.this.bindFragmentStackProvider.get());
         return instance;
@@ -486,7 +489,7 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance, AuthActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         AuthCodeFragment_MembersInjector.injectPresenter(
-            instance, DaggerAppComponent.this.provideAuthCodePresenterProvider.get());
+            instance, AuthActivitySubcomponentImpl.this.provideAuthCodePresenterProvider.get());
         AuthCodeFragment_MembersInjector.injectFragmentStack(
             instance, AuthActivitySubcomponentImpl.this.bindFragmentStackProvider.get());
         return instance;
@@ -525,7 +528,7 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance, AuthActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         RegistrationFragment_MembersInjector.injectPresenter(
-            instance, DaggerAppComponent.this.provideRegistrationPresenterProvider.get());
+            instance, AuthActivitySubcomponentImpl.this.provideRegistrationPresenterProvider.get());
         return instance;
       }
     }
@@ -555,6 +558,11 @@ public final class DaggerAppComponent implements AppComponent {
     private Provider<RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder>
         routeFragmentSubcomponentBuilderProvider;
 
+    private Provider<
+            RouteDetailFragmentProvider_BindRouteDetailFragment.RouteDetailFragmentSubcomponent
+                .Builder>
+        routeDetailFragmentSubcomponentBuilderProvider;
+
     private NavigationActivitySubcomponentImpl(NavigationActivity seedInstance) {
 
       initialize(seedInstance);
@@ -562,7 +570,7 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
         getMapOfClassOfAndProviderOfFactoryOf() {
-      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(4)
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(5)
           .put(
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
@@ -571,6 +579,7 @@ public final class DaggerAppComponent implements AppComponent {
               (Provider) DaggerAppComponent.this.navigationActivitySubcomponentBuilderProvider)
           .put(HomeFragment.class, (Provider) homeFragmentSubcomponentBuilderProvider)
           .put(RouteFragment.class, (Provider) routeFragmentSubcomponentBuilderProvider)
+          .put(RouteDetailFragment.class, (Provider) routeDetailFragmentSubcomponentBuilderProvider)
           .build();
     }
 
@@ -602,6 +611,17 @@ public final class DaggerAppComponent implements AppComponent {
             @Override
             public RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent.Builder get() {
               return new RouteFragmentSubcomponentBuilder();
+            }
+          };
+      this.routeDetailFragmentSubcomponentBuilderProvider =
+          new Provider<
+              RouteDetailFragmentProvider_BindRouteDetailFragment.RouteDetailFragmentSubcomponent
+                  .Builder>() {
+            @Override
+            public RouteDetailFragmentProvider_BindRouteDetailFragment
+                    .RouteDetailFragmentSubcomponent.Builder
+                get() {
+              return new RouteDetailFragmentSubcomponentBuilder();
             }
           };
     }
@@ -679,6 +699,10 @@ public final class DaggerAppComponent implements AppComponent {
         implements RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent {
       private RouteFragmentSubcomponentImpl(RouteFragment seedInstance) {}
 
+      private RoutePresenter getRoutePresenter() {
+        return new RoutePresenter(DaggerAppComponent.this.bindRouteRepositoryProvider.get());
+      }
+
       @Override
       public void inject(RouteFragment arg0) {
         injectRouteFragment(arg0);
@@ -688,6 +712,48 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        RouteFragment_MembersInjector.injectPresenter(instance, getRoutePresenter());
+        return instance;
+      }
+    }
+
+    private final class RouteDetailFragmentSubcomponentBuilder
+        extends RouteDetailFragmentProvider_BindRouteDetailFragment.RouteDetailFragmentSubcomponent
+            .Builder {
+      private RouteDetailFragment seedInstance;
+
+      @Override
+      public void seedInstance(RouteDetailFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public RouteDetailFragmentProvider_BindRouteDetailFragment.RouteDetailFragmentSubcomponent
+          build() {
+        Preconditions.checkBuilderRequirement(seedInstance, RouteDetailFragment.class);
+        return new RouteDetailFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class RouteDetailFragmentSubcomponentImpl
+        implements RouteDetailFragmentProvider_BindRouteDetailFragment
+            .RouteDetailFragmentSubcomponent {
+      private RouteDetailFragmentSubcomponentImpl(RouteDetailFragment seedInstance) {}
+
+      private RouteDetailPresenter getRouteDetailPresenter() {
+        return new RouteDetailPresenter(DaggerAppComponent.this.bindRouteRepositoryProvider.get());
+      }
+
+      @Override
+      public void inject(RouteDetailFragment arg0) {
+        injectRouteDetailFragment(arg0);
+      }
+
+      private RouteDetailFragment injectRouteDetailFragment(RouteDetailFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        RouteDetailFragment_MembersInjector.injectPresenter(instance, getRouteDetailPresenter());
         return instance;
       }
     }

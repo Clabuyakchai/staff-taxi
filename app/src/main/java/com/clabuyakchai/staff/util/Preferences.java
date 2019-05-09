@@ -16,7 +16,7 @@ public abstract class Preferences {
         PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .edit()
-                .putString(PREF_TOKEN, "Bearer " + token)
+                .putString(PREF_TOKEN, token)
                 .apply();
     }
 }

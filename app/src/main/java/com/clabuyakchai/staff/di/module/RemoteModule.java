@@ -27,7 +27,7 @@ public class RemoteModule {
     @Provides
     public Retrofit provideRetrofit(OkHttpClient okHttpClient){
         return new Retrofit.Builder()
-                .baseUrl("http://192.168.0.103:8090/")
+                .baseUrl("http://192.168.0.106:8090/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .client(okHttpClient)
