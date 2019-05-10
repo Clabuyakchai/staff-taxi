@@ -3,7 +3,9 @@ package com.clabuyakchai.staff.di.module;
 import com.clabuyakchai.staff.di.scope.ActivityScope;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule;
+import com.clabuyakchai.staff.ui.activity.navigation.CiceroneModule;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.auth.phone.AuthPhoneFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragmentProvider;
@@ -28,7 +30,9 @@ public abstract class ActivityModule {
     @ContributesAndroidInjector(modules = {
             HomeFragmentProvider.class,
             RouteFragmentProvider.class,
-            RouteDetailFragmentProvider.class
+            RouteDetailFragmentProvider.class,
+            NavigationActivityModule.class,
+            CiceroneModule.class
     })
     public abstract NavigationActivity bindNavActivity();
 }

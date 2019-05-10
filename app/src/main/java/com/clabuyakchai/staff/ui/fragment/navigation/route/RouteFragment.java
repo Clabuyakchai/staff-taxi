@@ -117,7 +117,7 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
 
     @Override
     public void fragmentDetails(Long id) {
-//        fragmentStack.add(RouteDetailFragment.newInstance(id), true);
+//        fragmentStack.add(RouteDetailFragment.newInstance(id), true);//TODO
         getChildFragmentManager().beginTransaction().replace(R.id.route_container, RouteDetailFragment.newInstance(id))
                 .addToBackStack(RouteDetailFragment.class.getName()).commit();
     }

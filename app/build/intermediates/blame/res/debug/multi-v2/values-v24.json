@@ -4,7 +4,17 @@
             "outputFile": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-1\\files-1.1\\media-1.0.0.aar\\c1af811402818cc4a0fa37964ab0e39b\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\1f501ce15c4aeb87f5514d4ab1223483\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -18,16 +28,6 @@
                         "startOffsets": "347,413,474,540",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "408,469,535,602"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0-alpha04.aar\\15a05a889bd2de993181c03f91fa2f3c\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
                     }
                 }
             ]

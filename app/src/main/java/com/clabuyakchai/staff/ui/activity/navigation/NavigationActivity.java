@@ -9,13 +9,22 @@ import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.staff.ui.base.BaseActivity;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
+import com.clabuyakchai.staff.ui.fragment.station.StationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import ru.terrakok.cicerone.Cicerone;
+import ru.terrakok.cicerone.Navigator;
+import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
+import ru.terrakok.cicerone.Screen;
+import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import ru.terrakok.cicerone.commands.Command;
 
 public class NavigationActivity extends BaseActivity implements StartActivity {
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +46,9 @@ public class NavigationActivity extends BaseActivity implements StartActivity {
         switch (item.getItemId()) {
             case R.id.navigation_item_route:
                 add(RouteFragment.newInstance(), false);
+                return true;
+            case R.id.navigation_item_station:
+                add(StationFragment.newInstance(), false);
                 return true;
             case R.id.navigation_item_staff:
                 add(HomeFragment.newInstance(), false);
