@@ -15,4 +15,5 @@
     <string name="change_user">Change user</string>
     <string name="edit">Edit user</string>
     <string name="save">Save</string>
+    <string name="station">Station</string>
 </resources>

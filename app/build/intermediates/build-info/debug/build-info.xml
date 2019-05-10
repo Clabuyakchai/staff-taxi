@@ -5,68 +5,47 @@
     build-mode="COLD"
     density="xxhdpi"
     format="10"
-    ir-eligibility="R_CLASS_CHANGE"
+    ir-eligibility="CLASS_ADDED"
     plugin-version="3.3.1"
-    timestamp="1557435760071"
+    timestamp="1557528513207"
     token="7381867219858190149"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="7122" />
+        duration="9437" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="178" />
+        duration="67" />
     <task
         name="verifier"
-        duration="138" />
+        duration="6" />
 
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
     <artifact
         location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1557434380946"
+        timestamp="1557520267591"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
@@ -84,9 +63,6 @@
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
@@ -101,26 +77,17 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1557435760071"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1557524634535"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -128,11 +95,56 @@
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1557527281124"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1557527397524"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="METHOD_DELETED"
+        timestamp="1557528159085"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1557528239172"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1557528513207"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="F:\JavaProjects\DIPLOMA\Staff\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
     </build>
 

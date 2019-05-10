@@ -21,6 +21,11 @@ import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl_Factory;
 import com.clabuyakchai.staff.data.repository.RouteRepository;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindLoginActivity;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindNavActivity;
+import com.clabuyakchai.staff.di.module.CiceroneModule;
+import com.clabuyakchai.staff.di.module.CiceroneModule_ProvideCiceroneFactory;
+import com.clabuyakchai.staff.di.module.CiceroneModule_ProvideLocalCiceroneHolderFactory;
+import com.clabuyakchai.staff.di.module.CiceroneModule_ProvideNavigatorHolderFactory;
+import com.clabuyakchai.staff.di.module.CiceroneModule_ProvideRouterFactory;
 import com.clabuyakchai.staff.di.module.DatabaseModule;
 import com.clabuyakchai.staff.di.module.DatabaseModule_ProvideAppDatabaseFactory;
 import com.clabuyakchai.staff.di.module.FirebaseModule;
@@ -36,6 +41,12 @@ import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideAuthCod
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideAuthPhonePresenterImplFactory;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivityModule_ProvideRegistrationPresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideHomePresenterFactory;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideRouteDetailPresenterFactory;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideRoutePresenterFactory;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityPresenter;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity_MembersInjector;
 import com.clabuyakchai.staff.ui.base.BaseFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragment;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragmentProvider_BindAuthCodeFragment;
@@ -61,6 +72,10 @@ import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFrag
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider_BindRouteDetailFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
+import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragment;
+import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragmentProvider_BindTabNavigationFragment;
+import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragment_MembersInjector;
 import com.clabuyakchai.staff.util.MyServiceInterceptor;
 import com.clabuyakchai.staff.util.MyServiceInterceptor_Factory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -79,6 +94,9 @@ import java.util.Map;
 import javax.inject.Provider;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import ru.terrakok.cicerone.Cicerone;
+import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
 
 public final class DaggerAppComponent implements AppComponent {
   private Provider<ActivityModule_BindLoginActivity.AuthActivitySubcomponent.Builder>
@@ -536,6 +554,10 @@ public final class DaggerAppComponent implements AppComponent {
 
   private final class NavigationActivitySubcomponentBuilder
       extends ActivityModule_BindNavActivity.NavigationActivitySubcomponent.Builder {
+    private CiceroneModule ciceroneModule;
+
+    private NavigationActivityModule navigationActivityModule;
+
     private NavigationActivity seedInstance;
 
     @Override
@@ -545,8 +567,15 @@ public final class DaggerAppComponent implements AppComponent {
 
     @Override
     public ActivityModule_BindNavActivity.NavigationActivitySubcomponent build() {
+      if (ciceroneModule == null) {
+        this.ciceroneModule = new CiceroneModule();
+      }
+      if (navigationActivityModule == null) {
+        this.navigationActivityModule = new NavigationActivityModule();
+      }
       Preconditions.checkBuilderRequirement(seedInstance, NavigationActivity.class);
-      return new NavigationActivitySubcomponentImpl(seedInstance);
+      return new NavigationActivitySubcomponentImpl(
+          ciceroneModule, navigationActivityModule, seedInstance);
     }
   }
 
@@ -563,14 +592,36 @@ public final class DaggerAppComponent implements AppComponent {
                 .Builder>
         routeDetailFragmentSubcomponentBuilderProvider;
 
-    private NavigationActivitySubcomponentImpl(NavigationActivity seedInstance) {
+    private Provider<
+            TabNavigationFragmentProvider_BindTabNavigationFragment
+                .TabNavigationFragmentSubcomponent.Builder>
+        tabNavigationFragmentSubcomponentBuilderProvider;
 
-      initialize(seedInstance);
+    private Provider<Cicerone<Router>> provideCiceroneProvider;
+
+    private Provider<NavigatorHolder> provideNavigatorHolderProvider;
+
+    private Provider<Router> provideRouterProvider;
+
+    private Provider<HomePresenter> provideHomePresenterProvider;
+
+    private Provider<RoutePresenter> provideRoutePresenterProvider;
+
+    private Provider<LocalCiceroneHolder> provideLocalCiceroneHolderProvider;
+
+    private Provider<RouteDetailPresenter> provideRouteDetailPresenterProvider;
+
+    private NavigationActivitySubcomponentImpl(
+        CiceroneModule ciceroneModuleParam,
+        NavigationActivityModule navigationActivityModuleParam,
+        NavigationActivity seedInstance) {
+
+      initialize(ciceroneModuleParam, navigationActivityModuleParam, seedInstance);
     }
 
     private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
         getMapOfClassOfAndProviderOfFactoryOf() {
-      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(5)
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(6)
           .put(
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
@@ -580,6 +631,9 @@ public final class DaggerAppComponent implements AppComponent {
           .put(HomeFragment.class, (Provider) homeFragmentSubcomponentBuilderProvider)
           .put(RouteFragment.class, (Provider) routeFragmentSubcomponentBuilderProvider)
           .put(RouteDetailFragment.class, (Provider) routeDetailFragmentSubcomponentBuilderProvider)
+          .put(
+              TabNavigationFragment.class,
+              (Provider) tabNavigationFragmentSubcomponentBuilderProvider)
           .build();
     }
 
@@ -596,8 +650,15 @@ public final class DaggerAppComponent implements AppComponent {
           Collections.<String, Provider<AndroidInjector.Factory<?>>>emptyMap());
     }
 
+    private NavigationActivityPresenter getNavigationActivityPresenter() {
+      return new NavigationActivityPresenter(provideRouterProvider.get());
+    }
+
     @SuppressWarnings("unchecked")
-    private void initialize(final NavigationActivity seedInstance) {
+    private void initialize(
+        final CiceroneModule ciceroneModuleParam,
+        final NavigationActivityModule navigationActivityModuleParam,
+        final NavigationActivity seedInstance) {
       this.homeFragmentSubcomponentBuilderProvider =
           new Provider<HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent.Builder>() {
             @Override
@@ -624,6 +685,46 @@ public final class DaggerAppComponent implements AppComponent {
               return new RouteDetailFragmentSubcomponentBuilder();
             }
           };
+      this.tabNavigationFragmentSubcomponentBuilderProvider =
+          new Provider<
+              TabNavigationFragmentProvider_BindTabNavigationFragment
+                  .TabNavigationFragmentSubcomponent.Builder>() {
+            @Override
+            public TabNavigationFragmentProvider_BindTabNavigationFragment
+                    .TabNavigationFragmentSubcomponent.Builder
+                get() {
+              return new TabNavigationFragmentSubcomponentBuilder();
+            }
+          };
+      this.provideCiceroneProvider =
+          DoubleCheck.provider(CiceroneModule_ProvideCiceroneFactory.create(ciceroneModuleParam));
+      this.provideNavigatorHolderProvider =
+          DoubleCheck.provider(
+              CiceroneModule_ProvideNavigatorHolderFactory.create(
+                  ciceroneModuleParam, provideCiceroneProvider));
+      this.provideRouterProvider =
+          DoubleCheck.provider(
+              CiceroneModule_ProvideRouterFactory.create(
+                  ciceroneModuleParam, provideCiceroneProvider));
+      this.provideHomePresenterProvider =
+          DoubleCheck.provider(
+              NavigationActivityModule_ProvideHomePresenterFactory.create(
+                  navigationActivityModuleParam,
+                  DaggerAppComponent.this.bindAuthRepositoryProvider,
+                  DaggerAppComponent.this.bindHomeRepositoryProvider));
+      this.provideRoutePresenterProvider =
+          DoubleCheck.provider(
+              NavigationActivityModule_ProvideRoutePresenterFactory.create(
+                  navigationActivityModuleParam,
+                  DaggerAppComponent.this.bindRouteRepositoryProvider));
+      this.provideLocalCiceroneHolderProvider =
+          DoubleCheck.provider(
+              CiceroneModule_ProvideLocalCiceroneHolderFactory.create(ciceroneModuleParam));
+      this.provideRouteDetailPresenterProvider =
+          DoubleCheck.provider(
+              NavigationActivityModule_ProvideRouteDetailPresenterFactory.create(
+                  navigationActivityModuleParam,
+                  DaggerAppComponent.this.bindRouteRepositoryProvider));
     }
 
     @Override
@@ -636,6 +737,10 @@ public final class DaggerAppComponent implements AppComponent {
           instance, getDispatchingAndroidInjectorOfFragment());
       DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
           instance, getDispatchingAndroidInjectorOfFragment2());
+      NavigationActivity_MembersInjector.injectNavigatorHolder(
+          instance, provideNavigatorHolderProvider.get());
+      NavigationActivity_MembersInjector.injectPresenter(
+          instance, getNavigationActivityPresenter());
       return instance;
     }
 
@@ -659,12 +764,6 @@ public final class DaggerAppComponent implements AppComponent {
         implements HomeFragmentProvider_BindHomeFragment.HomeFragmentSubcomponent {
       private HomeFragmentSubcomponentImpl(HomeFragment seedInstance) {}
 
-      private HomePresenter getHomePresenter() {
-        return new HomePresenter(
-            DaggerAppComponent.this.bindHomeRepositoryProvider.get(),
-            DaggerAppComponent.this.bindAuthRepositoryProvider.get());
-      }
-
       @Override
       public void inject(HomeFragment arg0) {
         injectHomeFragment(arg0);
@@ -674,7 +773,8 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
-        HomeFragment_MembersInjector.injectPresenter(instance, getHomePresenter());
+        HomeFragment_MembersInjector.injectPresenter(
+            instance, NavigationActivitySubcomponentImpl.this.provideHomePresenterProvider.get());
         return instance;
       }
     }
@@ -699,10 +799,6 @@ public final class DaggerAppComponent implements AppComponent {
         implements RouteFragmentProvider_BindRouteFragment.RouteFragmentSubcomponent {
       private RouteFragmentSubcomponentImpl(RouteFragment seedInstance) {}
 
-      private RoutePresenter getRoutePresenter() {
-        return new RoutePresenter(DaggerAppComponent.this.bindRouteRepositoryProvider.get());
-      }
-
       @Override
       public void inject(RouteFragment arg0) {
         injectRouteFragment(arg0);
@@ -712,7 +808,11 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
-        RouteFragment_MembersInjector.injectPresenter(instance, getRoutePresenter());
+        RouteFragment_MembersInjector.injectPresenter(
+            instance, NavigationActivitySubcomponentImpl.this.provideRoutePresenterProvider.get());
+        RouteFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }
@@ -740,10 +840,6 @@ public final class DaggerAppComponent implements AppComponent {
             .RouteDetailFragmentSubcomponent {
       private RouteDetailFragmentSubcomponentImpl(RouteDetailFragment seedInstance) {}
 
-      private RouteDetailPresenter getRouteDetailPresenter() {
-        return new RouteDetailPresenter(DaggerAppComponent.this.bindRouteRepositoryProvider.get());
-      }
-
       @Override
       public void inject(RouteDetailFragment arg0) {
         injectRouteDetailFragment(arg0);
@@ -753,7 +849,49 @@ public final class DaggerAppComponent implements AppComponent {
         BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
-        RouteDetailFragment_MembersInjector.injectPresenter(instance, getRouteDetailPresenter());
+        RouteDetailFragment_MembersInjector.injectPresenter(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideRouteDetailPresenterProvider.get());
+        return instance;
+      }
+    }
+
+    private final class TabNavigationFragmentSubcomponentBuilder
+        extends TabNavigationFragmentProvider_BindTabNavigationFragment
+            .TabNavigationFragmentSubcomponent.Builder {
+      private TabNavigationFragment seedInstance;
+
+      @Override
+      public void seedInstance(TabNavigationFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public TabNavigationFragmentProvider_BindTabNavigationFragment
+              .TabNavigationFragmentSubcomponent
+          build() {
+        Preconditions.checkBuilderRequirement(seedInstance, TabNavigationFragment.class);
+        return new TabNavigationFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class TabNavigationFragmentSubcomponentImpl
+        implements TabNavigationFragmentProvider_BindTabNavigationFragment
+            .TabNavigationFragmentSubcomponent {
+      private TabNavigationFragmentSubcomponentImpl(TabNavigationFragment seedInstance) {}
+
+      @Override
+      public void inject(TabNavigationFragment arg0) {
+        injectTabNavigationFragment(arg0);
+      }
+
+      private TabNavigationFragment injectTabNavigationFragment(TabNavigationFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        TabNavigationFragment_MembersInjector.injectCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }

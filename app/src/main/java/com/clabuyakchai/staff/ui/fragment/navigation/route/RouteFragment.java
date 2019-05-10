@@ -19,6 +19,9 @@ import com.clabuyakchai.staff.ui.base.BaseFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.adapter.RouteAdapter;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.adapter.RouteIdListener;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
+import com.clabuyakchai.staff.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
+import com.clabuyakchai.staff.ui.fragment.tab.RouterProvider;
 import com.clabuyakchai.staff.util.DateHelper;
 
 import java.util.Calendar;
@@ -32,8 +35,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import ru.terrakok.cicerone.Router;
 
-public class RouteFragment extends BaseFragment implements RouteView, RouteIdListener {
+public class RouteFragment extends BaseFragment implements RouteView, RouteIdListener, BackButtonListener {
+    private static final String EXTRA_NAME = "extra_name";
+
     private RecyclerView recyclerView;
     private RouteAdapter routeAdapter;
     private TextView calendarTxt;
@@ -43,15 +49,8 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
     @InjectPresenter
     RoutePresenter presenter;
 
-    private FragmentStack fragmentStack;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof NavigationActivity){
-            fragmentStack = (NavigationActivity)context;
-        }
-    }
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
 
     @Nullable
     @Override
@@ -62,6 +61,7 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+        presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
         calendarTxt = view.findViewById(R.id.route_calendar);
         recyclerView = view.findViewById(R.id.recycler_route);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,8 +90,13 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
         return presenter;
     }
 
-    public static RouteFragment newInstance() {
-        return new RouteFragment();
+    public static RouteFragment newInstance(String name) {
+        Bundle args = new Bundle();
+        args.putString(EXTRA_NAME, name);
+
+        RouteFragment fragment = new RouteFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     private DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, monthOfYear, dayOfMonth) -> {
@@ -104,10 +109,10 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
         calendarTxt.setText(date);
     }
 
-    private static Date getDateFromDatePicker(DatePicker datePicker){
+    private static Date getDateFromDatePicker(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
-        int year =  datePicker.getYear();
+        int year = datePicker.getYear();
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
@@ -117,9 +122,13 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
 
     @Override
     public void fragmentDetails(Long id) {
-//        fragmentStack.add(RouteDetailFragment.newInstance(id), true);
-        getChildFragmentManager().beginTransaction().replace(R.id.route_container, RouteDetailFragment.newInstance(id))
-                .addToBackStack(RouteDetailFragment.class.getName()).commit();
+        presenter.onRouteDetailClicked(id);
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 
     @Override
@@ -130,7 +139,6 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
 
     @Override
     public void onDestroy() {
-        fragmentStack = null;
         super.onDestroy();
     }
 }

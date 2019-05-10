@@ -5,16 +5,19 @@ import com.clabuyakchai.staff.data.local.entity.Staff;
 import com.clabuyakchai.staff.data.repository.AuthRepository;
 import com.clabuyakchai.staff.data.repository.HomeRepository;
 import com.clabuyakchai.staff.ui.base.BasePresenter;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class HomePresenter extends BasePresenter<HomeView> {
     private final HomeRepository homeRepository;
     private final AuthRepository authRepository;
+    private Router router;
 
     @Inject
     public HomePresenter(HomeRepository homeRepository, AuthRepository authRepository) {
@@ -26,6 +29,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void onViewCreated() {
         super.onViewCreated();
         getInformationAboutMeFromDb();
+    }
+
+    private void setRouter(Router router){
+        this.router = router;
     }
 
     public void getInformationAboutMeFromDb(){
