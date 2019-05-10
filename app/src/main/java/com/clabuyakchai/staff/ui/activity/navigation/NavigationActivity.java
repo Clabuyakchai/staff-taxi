@@ -3,28 +3,40 @@ package com.clabuyakchai.staff.ui.activity.navigation;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.staff.R;
 import com.clabuyakchai.staff.ui.activity.StartActivity;
 import com.clabuyakchai.staff.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.staff.ui.base.BaseActivity;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
-import com.clabuyakchai.staff.ui.fragment.station.StationFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment;
+import com.clabuyakchai.staff.util.Screens;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import javax.inject.Inject;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
-import ru.terrakok.cicerone.Screen;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
-import ru.terrakok.cicerone.commands.Command;
 
-public class NavigationActivity extends BaseActivity implements StartActivity {
+public class NavigationActivity extends BaseActivity implements StartActivity, NavigationView {
+
+    @Inject
+    NavigatorHolder navigatorHolder;
+
+    @Inject
+    @InjectPresenter
+    NavigationActivityPresenter presenter;
+
+    @ProvidePresenter
+    public NavigationActivityPresenter provideNavigationActivityPresenter(){
+        return presenter;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,27 +48,39 @@ public class NavigationActivity extends BaseActivity implements StartActivity {
 
         idConteiner = R.id.navigation_container;
 
-        Fragment fragment = fm.findFragmentById(R.id.navigation_container);
-        if(fragment == null){
-            add(RouteFragment.newInstance(), false);
-        }
+        //TODO
+        presenter.onRouteClicked();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_item_route:
-                add(RouteFragment.newInstance(), false);
+                    presenter.onRouteClicked();
                 return true;
             case R.id.navigation_item_station:
-                add(StationFragment.newInstance(), false);
+                presenter.onStationClicked();
                 return true;
             case R.id.navigation_item_staff:
-                add(HomeFragment.newInstance(), false);
+                presenter.onHomeClicked();
                 return true;
             default:
                 return false;
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigatorHolder.setNavigator(navigator);
+    }
+
+    @Override
+    protected void onPause() {
+        navigatorHolder.removeNavigator();
+        super.onPause();
+    }
+
+    private Navigator navigator = new SupportAppNavigator(this, R.id.navigation_container);
 
     @Override
     public void setIdConteiner() {

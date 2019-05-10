@@ -1610,6 +1610,7 @@ id stretch
 id submenuarrow
 id submit_area
 id tabMode
+id tab_container
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -1735,6 +1736,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_tab_container
 layout home_fragment
 layout list_route_detail_item
 layout list_route_item

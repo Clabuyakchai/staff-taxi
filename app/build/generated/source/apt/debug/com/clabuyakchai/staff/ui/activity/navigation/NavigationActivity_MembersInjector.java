@@ -6,6 +6,7 @@ import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.DaggerAppCompatActivity_MembersInjector;
 import javax.inject.Provider;
+import ru.terrakok.cicerone.NavigatorHolder;
 
 public final class NavigationActivity_MembersInjector
     implements MembersInjector<NavigationActivity> {
@@ -14,20 +15,31 @@ public final class NavigationActivity_MembersInjector
   private final Provider<DispatchingAndroidInjector<android.app.Fragment>>
       frameworkFragmentInjectorProvider;
 
+  private final Provider<NavigatorHolder> navigatorHolderProvider;
+
+  private final Provider<NavigationActivityPresenter> presenterProvider;
+
   public NavigationActivity_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> supportFragmentInjectorProvider,
-      Provider<DispatchingAndroidInjector<android.app.Fragment>>
-          frameworkFragmentInjectorProvider) {
+      Provider<DispatchingAndroidInjector<android.app.Fragment>> frameworkFragmentInjectorProvider,
+      Provider<NavigatorHolder> navigatorHolderProvider,
+      Provider<NavigationActivityPresenter> presenterProvider) {
     this.supportFragmentInjectorProvider = supportFragmentInjectorProvider;
     this.frameworkFragmentInjectorProvider = frameworkFragmentInjectorProvider;
+    this.navigatorHolderProvider = navigatorHolderProvider;
+    this.presenterProvider = presenterProvider;
   }
 
   public static MembersInjector<NavigationActivity> create(
       Provider<DispatchingAndroidInjector<Fragment>> supportFragmentInjectorProvider,
-      Provider<DispatchingAndroidInjector<android.app.Fragment>>
-          frameworkFragmentInjectorProvider) {
+      Provider<DispatchingAndroidInjector<android.app.Fragment>> frameworkFragmentInjectorProvider,
+      Provider<NavigatorHolder> navigatorHolderProvider,
+      Provider<NavigationActivityPresenter> presenterProvider) {
     return new NavigationActivity_MembersInjector(
-        supportFragmentInjectorProvider, frameworkFragmentInjectorProvider);
+        supportFragmentInjectorProvider,
+        frameworkFragmentInjectorProvider,
+        navigatorHolderProvider,
+        presenterProvider);
   }
 
   @Override
@@ -36,5 +48,17 @@ public final class NavigationActivity_MembersInjector
         instance, supportFragmentInjectorProvider.get());
     DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
         instance, frameworkFragmentInjectorProvider.get());
+    injectNavigatorHolder(instance, navigatorHolderProvider.get());
+    injectPresenter(instance, presenterProvider.get());
+  }
+
+  public static void injectNavigatorHolder(
+      NavigationActivity instance, NavigatorHolder navigatorHolder) {
+    instance.navigatorHolder = navigatorHolder;
+  }
+
+  public static void injectPresenter(
+      NavigationActivity instance, NavigationActivityPresenter presenter) {
+    instance.presenter = presenter;
   }
 }

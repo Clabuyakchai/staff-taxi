@@ -1,6 +1,10 @@
 package com.arellomobile.mvp;
 
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity$$PresentersBinder;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityPresenter;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityPresenter$$ViewStateProvider;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragment;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragment$$PresentersBinder;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodePresenter;
@@ -41,6 +45,7 @@ public final class MoxyReflector {
 
 	static {
 		sViewStateProviders = new HashMap<>();
+		sViewStateProviders.put(NavigationActivityPresenter.class, new NavigationActivityPresenter$$ViewStateProvider());
 		sViewStateProviders.put(AuthCodePresenter.class, new AuthCodePresenter$$ViewStateProvider());
 		sViewStateProviders.put(AuthPhonePresenter.class, new AuthPhonePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RegistrationPresenter.class, new RegistrationPresenter$$ViewStateProvider());
@@ -49,6 +54,7 @@ public final class MoxyReflector {
 		sViewStateProviders.put(RouteDetailPresenter.class, new RouteDetailPresenter$$ViewStateProvider());
 
 		sPresenterBinders = new HashMap<>();
+		sPresenterBinders.put(NavigationActivity.class, Arrays.<Object>asList(new NavigationActivity$$PresentersBinder()));
 		sPresenterBinders.put(AuthCodeFragment.class, Arrays.<Object>asList(new AuthCodeFragment$$PresentersBinder()));
 		sPresenterBinders.put(AuthPhoneFragment.class, Arrays.<Object>asList(new AuthPhoneFragment$$PresentersBinder()));
 		sPresenterBinders.put(RegistrationFragment.class, Arrays.<Object>asList(new RegistrationFragment$$PresentersBinder()));
