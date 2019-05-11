@@ -1,5 +1,6 @@
 package com.clabuyakchai.staff.data.remote;
 
+import com.clabuyakchai.staff.data.remote.request.BusDto;
 import com.clabuyakchai.staff.data.remote.request.LocalDto;
 import com.clabuyakchai.staff.data.remote.request.RouteDto;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
@@ -43,4 +44,16 @@ public interface StaffApi {
 
     @GET("/station/all")
     Single<List<StationDto>> getAllStation();
+
+    @GET("/bus/id")
+    Single<BusDto> findBusByStaffId(@Query("staffID") Long staffID);
+
+    @GET("/bus/all")
+    Single<List<BusDto>> findAllBus();
+
+    @POST("/bus/add")
+    Single<BusDto> addBus(@Body BusDto busDto);
+
+    @GET("/staff/drivebus")
+    Completable driveBus(@Query("staffID") Long staffID, @Query("busID") Long busID);
 }

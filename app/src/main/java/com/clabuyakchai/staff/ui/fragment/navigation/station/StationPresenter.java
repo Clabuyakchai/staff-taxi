@@ -51,7 +51,7 @@ public class StationPresenter extends BasePresenter<StationView> {
     private void addStation(StationDto stationDto){
         Disposable disposable = stationRepository.addStation(stationDto)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(station -> getViewState().setMarker(station));
+                .subscribe(station -> getViewState().setMarker(station), Throwable::printStackTrace);
         compositeDisposable.add(disposable);
     }
 

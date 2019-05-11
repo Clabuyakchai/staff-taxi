@@ -2,6 +2,7 @@ package com.arellomobile.mvp;
 
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity$$PresentersBinder;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityPresenter;
@@ -18,6 +19,10 @@ import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragment
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragment$$PresentersBinder;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationPresenter;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationPresenter$$ViewStateProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragment$$PresentersBinder;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusPresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusPresenter$$ViewStateProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment$$PresentersBinder;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter;
@@ -54,6 +59,7 @@ public final class MoxyReflector {
 		sViewStateProviders.put(AuthCodePresenter.class, new AuthCodePresenter$$ViewStateProvider());
 		sViewStateProviders.put(AuthPhonePresenter.class, new AuthPhonePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RegistrationPresenter.class, new RegistrationPresenter$$ViewStateProvider());
+		sViewStateProviders.put(BusPresenter.class, new BusPresenter$$ViewStateProvider());
 		sViewStateProviders.put(HomePresenter.class, new HomePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RoutePresenter.class, new RoutePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RouteDetailPresenter.class, new RouteDetailPresenter$$ViewStateProvider());
@@ -64,6 +70,7 @@ public final class MoxyReflector {
 		sPresenterBinders.put(AuthCodeFragment.class, Arrays.<Object>asList(new AuthCodeFragment$$PresentersBinder()));
 		sPresenterBinders.put(AuthPhoneFragment.class, Arrays.<Object>asList(new AuthPhoneFragment$$PresentersBinder()));
 		sPresenterBinders.put(RegistrationFragment.class, Arrays.<Object>asList(new RegistrationFragment$$PresentersBinder()));
+		sPresenterBinders.put(BusFragment.class, Arrays.<Object>asList(new BusFragment$$PresentersBinder()));
 		sPresenterBinders.put(HomeFragment.class, Arrays.<Object>asList(new HomeFragment$$PresentersBinder()));
 		sPresenterBinders.put(RouteFragment.class, Arrays.<Object>asList(new RouteFragment$$PresentersBinder()));
 		sPresenterBinders.put(RouteDetailFragment.class, Arrays.<Object>asList(new RouteDetailFragment$$PresentersBinder()));
@@ -72,6 +79,7 @@ public final class MoxyReflector {
 		sStrategies = new HashMap<>();
 		sStrategies.put(AddToEndSingleStrategy.class, new AddToEndSingleStrategy());
 		sStrategies.put(AddToEndStrategy.class, new AddToEndStrategy());
+		sStrategies.put(SkipStrategy.class, new SkipStrategy());
 	}
 
 	public static Object getViewState(Class<?> presenterClass) {

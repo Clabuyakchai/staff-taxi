@@ -22,4 +22,8 @@
     <string name="new_station">Add new station</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
+    <string name="bus">Bus</string>
+    <string name="busmodel">Bus model</string>
+    <string name="busnumber">Bus number</string>
+    <string name="addbus">Add Bus</string>
 </resources>

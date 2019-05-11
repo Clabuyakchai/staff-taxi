@@ -3,6 +3,7 @@ package com.clabuyakchai.staff.ui.fragment.navigation.home;
 import com.arellomobile.mvp.viewstate.MvpViewState;
 import com.arellomobile.mvp.viewstate.ViewCommand;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.clabuyakchai.staff.data.remote.request.BusDto;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -56,6 +57,22 @@ public class HomeView$$State extends MvpViewState<HomeView> implements HomeView 
 		mViewCommands.afterApply(setEnabledEdTxtCommand);
 	}
 
+	@Override
+	public void setFiledBus(BusDto bus) {
+		SetFiledBusCommand setFiledBusCommand = new SetFiledBusCommand(bus);
+		mViewCommands.beforeApply(setFiledBusCommand);
+
+		if (mViews == null || mViews.isEmpty()) {
+			return;
+		}
+
+		for (HomeView view : mViews) {
+			view.setFiledBus(bus);
+		}
+
+		mViewCommands.afterApply(setFiledBusCommand);
+	}
+
 	public class SetFieldCommand extends ViewCommand<HomeView> {
 		public final StaffDto staffDto;
 
@@ -94,6 +111,21 @@ public class HomeView$$State extends MvpViewState<HomeView> implements HomeView 
 		@Override
 		public void apply(HomeView mvpView) {
 			mvpView.setEnabledEdTxt(enabled);
+		}
+	}
+
+	public class SetFiledBusCommand extends ViewCommand<HomeView> {
+		public final BusDto bus;
+
+		SetFiledBusCommand(BusDto bus) {
+			super("setFiledBus", AddToEndStrategy.class);
+
+			this.bus = bus;
+		}
+
+		@Override
+		public void apply(HomeView mvpView) {
+			mvpView.setFiledBus(bus);
 		}
 	}
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
@@ -71,6 +72,13 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return TabNavigationFragment.newInstance(tabName);
+        }
+    }
+
+    public static final class BusScreen extends SupportAppScreen{
+        @Override
+        public Fragment getFragment() {
+            return BusFragment.newInstance();
         }
     }
 }

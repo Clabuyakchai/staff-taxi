@@ -1437,6 +1437,11 @@ id barrier
 id beginning
 id blocking
 id bottom
+id bus_item_busmodel
+id bus_item_busnumber
+id bus_model
+id bus_number
+id bus_recycler
 id buttonPanel
 id calendar_days_header
 id calendar_frame
@@ -1511,6 +1516,7 @@ id hideable
 id home
 id homeAsUp
 id home_address
+id home_bus
 id home_email
 id home_name
 id home_phone
@@ -1596,6 +1602,7 @@ id route_detail_recycler
 id route_from_to
 id route_price
 id satellite
+id save_bus
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
@@ -1664,12 +1671,15 @@ id text
 id text2
 id textEnd
 id textInputAddress
+id textInputBus
 id textInputEmail
 id textInputName
 id textInputPhone
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id text_input_bus_number
+id text_input_busmodel
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -1766,6 +1776,7 @@ layout amu_text_bubble
 layout amu_webview
 layout auth_code_fragment
 layout auth_phone_fragment
+layout bus_fragment
 layout custom_dialog
 layout custom_marker
 layout design_bottom_navigation_item
@@ -1785,6 +1796,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_tab_container
 layout home_fragment
+layout list_bus_item
 layout list_route_detail_item
 layout list_route_item
 layout mtrl_alert_dialog
@@ -1885,10 +1897,14 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string add
+string addbus
 string address
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string bus
+string busmodel
+string busnumber
 string cancel
 string change_user
 string character_counter_content_description

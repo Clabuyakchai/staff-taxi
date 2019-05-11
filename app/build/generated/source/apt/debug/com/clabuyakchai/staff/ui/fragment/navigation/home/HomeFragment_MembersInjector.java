@@ -3,6 +3,7 @@ package com.clabuyakchai.staff.ui.fragment.navigation.home;
 
 import androidx.fragment.app.Fragment;
 import com.clabuyakchai.staff.ui.base.BaseFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
@@ -11,27 +12,38 @@ public final class HomeFragment_MembersInjector implements MembersInjector<HomeF
   private final Provider<DispatchingAndroidInjector<Fragment>>
       fragmentDispatchingAndroidInjectorProvider;
 
+  private final Provider<LocalCiceroneHolder> localCiceroneHolderProvider;
+
   private final Provider<HomePresenter> presenterProvider;
 
   public HomeFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider,
       Provider<HomePresenter> presenterProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
+    this.localCiceroneHolderProvider = localCiceroneHolderProvider;
     this.presenterProvider = presenterProvider;
   }
 
   public static MembersInjector<HomeFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider,
       Provider<HomePresenter> presenterProvider) {
     return new HomeFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, localCiceroneHolderProvider, presenterProvider);
   }
 
   @Override
   public void injectMembers(HomeFragment instance) {
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
+    injectLocalCiceroneHolder(instance, localCiceroneHolderProvider.get());
     injectPresenter(instance, presenterProvider.get());
+  }
+
+  public static void injectLocalCiceroneHolder(
+      HomeFragment instance, LocalCiceroneHolder localCiceroneHolder) {
+    instance.localCiceroneHolder = localCiceroneHolder;
   }
 
   public static void injectPresenter(HomeFragment instance, HomePresenter presenter) {
