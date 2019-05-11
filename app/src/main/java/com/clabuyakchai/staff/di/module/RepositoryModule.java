@@ -5,7 +5,10 @@ import com.clabuyakchai.staff.data.repository.HomeRepository;
 import com.clabuyakchai.staff.data.repository.Impl.AuthRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl;
+import com.clabuyakchai.staff.data.repository.Impl.StationRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.RouteRepository;
+import com.clabuyakchai.staff.data.repository.StationRepository;
+import com.clabuyakchai.staff.di.scope.ActivityScope;
 import com.clabuyakchai.staff.di.scope.ApplicationScope;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -27,4 +30,8 @@ public interface RepositoryModule {
     @ApplicationScope
     @Binds
     RouteRepository bindRouteRepository(RouteRepositoryImpl routeRepository);
+
+    @ApplicationScope
+    @Binds
+    StationRepository bindStationRepository(StationRepositoryImpl stationRepository);
 }

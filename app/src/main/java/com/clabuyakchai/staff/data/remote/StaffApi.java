@@ -3,14 +3,17 @@ package com.clabuyakchai.staff.data.remote;
 import com.clabuyakchai.staff.data.remote.request.LocalDto;
 import com.clabuyakchai.staff.data.remote.request.RouteDto;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
+import com.clabuyakchai.staff.data.remote.request.StationDto;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface StaffApi {
@@ -31,4 +34,13 @@ public interface StaffApi {
 
     @GET("/local/localbytimetable")
     Single<List<LocalDto>> findLocalByRouteId(@Query("timetableID") Long timetableID);
+
+    @POST("/station/add")
+    Single<StationDto> addStation(@Body StationDto stationDto);
+
+    @GET("/station/{city}")
+    Single<List<StationDto>> getAllStationByCity(@Path("city") String city);
+
+    @GET("/station/all")
+    Single<List<StationDto>> getAllStation();
 }

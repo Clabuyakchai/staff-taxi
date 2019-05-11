@@ -6,6 +6,7 @@ import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragmentProvider;
 import dagger.Binds;
 import dagger.Module;
@@ -31,7 +32,8 @@ public abstract class ActivityModule_BindNavActivity {
       RouteDetailFragmentProvider.class,
       NavigationActivityModule.class,
       CiceroneModule.class,
-      TabNavigationFragmentProvider.class
+      TabNavigationFragmentProvider.class,
+      StationFragmentProvider.class
     }
   )
   @ActivityScope

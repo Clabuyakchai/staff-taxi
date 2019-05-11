@@ -18,7 +18,10 @@ import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.HomeRepositoryImpl_Factory;
 import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl;
 import com.clabuyakchai.staff.data.repository.Impl.RouteRepositoryImpl_Factory;
+import com.clabuyakchai.staff.data.repository.Impl.StationRepositoryImpl;
+import com.clabuyakchai.staff.data.repository.Impl.StationRepositoryImpl_Factory;
 import com.clabuyakchai.staff.data.repository.RouteRepository;
+import com.clabuyakchai.staff.data.repository.StationRepository;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindLoginActivity;
 import com.clabuyakchai.staff.di.module.ActivityModule_BindNavActivity;
 import com.clabuyakchai.staff.di.module.CiceroneModule;
@@ -72,6 +75,10 @@ import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFrag
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider_BindRouteDetailFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragmentProvider_BindStationFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationPresenter;
 import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragment;
 import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragmentProvider_BindTabNavigationFragment;
@@ -134,6 +141,10 @@ public final class DaggerAppComponent implements AppComponent {
   private Provider<RouteRepositoryImpl> routeRepositoryImplProvider;
 
   private Provider<RouteRepository> bindRouteRepositoryProvider;
+
+  private Provider<StationRepositoryImpl> stationRepositoryImplProvider;
+
+  private Provider<StationRepository> bindStationRepositoryProvider;
 
   private DaggerAppComponent(
       FirebaseModule firebaseModuleParam,
@@ -249,6 +260,10 @@ public final class DaggerAppComponent implements AppComponent {
     this.routeRepositoryImplProvider =
         RouteRepositoryImpl_Factory.create(provideStaffApiProvider, provideAppDatabaseProvider);
     this.bindRouteRepositoryProvider = DoubleCheck.provider((Provider) routeRepositoryImplProvider);
+    this.stationRepositoryImplProvider =
+        StationRepositoryImpl_Factory.create(provideStaffApiProvider);
+    this.bindStationRepositoryProvider =
+        DoubleCheck.provider((Provider) stationRepositoryImplProvider);
   }
 
   @Override
@@ -597,6 +612,10 @@ public final class DaggerAppComponent implements AppComponent {
                 .TabNavigationFragmentSubcomponent.Builder>
         tabNavigationFragmentSubcomponentBuilderProvider;
 
+    private Provider<
+            StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent.Builder>
+        stationFragmentSubcomponentBuilderProvider;
+
     private Provider<Cicerone<Router>> provideCiceroneProvider;
 
     private Provider<NavigatorHolder> provideNavigatorHolderProvider;
@@ -621,7 +640,7 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
         getMapOfClassOfAndProviderOfFactoryOf() {
-      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(6)
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(7)
           .put(
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
@@ -634,6 +653,7 @@ public final class DaggerAppComponent implements AppComponent {
           .put(
               TabNavigationFragment.class,
               (Provider) tabNavigationFragmentSubcomponentBuilderProvider)
+          .put(StationFragment.class, (Provider) stationFragmentSubcomponentBuilderProvider)
           .build();
     }
 
@@ -694,6 +714,15 @@ public final class DaggerAppComponent implements AppComponent {
                     .TabNavigationFragmentSubcomponent.Builder
                 get() {
               return new TabNavigationFragmentSubcomponentBuilder();
+            }
+          };
+      this.stationFragmentSubcomponentBuilderProvider =
+          new Provider<
+              StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent.Builder>() {
+            @Override
+            public StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent.Builder
+                get() {
+              return new StationFragmentSubcomponentBuilder();
             }
           };
       this.provideCiceroneProvider =
@@ -852,6 +881,9 @@ public final class DaggerAppComponent implements AppComponent {
         RouteDetailFragment_MembersInjector.injectPresenter(
             instance,
             NavigationActivitySubcomponentImpl.this.provideRouteDetailPresenterProvider.get());
+        RouteDetailFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }
@@ -892,6 +924,46 @@ public final class DaggerAppComponent implements AppComponent {
         TabNavigationFragment_MembersInjector.injectCiceroneHolder(
             instance,
             NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
+        return instance;
+      }
+    }
+
+    private final class StationFragmentSubcomponentBuilder
+        extends StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent.Builder {
+      private StationFragment seedInstance;
+
+      @Override
+      public void seedInstance(StationFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent build() {
+        Preconditions.checkBuilderRequirement(seedInstance, StationFragment.class);
+        return new StationFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class StationFragmentSubcomponentImpl
+        implements StationFragmentProvider_BindStationFragment.StationFragmentSubcomponent {
+      private StationFragmentSubcomponentImpl(StationFragment seedInstance) {}
+
+      private StationPresenter getStationPresenter() {
+        return new StationPresenter(DaggerAppComponent.this.bindStationRepositoryProvider.get());
+      }
+
+      @Override
+      public void inject(StationFragment arg0) {
+        injectStationFragment(arg0);
+      }
+
+      private StationFragment injectStationFragment(StationFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        StationFragment_MembersInjector.injectContext(
+            instance, DaggerAppComponent.this.bindContextProvider.get());
+        StationFragment_MembersInjector.injectPresenter(instance, getStationPresenter());
         return instance;
       }
     }

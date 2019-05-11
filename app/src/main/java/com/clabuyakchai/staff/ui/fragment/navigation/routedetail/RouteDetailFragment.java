@@ -14,6 +14,8 @@ import com.clabuyakchai.staff.data.remote.request.LocalDto;
 import com.clabuyakchai.staff.ui.base.BaseFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.adapter.CallUserListener;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.adapter.RouteDetailAdapter;
+import com.clabuyakchai.staff.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RouteDetailFragment extends BaseFragment implements RouteDetailView, CallUserListener {
+public class RouteDetailFragment extends BaseFragment implements RouteDetailView, CallUserListener, BackButtonListener {
     private static final String ARG_ID = "timetableID";
 
     private RecyclerView recyclerView;
@@ -35,6 +37,10 @@ public class RouteDetailFragment extends BaseFragment implements RouteDetailView
     @Inject
     @InjectPresenter
     RouteDetailPresenter presenter;
+
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,7 @@ public class RouteDetailFragment extends BaseFragment implements RouteDetailView
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+        presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
         if(routeID != null){
             presenter.findLocalByRouteId(routeID);
         }
@@ -85,6 +92,14 @@ public class RouteDetailFragment extends BaseFragment implements RouteDetailView
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
+    }
+
+
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return false;
     }
 
     @Override

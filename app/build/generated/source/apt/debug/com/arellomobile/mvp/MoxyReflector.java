@@ -1,5 +1,6 @@
 package com.arellomobile.mvp;
 
+import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity$$PresentersBinder;
@@ -29,6 +30,10 @@ import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFrag
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment$$PresentersBinder;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailPresenter$$ViewStateProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment$$PresentersBinder;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationPresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationPresenter$$ViewStateProvider;
 import java.lang.Class;
 import java.lang.Object;
 import java.util.Arrays;
@@ -52,6 +57,7 @@ public final class MoxyReflector {
 		sViewStateProviders.put(HomePresenter.class, new HomePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RoutePresenter.class, new RoutePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RouteDetailPresenter.class, new RouteDetailPresenter$$ViewStateProvider());
+		sViewStateProviders.put(StationPresenter.class, new StationPresenter$$ViewStateProvider());
 
 		sPresenterBinders = new HashMap<>();
 		sPresenterBinders.put(NavigationActivity.class, Arrays.<Object>asList(new NavigationActivity$$PresentersBinder()));
@@ -61,8 +67,10 @@ public final class MoxyReflector {
 		sPresenterBinders.put(HomeFragment.class, Arrays.<Object>asList(new HomeFragment$$PresentersBinder()));
 		sPresenterBinders.put(RouteFragment.class, Arrays.<Object>asList(new RouteFragment$$PresentersBinder()));
 		sPresenterBinders.put(RouteDetailFragment.class, Arrays.<Object>asList(new RouteDetailFragment$$PresentersBinder()));
+		sPresenterBinders.put(StationFragment.class, Arrays.<Object>asList(new StationFragment$$PresentersBinder()));
 
 		sStrategies = new HashMap<>();
+		sStrategies.put(AddToEndSingleStrategy.class, new AddToEndSingleStrategy());
 		sStrategies.put(AddToEndStrategy.class, new AddToEndStrategy());
 	}
 
