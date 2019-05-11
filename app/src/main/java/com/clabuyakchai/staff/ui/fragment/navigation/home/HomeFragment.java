@@ -6,16 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.staff.R;
 import com.clabuyakchai.staff.data.local.entity.Staff;
+import com.clabuyakchai.staff.data.remote.request.BusDto;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import com.clabuyakchai.staff.ui.activity.StartActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment;
+import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.staff.util.Preferences;
 
 import javax.inject.Inject;
@@ -29,9 +32,13 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private EditText phoneEdtx;
     private EditText emailEdtx;
     private EditText addressEdtx;
+    private EditText busEdtx;
     private TextView changeUserTxt;
     private TextView editTxt;
     private TextView saveTxt;
+
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
 
     @Inject
     @InjectPresenter
@@ -55,7 +62,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-
+        presenter.setRouter(localCiceroneHolder.getCicerone("Home").getRouter());
         nameEdtx = view.findViewById(R.id.home_name);
         phoneEdtx = view.findViewById(R.id.home_phone);
         emailEdtx = view.findViewById(R.id.home_email);
@@ -63,6 +70,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
         changeUserTxt = view.findViewById(R.id.change_user);
         editTxt = view.findViewById(R.id.edit_user);
         saveTxt = view.findViewById(R.id.save_user);
+        busEdtx = view.findViewById(R.id.home_bus);
+
+        busEdtx.setOnClickListener(v -> {
+            presenter.busFragment();
+        });
 
         editTxt.setOnClickListener(v -> {
             presenter.pressEditUser(true);
@@ -97,6 +109,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
+    public void setFiledBus(BusDto bus) {
+        busEdtx.setText(bus.getBusmodel());
+    }
+
+    @Override
     public void signOut() {
         Preferences.setTokenSharedPreferences(getContext(), null);
         startAuthActivity.startActivity();
@@ -108,6 +125,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         phoneEdtx.setEnabled(enabled);
         emailEdtx.setEnabled(enabled);
         addressEdtx.setEnabled(enabled);
+        busEdtx.setEnabled(enabled);
         if (enabled) {
             editTxt.setVisibility(View.GONE);
             saveTxt.setVisibility(View.VISIBLE);

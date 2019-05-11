@@ -6,6 +6,7 @@ import com.clabuyakchai.staff.data.repository.AuthRepository;
 import com.clabuyakchai.staff.data.repository.HomeRepository;
 import com.clabuyakchai.staff.ui.base.BasePresenter;
 import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
+import com.clabuyakchai.staff.util.Screens;
 
 import javax.inject.Inject;
 
@@ -31,14 +32,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         getInformationAboutMeFromDb();
     }
 
-    private void setRouter(Router router){
+    public void setRouter(Router router){
         this.router = router;
+    }
+
+    public void busFragment(){
+        router.navigateTo(new Screens.BusScreen());
     }
 
     public void getInformationAboutMeFromDb(){
         Disposable disposable = homeRepository.getInformationAboutMeFromDb()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(staffDto -> getViewState().setField(staffDto), Throwable::printStackTrace);
+                .subscribe(staffDto -> {
+                    findBusByStaffId();
+                    getViewState().setField(staffDto);}, Throwable::printStackTrace);
 
         compositeDisposable.add(disposable);
     }
@@ -60,6 +67,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
                     getViewState().setField(staffDto);
                 }, Throwable::printStackTrace);
 
+        compositeDisposable.add(disposable);
+    }
+
+    private void findBusByStaffId(){
+        Disposable disposable = homeRepository.getBusByStaffId()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(busDto -> {getViewState().setFiledBus(busDto);}, Throwable::printStackTrace);
         compositeDisposable.add(disposable);
     }
 

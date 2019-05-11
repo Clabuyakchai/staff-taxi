@@ -3,6 +3,7 @@ package com.clabuyakchai.staff.data.repository.Impl;
 import com.clabuyakchai.staff.data.local.AppDatabase;
 import com.clabuyakchai.staff.data.local.entity.Staff;
 import com.clabuyakchai.staff.data.remote.StaffApi;
+import com.clabuyakchai.staff.data.remote.request.BusDto;
 import com.clabuyakchai.staff.data.remote.request.StaffDto;
 import com.clabuyakchai.staff.data.repository.HomeRepository;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -37,7 +39,7 @@ public class HomeRepositoryImpl implements HomeRepository {
                     st.get(0).setAddress(staff.getAddress());
                     return staffApi.updateStaff(mapStaffToStaffDto(st))
                             .flatMap(staffDto -> {
-                                if(staffDto != null){
+                                if (staffDto != null) {
                                     database.staffDao().insert(mapStaffDtotoStaff(staffDto));
                                     return Single.just(staffDto);
                                 } else {
@@ -67,6 +69,30 @@ public class HomeRepositoryImpl implements HomeRepository {
     @Override
     public void deleteStaffFromDb() {
         new Thread(() -> database.staffDao().delete()).start();
+    }
+
+    @Override
+    public Single<List<BusDto>> getAllBus() {
+        return staffApi.findAllBus();
+    }
+
+    @Override
+    public Single<BusDto> getBusByStaffId() {
+        return database.staffDao().getStaff().subscribeOn(Schedulers.io())
+                .flatMap(staff ->
+                        staffApi.findBusByStaffId(staff.get(0).getStaffID())
+                );
+    }
+
+    @Override
+    public Single<BusDto> addBus(BusDto busDto) {
+        return staffApi.addBus(busDto);
+    }
+
+    @Override
+    public Completable driveBus(Long busId) {
+        return database.staffDao().getStaff().subscribeOn(Schedulers.io())
+                .flatMap(staff -> staffApi.driveBus(staff.get(0).getStaffID(), busId).toSingle(() -> "")).ignoreElement();
     }
 
     private Staff mapStaffDtotoStaff(StaffDto staffDto) {

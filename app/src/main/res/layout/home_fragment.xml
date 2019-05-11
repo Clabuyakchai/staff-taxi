@@ -74,6 +74,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputBus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputAddress"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/home_bus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bus"
+            android:enabled="false"
+            android:inputType="none"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/edit_user"
         android:layout_width="wrap_content"
@@ -83,7 +104,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputAddress"/>
+        app:layout_constraintTop_toBottomOf="@id/textInputBus"/>
 
     <TextView
         android:id="@+id/save_user"
@@ -94,7 +115,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputAddress"
+        app:layout_constraintTop_toBottomOf="@id/textInputBus"
         android:visibility="gone"/>
 
     <TextView

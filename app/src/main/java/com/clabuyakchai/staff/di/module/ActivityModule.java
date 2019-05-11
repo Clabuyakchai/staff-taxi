@@ -8,9 +8,11 @@ import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.staff.ui.fragment.auth.code.AuthCodeFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.auth.phone.AuthPhoneFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.auth.registration.RegistrationFragmentProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.tab.TabNavigationFragmentProvider;
 
 import dagger.Module;
@@ -33,7 +35,9 @@ public abstract class ActivityModule {
             RouteDetailFragmentProvider.class,
             NavigationActivityModule.class,
             CiceroneModule.class,
-            TabNavigationFragmentProvider.class
+            TabNavigationFragmentProvider.class,
+            StationFragmentProvider.class,
+            BusFragmentProvider.class
     })
     public abstract NavigationActivity bindNavActivity();
 }

@@ -1,7 +1,6 @@
 package com.clabuyakchai.staff.ui.fragment.navigation.route;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,11 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.staff.R;
 import com.clabuyakchai.staff.data.remote.request.RouteDto;
-import com.clabuyakchai.staff.ui.activity.FragmentStack;
-import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.base.BaseFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.adapter.RouteAdapter;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.adapter.RouteIdListener;
-import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
 import com.clabuyakchai.staff.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
-import com.clabuyakchai.staff.ui.fragment.tab.RouterProvider;
 import com.clabuyakchai.staff.util.DateHelper;
 
 import java.util.Calendar;
@@ -32,10 +27,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ru.terrakok.cicerone.Router;
 
 public class RouteFragment extends BaseFragment implements RouteView, RouteIdListener, BackButtonListener {
     private static final String EXTRA_NAME = "extra_name";
