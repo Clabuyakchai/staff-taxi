@@ -18,6 +18,7 @@ import com.clabuyakchai.staff.ui.fragment.navigation.route.adapter.RouteIdListen
 import com.clabuyakchai.staff.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.staff.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.staff.util.DateHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +38,7 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
     private RouteAdapter routeAdapter;
     private TextView calendarTxt;
     private DatePickerDialog datePickerDialog;
+    private FloatingActionButton newRouteBtn;
 
     @Inject
     @InjectPresenter
@@ -56,6 +58,7 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
         calendarTxt = view.findViewById(R.id.route_calendar);
+        newRouteBtn = view.findViewById(R.id.route_add_float);
         recyclerView = view.findViewById(R.id.recycler_route);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -69,6 +72,10 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
         setCalendarText(DateHelper.formatDate());
         calendarTxt.setOnClickListener(v -> {
             datePickerDialog.show();
+        });
+
+        newRouteBtn.setOnClickListener(v -> {
+            presenter.onNewRouteClicked();
         });
     }
 

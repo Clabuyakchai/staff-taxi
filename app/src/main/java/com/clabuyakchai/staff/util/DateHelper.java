@@ -14,4 +14,12 @@ public class DateHelper {
     public static String formatDate(Date date){
         return new SimpleDateFormat("dd.MM.yyyy").format(date);
     }
+
+    public static String formatTime(){
+        return new SimpleDateFormat("HH:mm").format(date);
+    }
+
+    public static String formatTime(Date date){
+        return new SimpleDateFormat("HH:mm").format(date);
+    }
 }

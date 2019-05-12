@@ -49,6 +49,14 @@ public class RoutePresenter extends BasePresenter<RouteView> {
         compositeDisposable.add(disposable);
     }
 
+    public void onNewRouteClicked(){
+        newRouteFragment();
+    }
+
+    private void newRouteFragment(){
+        router.navigateTo(new Screens.NewRouteScreen());
+    }
+
     public void onRouteDetailClicked(Long id){
         router.navigateTo(new Screens.RouteDetailScreen(id));
     }

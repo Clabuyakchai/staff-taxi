@@ -47,6 +47,7 @@ import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideBusPresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideHomePresenterFactory;
+import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideNewRoutePresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideRouteDetailPresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule_ProvideRoutePresenterFactory;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityPresenter;
@@ -72,6 +73,10 @@ import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider_BindHomeFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment_MembersInjector;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomePresenter;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRouteFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRouteFragmentProvider_BindNewRouteFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRouteFragment_MembersInjector;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRoutePresenter;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider_BindRouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment_MembersInjector;
@@ -624,6 +629,10 @@ public final class DaggerAppComponent implements AppComponent {
     private Provider<BusFragmentProvider_BindBusFragment.BusFragmentSubcomponent.Builder>
         busFragmentSubcomponentBuilderProvider;
 
+    private Provider<
+            NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent.Builder>
+        newRouteFragmentSubcomponentBuilderProvider;
+
     private Provider<Cicerone<Router>> provideCiceroneProvider;
 
     private Provider<NavigatorHolder> provideNavigatorHolderProvider;
@@ -640,6 +649,8 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Provider<BusPresenter> provideBusPresenterProvider;
 
+    private Provider<NewRoutePresenter> provideNewRoutePresenterProvider;
+
     private NavigationActivitySubcomponentImpl(
         CiceroneModule ciceroneModuleParam,
         NavigationActivityModule navigationActivityModuleParam,
@@ -650,7 +661,7 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
         getMapOfClassOfAndProviderOfFactoryOf() {
-      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(8)
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(9)
           .put(
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
@@ -665,6 +676,7 @@ public final class DaggerAppComponent implements AppComponent {
               (Provider) tabNavigationFragmentSubcomponentBuilderProvider)
           .put(StationFragment.class, (Provider) stationFragmentSubcomponentBuilderProvider)
           .put(BusFragment.class, (Provider) busFragmentSubcomponentBuilderProvider)
+          .put(NewRouteFragment.class, (Provider) newRouteFragmentSubcomponentBuilderProvider)
           .build();
     }
 
@@ -743,6 +755,17 @@ public final class DaggerAppComponent implements AppComponent {
               return new BusFragmentSubcomponentBuilder();
             }
           };
+      this.newRouteFragmentSubcomponentBuilderProvider =
+          new Provider<
+              NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent
+                  .Builder>() {
+            @Override
+            public NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent
+                    .Builder
+                get() {
+              return new NewRouteFragmentSubcomponentBuilder();
+            }
+          };
       this.provideCiceroneProvider =
           DoubleCheck.provider(CiceroneModule_ProvideCiceroneFactory.create(ciceroneModuleParam));
       this.provideNavigatorHolderProvider =
@@ -777,6 +800,12 @@ public final class DaggerAppComponent implements AppComponent {
               NavigationActivityModule_ProvideBusPresenterFactory.create(
                   navigationActivityModuleParam,
                   DaggerAppComponent.this.bindHomeRepositoryProvider));
+      this.provideNewRoutePresenterProvider =
+          DoubleCheck.provider(
+              NavigationActivityModule_ProvideNewRoutePresenterFactory.create(
+                  navigationActivityModuleParam,
+                  DaggerAppComponent.this.bindStationRepositoryProvider,
+                  DaggerAppComponent.this.bindRouteRepositoryProvider));
     }
 
     @Override
@@ -1025,6 +1054,42 @@ public final class DaggerAppComponent implements AppComponent {
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         BusFragment_MembersInjector.injectPresenter(
             instance, NavigationActivitySubcomponentImpl.this.provideBusPresenterProvider.get());
+        return instance;
+      }
+    }
+
+    private final class NewRouteFragmentSubcomponentBuilder
+        extends NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent.Builder {
+      private NewRouteFragment seedInstance;
+
+      @Override
+      public void seedInstance(NewRouteFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent build() {
+        Preconditions.checkBuilderRequirement(seedInstance, NewRouteFragment.class);
+        return new NewRouteFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class NewRouteFragmentSubcomponentImpl
+        implements NewRouteFragmentProvider_BindNewRouteFragment.NewRouteFragmentSubcomponent {
+      private NewRouteFragmentSubcomponentImpl(NewRouteFragment seedInstance) {}
+
+      @Override
+      public void inject(NewRouteFragment arg0) {
+        injectNewRouteFragment(arg0);
+      }
+
+      private NewRouteFragment injectNewRouteFragment(NewRouteFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        NewRouteFragment_MembersInjector.injectPresenter(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideNewRoutePresenterProvider.get());
         return instance;
       }
     }

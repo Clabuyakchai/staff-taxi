@@ -37,13 +37,20 @@ public class RouteDto {
         this.price = price;
     }
 
-    public RouteDto(String from, String to, Float price, String datetime, List<StationDto> stations, BusDto bus) {
+    public RouteDto(Long routeID, String from, String to, Float price, String datetime) {
+        this.routeID = routeID;
+        this.from = from;
+        this.to = to;
+        this.price = price;
+        this.datetime = datetime;
+    }
+
+    public RouteDto(String from, String to, Float price, String datetime, List<StationDto> stations) {
         this.from = from;
         this.to = to;
         this.price = price;
         this.datetime = datetime;
         this.stations = stations;
-        this.bus = bus;
     }
 
     public Long getRouteID() {

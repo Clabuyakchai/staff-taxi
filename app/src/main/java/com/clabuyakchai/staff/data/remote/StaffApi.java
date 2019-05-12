@@ -56,4 +56,7 @@ public interface StaffApi {
 
     @GET("/staff/drivebus")
     Completable driveBus(@Query("staffID") Long staffID, @Query("busID") Long busID);
+
+    @POST("/route/create")
+    Completable createRoute(@Body RouteDto routeDto);
 }

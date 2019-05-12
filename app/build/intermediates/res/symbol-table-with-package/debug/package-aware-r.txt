@@ -1327,6 +1327,7 @@ drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_add_location_black_24dp
+drawable ic_check_white_24dp
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher_background
@@ -1565,6 +1566,16 @@ id navigation_item_route
 id navigation_item_staff
 id navigation_item_station
 id never
+id new_route_date
+id new_route_from
+id new_route_item_city
+id new_route_item_name
+id new_route_item_switch
+id new_route_price
+id new_route_recylerview
+id new_route_save_float
+id new_route_time
+id new_route_to
 id noScroll
 id none
 id normal
@@ -1593,6 +1604,7 @@ id right
 id right_icon
 id right_side
 id rounded
+id route_add_float
 id route_calendar
 id route_container
 id route_datetime
@@ -1797,6 +1809,7 @@ layout design_text_input_start_icon
 layout fragment_tab_container
 layout home_fragment
 layout list_bus_item
+layout list_new_route_item
 layout list_route_detail_item
 layout list_route_item
 layout mtrl_alert_dialog
@@ -1815,6 +1828,7 @@ layout mtrl_layout_snackbar_include
 layout mtrl_month_grid
 layout mtrl_picker_actions
 layout mtrl_picker_dialog
+layout new_route_fragment
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1969,6 +1983,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string phone
+string price
 string project_id
 string save
 string search_menu_title

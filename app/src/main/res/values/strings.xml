@@ -26,4 +26,5 @@
     <string name="busmodel">Bus model</string>
     <string name="busnumber">Bus number</string>
     <string name="addbus">Add Bus</string>
+    <string name="price">Price</string>
 </resources>

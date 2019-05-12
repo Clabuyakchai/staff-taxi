@@ -5,6 +5,7 @@ import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragmentProvider;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRouteFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
 import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragmentProvider;
@@ -35,7 +36,8 @@ public abstract class ActivityModule_BindNavActivity {
       CiceroneModule.class,
       TabNavigationFragmentProvider.class,
       StationFragmentProvider.class,
-      BusFragmentProvider.class
+      BusFragmentProvider.class,
+      NewRouteFragmentProvider.class
     }
   )
   @ActivityScope

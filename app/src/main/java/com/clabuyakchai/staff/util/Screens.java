@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.staff.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.home.HomeFragment;
+import com.clabuyakchai.staff.ui.fragment.navigation.newroute.NewRouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.route.RouteFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.routedetail.RouteDetailFragment;
 import com.clabuyakchai.staff.ui.fragment.navigation.station.StationFragment;
@@ -79,6 +80,13 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return BusFragment.newInstance();
+        }
+    }
+
+    public static final class NewRouteScreen extends SupportAppScreen{
+        @Override
+        public Fragment getFragment() {
+            return NewRouteFragment.newInstance();
         }
     }
 }
