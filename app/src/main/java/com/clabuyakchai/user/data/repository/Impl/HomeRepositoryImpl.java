@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeRepositoryImpl implements HomeRepository {
@@ -30,16 +31,22 @@ public class HomeRepositoryImpl implements HomeRepository {
     public Single<User> updateInformationAboutMe(User user) {
         return database.userDao().getUser().subscribeOn(Schedulers.io())
                 .flatMap(st -> {
-                    if(st.get(0).getDriver()){
+                    if (st.get(0).getDriver()) {
                         user.setUserID(st.get(0).getUserID());
                         user.setGender(st.get(0).getGender());
                         return staffApi.updateStaff(mapUserToStaffDto(user))
-                                .flatMap(staffDto -> Single.just(mapStaffDtoToUser(staffDto)));
-                    }else {
+                                .flatMap(staffDto -> {
+                                    database.userDao().insert(mapStaffDtoToUser(staffDto));
+                                    return Single.just(mapStaffDtoToUser(staffDto));
+                                });
+                    } else {
                         user.setUserID(st.get(0).getUserID());
                         user.setGender(st.get(0).getGender());
                         return staffApi.updateLocal(mapUserToLocalDto(user))
-                                .flatMap(localDto -> Single.just(mapLocalDtoToUser(localDto)));
+                                .flatMap(localDto -> {
+                                    database.userDao().insert(mapLocalDtoToUser(localDto));
+                                    return Single.just(mapLocalDtoToUser(localDto));
+                                });
                     }
                 });
     }
@@ -79,26 +86,26 @@ public class HomeRepositoryImpl implements HomeRepository {
                 .flatMap(staff -> staffApi.driveBus(staff.get(0).getUserID(), busId).toSingle(() -> "")).ignoreElement();
     }
 
-    //TODO разобрать
     @Override
     public Single<User> whoAmI() {
         return staffApi.whoAmIFromLocal()
-                .flatMap(local -> {
-                    if (local.getLocalID() == null) {
+                .flatMap(localDto -> {
+                    if (localDto.getLocalID() == null) {
                         return staffApi.whoAmIFromStaff()
-                                .flatMap(staff -> {
-                                    database.userDao().insert(mapStaffDtoToUser(staff));
-                                    User user = mapStaffDtoToUser(staff);
-                                    user.setDriver(true);
-                                    return Single.just(user);
+                                .flatMap(staffDto -> {
+                                    database.userDao().insert(mapStaffDtoToUser(staffDto));
+                                    return Single.just(mapStaffDtoToUser(staffDto));
                                 });
                     } else {
-                        database.userDao().insert(mapLocalDtoToUser(local));
-                        User user = mapLocalDtoToUser(local);
-                        user.setDriver(false);
-                        return Single.just(user);
+                        database.userDao().insert(mapLocalDtoToUser(localDto));
+                        return Single.just(mapLocalDtoToUser(localDto));
                     }
                 });
+    }
+
+    @Override
+    public Completable addStaff(String phone) {
+        return staffApi.addStaff(phone);
     }
 
     private User mapStaffDtoToUser(StaffDto staffDto) {
@@ -132,7 +139,7 @@ public class HomeRepositoryImpl implements HomeRepository {
                 users.get(0).getAddress());
     }
 
-    private StaffDto mapUserToStaffDto(User user){
+    private StaffDto mapUserToStaffDto(User user) {
         return new StaffDto(user.getUserID(),
                 user.getPhone(),
                 user.getEmail(),
@@ -141,7 +148,7 @@ public class HomeRepositoryImpl implements HomeRepository {
                 user.getAddress());
     }
 
-    private LocalDto mapUserToLocalDto(User user){
+    private LocalDto mapUserToLocalDto(User user) {
         return new LocalDto(user.getUserID(),
                 user.getPhone(),
                 user.getEmail(),

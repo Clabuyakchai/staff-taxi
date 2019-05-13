@@ -4,7 +4,6 @@ package com.clabuyakchai.user.ui.base;
 import androidx.fragment.app.Fragment;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.DaggerAppCompatActivity_MembersInjector;
 import javax.inject.Provider;
 
 public final class BaseActivity_MembersInjector implements MembersInjector<BaseActivity> {
@@ -31,9 +30,18 @@ public final class BaseActivity_MembersInjector implements MembersInjector<BaseA
 
   @Override
   public void injectMembers(BaseActivity instance) {
-    DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
-        instance, supportFragmentInjectorProvider.get());
-    DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
-        instance, frameworkFragmentInjectorProvider.get());
+    injectSupportFragmentInjector(instance, supportFragmentInjectorProvider.get());
+    injectFrameworkFragmentInjector(instance, frameworkFragmentInjectorProvider.get());
+  }
+
+  public static void injectSupportFragmentInjector(
+      BaseActivity instance, DispatchingAndroidInjector<Fragment> supportFragmentInjector) {
+    instance.supportFragmentInjector = supportFragmentInjector;
+  }
+
+  public static void injectFrameworkFragmentInjector(
+      BaseActivity instance,
+      DispatchingAndroidInjector<android.app.Fragment> frameworkFragmentInjector) {
+    instance.frameworkFragmentInjector = frameworkFragmentInjector;
   }
 }

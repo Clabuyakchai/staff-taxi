@@ -2,9 +2,9 @@
 package com.clabuyakchai.user.ui.activity.auth;
 
 import androidx.fragment.app.Fragment;
+import com.clabuyakchai.user.ui.base.BaseActivity_MembersInjector;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.DaggerAppCompatActivity_MembersInjector;
 import javax.inject.Provider;
 
 public final class AuthActivity_MembersInjector implements MembersInjector<AuthActivity> {
@@ -31,9 +31,9 @@ public final class AuthActivity_MembersInjector implements MembersInjector<AuthA
 
   @Override
   public void injectMembers(AuthActivity instance) {
-    DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
+    BaseActivity_MembersInjector.injectSupportFragmentInjector(
         instance, supportFragmentInjectorProvider.get());
-    DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
+    BaseActivity_MembersInjector.injectFrameworkFragmentInjector(
         instance, frameworkFragmentInjectorProvider.get());
   }
 }

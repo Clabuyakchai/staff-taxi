@@ -33,11 +33,10 @@ public class AuthCodePresenter extends BasePresenter<AuthCodeView> {
         Disposable disposable = authRepository.signIn(phone)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    if (s != null) {
-                        String token = s.string();
+                    String token = s.string();
+                    if (!token.equals("null")) {
                         getViewState().addToken(token);
                         getViewState().navActivity();
-//                        getViewState().showSnackBar("NavigationActivity");
                     } else {
                         getViewState().registrationFragment(phone);
                     }

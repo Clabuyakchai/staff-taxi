@@ -3,13 +3,11 @@
     <item
         android:id="@+id/navigation_item_route"
         android:title="@string/navigation_item_title_route"
-        android:icon="@drawable/ic_route_black_24dp"
-        android:visible="false"/>
+        android:icon="@drawable/ic_route_black_24dp"/>
     <item
         android:id="@+id/navigation_item_station"
         android:title="@string/station"
-        android:icon="@drawable/ic_add_location_black_24dp"
-        android:visible="false"/>
+        android:icon="@drawable/ic_add_location_black_24dp"/>
     <item
         android:id="@+id/navigation_item_staff"
         android:title="@string/navigation_item_title_user"

@@ -1425,6 +1425,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id add_new_staff
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1442,7 +1443,6 @@ id bus_item_busnumber
 id bus_model
 id bus_number
 id bus_recycler
-id button
 id buttonPanel
 id calendar_days_header
 id calendar_frame
@@ -1576,6 +1576,7 @@ id new_route_recylerview
 id new_route_save_float
 id new_route_time
 id new_route_to
+id new_staff_edtx
 id noScroll
 id none
 id normal
@@ -1616,6 +1617,7 @@ id route_price
 id satellite
 id save_bus
 id save_image_matrix
+id save_new_staff
 id save_non_transition_alpha
 id save_scale_type
 id save_user
@@ -1686,6 +1688,7 @@ id textInputAddress
 id textInputBus
 id textInputEmail
 id textInputName
+id textInputNewStaff
 id textInputPhone
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -1693,6 +1696,7 @@ id textStart
 id text_input_bus_number
 id text_input_busmodel
 id text_input_end_icon
+id text_input_phone_numper
 id text_input_start_icon
 id textinput_counter
 id textinput_error
@@ -1911,6 +1915,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string add
+string add_staff
 string addbus
 string address
 string app_name

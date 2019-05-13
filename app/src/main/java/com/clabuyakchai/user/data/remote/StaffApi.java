@@ -68,4 +68,7 @@ public interface StaffApi {
 
     @GET(value = "/local/me")
     Single<LocalDto> whoAmIFromLocal();
+
+    @GET(value = "/staff/becomedriver")
+    Completable addStaff(@Query("phone") String phone);
 }

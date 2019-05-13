@@ -2,6 +2,7 @@ package com.clabuyakchai.user.ui.activity.navigation;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.clabuyakchai.user.data.local.entity.User;
 import com.clabuyakchai.user.data.repository.HomeRepository;
 import com.clabuyakchai.user.util.Screens;
 
@@ -45,8 +46,9 @@ public class NavigationActivityPresenter extends MvpPresenter<NavigationView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
                     getViewState().showDriverFunction(user.getDriver());
+                    getViewState().showSnackBar(user.getDriver().toString());
                 }, Throwable::printStackTrace);
-        compositeDisposable.add(disposable);
+
     }
 
     void onCreateActivity() {

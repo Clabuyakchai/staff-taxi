@@ -52,6 +52,7 @@ import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_Pro
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_ProvideRoutePresenterFactory;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityPresenter;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity_MembersInjector;
+import com.clabuyakchai.user.ui.base.BaseActivity_MembersInjector;
 import com.clabuyakchai.user.ui.base.BaseFragment_MembersInjector;
 import com.clabuyakchai.user.ui.fragment.auth.code.AuthCodeFragment;
 import com.clabuyakchai.user.ui.fragment.auth.code.AuthCodeFragmentProvider_BindAuthCodeFragment;
@@ -101,7 +102,6 @@ import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication_MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.DispatchingAndroidInjector_Factory;
-import dagger.android.support.DaggerAppCompatActivity_MembersInjector;
 import dagger.internal.DoubleCheck;
 import dagger.internal.InstanceFactory;
 import dagger.internal.MapBuilder;
@@ -459,9 +459,9 @@ public final class DaggerAppComponent implements AppComponent {
     }
 
     private AuthActivity injectAuthActivity(AuthActivity instance) {
-      DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
+      BaseActivity_MembersInjector.injectSupportFragmentInjector(
           instance, getDispatchingAndroidInjectorOfFragment());
-      DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
+      BaseActivity_MembersInjector.injectFrameworkFragmentInjector(
           instance, getDispatchingAndroidInjectorOfFragment2());
       return instance;
     }
@@ -815,9 +815,9 @@ public final class DaggerAppComponent implements AppComponent {
     }
 
     private NavigationActivity injectNavigationActivity(NavigationActivity instance) {
-      DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
+      BaseActivity_MembersInjector.injectSupportFragmentInjector(
           instance, getDispatchingAndroidInjectorOfFragment());
-      DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
+      BaseActivity_MembersInjector.injectFrameworkFragmentInjector(
           instance, getDispatchingAndroidInjectorOfFragment2());
       NavigationActivity_MembersInjector.injectNavigatorHolder(
           instance, provideNavigatorHolderProvider.get());

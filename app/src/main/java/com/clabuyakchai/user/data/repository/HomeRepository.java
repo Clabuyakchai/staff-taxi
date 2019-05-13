@@ -18,4 +18,5 @@ public interface HomeRepository {
     Single<BusDto> addBus(BusDto busDto);
     Completable driveBus(Long busId);
     Single<User> whoAmI();
+    Completable addStaff(String phone);
 }

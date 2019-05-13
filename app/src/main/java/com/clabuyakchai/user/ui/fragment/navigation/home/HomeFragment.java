@@ -12,13 +12,13 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.user.data.local.entity.User;
 import com.clabuyakchai.user.data.remote.request.BusDto;
-import com.clabuyakchai.user.data.remote.request.StaffDto;
 import com.clabuyakchai.user.ui.activity.StartActivity;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.user.util.Preferences;
 import com.clabuyakchai.user.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -34,6 +34,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
     private EditText busEdtx;
     private TextView changeUserTxt;
     private TextView editTxt;
+    private TextView addStaffTxt;
+    private EditText addStaffEdtx;
+    private TextView saveStaffTxt;
     private TextView saveTxt;
 
     @Inject
@@ -70,6 +73,9 @@ public class HomeFragment extends BaseFragment implements HomeView {
         editTxt = view.findViewById(R.id.edit_user);
         saveTxt = view.findViewById(R.id.save_user);
         busEdtx = view.findViewById(R.id.home_bus);
+        addStaffTxt = view.findViewById(R.id.add_new_staff);
+        addStaffEdtx = view.findViewById(R.id.new_staff_edtx);
+        saveStaffTxt = view.findViewById(R.id.save_new_staff);
 
         busEdtx.setOnClickListener(v -> {
             presenter.busFragment();
@@ -91,6 +97,14 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
         changeUserTxt.setOnClickListener(view1 -> {
             presenter.signOut();
+        });
+
+        addStaffTxt.setOnClickListener(v ->{
+            presenter.onAddStaffClicked();
+        });
+
+        saveStaffTxt.setOnClickListener(v -> {
+            presenter.onSaveStaffClicked(addStaffEdtx.getText().toString());
         });
     }
 
@@ -141,10 +155,30 @@ public class HomeFragment extends BaseFragment implements HomeView {
         if (isDriver) {
             busEdtx.setVisibility(View.VISIBLE);
             addressEdtx.setVisibility(View.VISIBLE);
+            addStaffTxt.setVisibility(View.VISIBLE);
         } else {
             busEdtx.setVisibility(View.GONE);
             addressEdtx.setVisibility(View.GONE);
+            addStaffTxt.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void setVisibilityNewStaff(Boolean visibility) {
+        if (visibility){
+            addStaffTxt.setVisibility(View.GONE);
+            saveStaffTxt.setVisibility(View.VISIBLE);
+            addStaffEdtx.setVisibility(View.VISIBLE);
+        } else {
+            addStaffTxt.setVisibility(View.VISIBLE);
+            saveStaffTxt.setVisibility(View.GONE);
+            addStaffEdtx.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showSnackBar(String text) {
+        Snackbar.make(getView(), text, Snackbar.LENGTH_SHORT).show();
     }
 
     public static HomeFragment newInstance() {

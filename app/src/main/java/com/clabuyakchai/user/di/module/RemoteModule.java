@@ -1,7 +1,9 @@
 package com.clabuyakchai.user.di.module;
 
 import com.clabuyakchai.user.data.remote.StaffApi;
+import com.clabuyakchai.user.data.repository.HomeRepository;
 import com.clabuyakchai.user.di.scope.ApplicationScope;
+import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityPresenter;
 import com.clabuyakchai.user.util.MyServiceInterceptor;
 import com.google.gson.Gson;
 
@@ -9,10 +11,12 @@ import dagger.Module;
 import dagger.Provides;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
+import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.terrakok.cicerone.Router;
 
 @Module
 public class RemoteModule {

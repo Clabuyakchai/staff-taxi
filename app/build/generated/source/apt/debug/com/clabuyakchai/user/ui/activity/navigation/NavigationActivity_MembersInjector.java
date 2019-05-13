@@ -2,9 +2,9 @@
 package com.clabuyakchai.user.ui.activity.navigation;
 
 import androidx.fragment.app.Fragment;
+import com.clabuyakchai.user.ui.base.BaseActivity_MembersInjector;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.DaggerAppCompatActivity_MembersInjector;
 import javax.inject.Provider;
 import ru.terrakok.cicerone.NavigatorHolder;
 
@@ -44,9 +44,9 @@ public final class NavigationActivity_MembersInjector
 
   @Override
   public void injectMembers(NavigationActivity instance) {
-    DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(
+    BaseActivity_MembersInjector.injectSupportFragmentInjector(
         instance, supportFragmentInjectorProvider.get());
-    DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(
+    BaseActivity_MembersInjector.injectFrameworkFragmentInjector(
         instance, frameworkFragmentInjectorProvider.get());
     injectNavigatorHolder(instance, navigatorHolderProvider.get());
     injectPresenter(instance, presenterProvider.get());

@@ -30,9 +30,6 @@ public class AuthCodeFragment extends BaseFragment implements AuthCodeView {
     private EditText verificationCodeEdt;
     private Button sendCode;
 
-    //TODO delete
-    private Button btn;
-
     @Inject
     @InjectPresenter
     AuthCodePresenter presenter;
@@ -57,13 +54,6 @@ public class AuthCodeFragment extends BaseFragment implements AuthCodeView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-
-        //TODO
-        btn = view.findViewById(R.id.button);
-        btn.setOnClickListener(v -> {
-            Toast.makeText(getContext(), Preferences.getTokenSharedPreferences(getContext()), Toast.LENGTH_LONG).show();
-
-        });
 
         verificationCodeEdt = view.findViewById(R.id.verification_code);
         sendCode = view.findViewById(R.id.send_verify_code);

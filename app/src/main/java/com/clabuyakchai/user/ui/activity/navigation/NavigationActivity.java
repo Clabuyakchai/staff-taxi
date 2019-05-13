@@ -31,7 +31,7 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
     NavigationActivityPresenter presenter;
 
     @ProvidePresenter
-    public NavigationActivityPresenter provideNavigationActivityPresenter(){
+    public NavigationActivityPresenter provideNavigationActivityPresenter() {
         return presenter;
     }
 
@@ -46,8 +46,6 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
 
         idConteiner = R.id.navigation_container;
 
-        Toast.makeText(this, Preferences.getTokenSharedPreferences(this), Toast.LENGTH_LONG).show();
-        showDriverFunction(true);
 
         //TODO
 //        presenter.onRouteClicked();
@@ -56,7 +54,7 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_item_route:
-                    presenter.onRouteClicked();
+                presenter.onRouteClicked();
                 return true;
             case R.id.navigation_item_station:
                 presenter.onStationClicked();
@@ -97,13 +95,17 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
 
     @Override
     public void showDriverFunction(Boolean isDriver) {
-        if (isDriver) {
-            navigation.getMenu().findItem(R.id.navigation_item_route).setVisible(true);
-            navigation.getMenu().findItem(R.id.navigation_item_station).setVisible(true);
+        navigation.getMenu().findItem(R.id.navigation_item_route).setVisible(isDriver);
+        navigation.getMenu().findItem(R.id.navigation_item_station).setVisible(isDriver);
+        if (isDriver){
+            presenter.onRouteClicked();
         } else {
-            navigation.getMenu().findItem(R.id.navigation_item_route).setVisible(false);
-            navigation.getMenu().findItem(R.id.navigation_item_station).setVisible(false);
+            presenter.onHomeClicked();
         }
+    }
+
+    @Override
+    public void showSnackBar(String text) {
     }
 
     @Override

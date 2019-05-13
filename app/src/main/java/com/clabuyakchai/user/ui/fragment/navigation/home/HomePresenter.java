@@ -31,38 +31,39 @@ public class HomePresenter extends BasePresenter<HomeView> {
         getInformationAboutMeFromDb();
     }
 
-    public void setRouter(Router router){
+    public void setRouter(Router router) {
         this.router = router;
     }
 
-    public void busFragment(){
+    public void busFragment() {
         router.navigateTo(new Screens.BusScreen());
     }
 
-    public void getInformationAboutMeFromDb(){
+    public void getInformationAboutMeFromDb() {
         Disposable disposable = homeRepository.getInformationAboutMeFromDb()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
-                    if (user.getDriver()){
+                    if (user.getDriver()) {
                         findBusByStaffId();
                     }
                     getViewState().setVisibility(user.getDriver());
-                    getViewState().setField(user);}, Throwable::printStackTrace);
+                    getViewState().setField(user);
+                }, Throwable::printStackTrace);
 
         compositeDisposable.add(disposable);
     }
 
-    public void signOut(){
+    public void signOut() {
         authRepository.signOut();
         deleteStaffFromDb();
         getViewState().signOut();
     }
 
-    public void pressEditUser(Boolean enabled){
+    public void pressEditUser(Boolean enabled) {
         getViewState().setEnabledEdTxt(enabled);
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         Disposable disposable = homeRepository.updateInformationAboutMe(user)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(staffDto -> {
@@ -72,14 +73,32 @@ public class HomePresenter extends BasePresenter<HomeView> {
         compositeDisposable.add(disposable);
     }
 
-    private void findBusByStaffId(){
+    private void findBusByStaffId() {
         Disposable disposable = homeRepository.getBusByStaffId()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(busDto -> {getViewState().setFiledBus(busDto);}, Throwable::printStackTrace);
+                .subscribe(busDto -> {
+                    getViewState().setFiledBus(busDto);
+                }, Throwable::printStackTrace);
         compositeDisposable.add(disposable);
     }
 
-    private void deleteStaffFromDb(){
+    public void onAddStaffClicked() {
+        getViewState().setVisibilityNewStaff(true);
+    }
+
+    public void onSaveStaffClicked(String phone) {
+        getViewState().setVisibilityNewStaff(false);
+        addStaff(phone);
+    }
+
+    private void addStaff(String phone) {
+        Disposable disposable = homeRepository.addStaff(phone)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> getViewState().showSnackBar(phone + " became a driver"), Throwable::printStackTrace);
+        compositeDisposable.add(disposable);
+    }
+
+    private void deleteStaffFromDb() {
         homeRepository.deleteStaffFromDb();
     }
 

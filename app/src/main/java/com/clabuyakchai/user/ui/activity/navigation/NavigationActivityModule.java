@@ -5,6 +5,7 @@ import com.clabuyakchai.user.data.repository.HomeRepository;
 import com.clabuyakchai.user.data.repository.RouteRepository;
 import com.clabuyakchai.user.data.repository.StationRepository;
 import com.clabuyakchai.user.di.scope.ActivityScope;
+import com.clabuyakchai.user.di.scope.ApplicationScope;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusPresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomePresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRoutePresenter;
@@ -13,6 +14,7 @@ import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailPrese
 
 import dagger.Module;
 import dagger.Provides;
+import ru.terrakok.cicerone.Router;
 
 @Module
 public class NavigationActivityModule {
