@@ -74,7 +74,7 @@ INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1
 INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-35:12
 INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:2:1-35:12
 	package
-		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:4:5-37
+		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:4:5-36
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 		INJECTED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -193,7 +193,7 @@ MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\Clab
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:23:13-66
 	android:name
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:22:13-58
-activity#com.clabuyakchai.staff.ui.activity.auth.AuthActivity
+activity#com.clabuyakchai.user.ui.activity.auth.AuthActivity
 ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:25:9-31:20
 	android:screenOrientation
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:25:65-101
@@ -209,7 +209,7 @@ category#android.intent.category.LAUNCHER
 ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:29:27-74
-activity#com.clabuyakchai.staff.ui.activity.navigation.NavigationActivity
+activity#com.clabuyakchai.user.ui.activity.navigation.NavigationActivity
 ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:32:9-115
 	android:screenOrientation
 		ADDED from F:\JavaProjects\DIPLOMA\Staff\app\src\main\AndroidManifest.xml:32:77-113

@@ -1,4 +1,4 @@
-com.clabuyakchai.staff
+com.clabuyakchai.user
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -1425,7 +1425,6 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
-id address
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1443,6 +1442,7 @@ id bus_item_busnumber
 id bus_model
 id bus_number
 id bus_recycler
+id button
 id buttonPanel
 id calendar_days_header
 id calendar_frame
@@ -1788,6 +1788,7 @@ layout amu_text_bubble
 layout amu_webview
 layout auth_code_fragment
 layout auth_phone_fragment
+layout auth_registration_fragment
 layout bus_fragment
 layout custom_dialog
 layout custom_marker
@@ -1844,7 +1845,6 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout registration_fragment
 layout route_detail_fragment
 layout route_fragment
 layout select_dialog_item_material
@@ -1975,7 +1975,7 @@ string mtrl_picker_range_header_prompt
 string mtrl_picker_range_header_selected
 string name
 string navigation_item_title_route
-string navigation_item_title_staff
+string navigation_item_title_user
 string new_station
 string password_toggle_content_description
 string path_password_eye
@@ -1989,6 +1989,7 @@ string save
 string search_menu_title
 string send_phone
 string send_verify_code
+string signup
 string station
 string station_name
 string status_bar_notification_info_overflow

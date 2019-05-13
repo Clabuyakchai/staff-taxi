@@ -131,8 +131,8 @@ public final class R {
         public static final int action_image = 0x7f080032;
         public static final int action_text = 0x7f080038;
         public static final int actions = 0x7f080039;
-        public static final int async = 0x7f080043;
-        public static final int blocking = 0x7f080047;
+        public static final int async = 0x7f080042;
+        public static final int blocking = 0x7f080046;
         public static final int chronometer = 0x7f08005c;
         public static final int dialog_button = 0x7f080076;
         public static final int forever = 0x7f08008e;
@@ -170,18 +170,18 @@ public final class R {
     public static final class layout {
         private layout() {}
 
-        public static final int custom_dialog = 0x7f0b0024;
-        public static final int notification_action = 0x7f0b004c;
-        public static final int notification_action_tombstone = 0x7f0b004d;
-        public static final int notification_template_custom_big = 0x7f0b0054;
-        public static final int notification_template_icon_group = 0x7f0b0055;
-        public static final int notification_template_part_chronometer = 0x7f0b0059;
-        public static final int notification_template_part_time = 0x7f0b005a;
+        public static final int custom_dialog = 0x7f0b0025;
+        public static final int notification_action = 0x7f0b004d;
+        public static final int notification_action_tombstone = 0x7f0b004e;
+        public static final int notification_template_custom_big = 0x7f0b0055;
+        public static final int notification_template_icon_group = 0x7f0b0056;
+        public static final int notification_template_part_chronometer = 0x7f0b005a;
+        public static final int notification_template_part_time = 0x7f0b005b;
     }
     public static final class string {
         private string() {}
 
-        public static final int status_bar_notification_info_overflow = 0x7f10006c;
+        public static final int status_bar_notification_info_overflow = 0x7f10006d;
     }
     public static final class style {
         private style() {}
