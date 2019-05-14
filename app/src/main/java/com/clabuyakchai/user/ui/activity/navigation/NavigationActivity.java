@@ -47,7 +47,7 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
         switch (item.getItemId()) {
-            case R.id.navigation_item_route:
+            case R.id.navigation_item_route_staff:
                 presenter.onRouteClicked();
                 return true;
             case R.id.navigation_item_station:
@@ -58,6 +58,9 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
                 return true;
             case R.id.navigation_item_book:
                 presenter.onBookClicked();
+                return true;
+            case R.id.navigation_item_route_user:
+                presenter.onTicketClicked();
                 return true;
             default:
                 return false;
@@ -92,9 +95,10 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
 
     @Override
     public void showDriverFunction(Boolean isDriver) {
-        navigation.getMenu().findItem(R.id.navigation_item_route).setVisible(isDriver);
+        navigation.getMenu().findItem(R.id.navigation_item_route_staff).setVisible(isDriver);
         navigation.getMenu().findItem(R.id.navigation_item_station).setVisible(isDriver);
         navigation.getMenu().findItem(R.id.navigation_item_book).setVisible(!isDriver);
+        navigation.getMenu().findItem(R.id.navigation_item_route_user).setVisible(!isDriver);
         if (isDriver){
             presenter.onRouteClicked();
         } else {

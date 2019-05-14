@@ -11,6 +11,7 @@ import com.clabuyakchai.user.ui.fragment.navigation.home.HomePresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRoutePresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.route.RoutePresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailPresenter;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -46,5 +47,11 @@ public class NavigationActivityModule {
     @Provides
     public NewRoutePresenter provideNewRoutePresenter(StationRepository stationRepository, RouteRepository routeRepository){
         return new NewRoutePresenter(stationRepository, routeRepository);
+    }
+
+    @ActivityScope
+    @Provides
+    public TicketPresenter provideTicketPresenter(RouteRepository routeRepository){
+        return new TicketPresenter(routeRepository);
     }
 }

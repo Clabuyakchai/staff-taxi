@@ -3,6 +3,7 @@ package com.clabuyakchai.user.ui.fragment.navigation.book;
 
 import androidx.fragment.app.Fragment;
 import com.clabuyakchai.user.ui.base.BaseFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
@@ -13,18 +14,23 @@ public final class BookFragment_MembersInjector implements MembersInjector<BookF
 
   private final Provider<BookPresenter> presenterProvider;
 
+  private final Provider<LocalCiceroneHolder> localCiceroneHolderProvider;
+
   public BookFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<BookPresenter> presenterProvider) {
+      Provider<BookPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
     this.presenterProvider = presenterProvider;
+    this.localCiceroneHolderProvider = localCiceroneHolderProvider;
   }
 
   public static MembersInjector<BookFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<BookPresenter> presenterProvider) {
+      Provider<BookPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     return new BookFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider, localCiceroneHolderProvider);
   }
 
   @Override
@@ -32,9 +38,15 @@ public final class BookFragment_MembersInjector implements MembersInjector<BookF
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectLocalCiceroneHolder(instance, localCiceroneHolderProvider.get());
   }
 
   public static void injectPresenter(BookFragment instance, BookPresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectLocalCiceroneHolder(
+      BookFragment instance, LocalCiceroneHolder localCiceroneHolder) {
+    instance.localCiceroneHolder = localCiceroneHolder;
   }
 }

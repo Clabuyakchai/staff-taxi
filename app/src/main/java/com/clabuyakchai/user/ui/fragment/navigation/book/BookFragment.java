@@ -10,8 +10,10 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.user.R;
 import com.clabuyakchai.user.data.remote.request.BookingDto;
 import com.clabuyakchai.user.ui.base.BaseFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookListener;
 import com.clabuyakchai.user.ui.fragment.navigation.route.adapter.RouteIdListener;
 import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookAdapter;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BookFragment extends BaseFragment implements BookView, RouteIdListener {
+public class BookFragment extends BaseFragment implements BookView, BookListener {
     private RecyclerView recyclerView;
     private BookAdapter adapter;
 
@@ -35,6 +37,9 @@ public class BookFragment extends BaseFragment implements BookView, RouteIdListe
         return presenter;
     }
 
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class BookFragment extends BaseFragment implements BookView, RouteIdListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+        presenter.setRouter(localCiceroneHolder.getCicerone("Book").getRouter());
         recyclerView = view.findViewById(R.id.my_route_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
@@ -55,8 +61,8 @@ public class BookFragment extends BaseFragment implements BookView, RouteIdListe
     }
 
     @Override
-    public void fragmentDetails(Long id) {
-        //TODO bookdetails
+    public void onBookItemClicked(BookingDto bookingDto) {
+        presenter.onItemBookClicked(bookingDto);
     }
 
     public static BookFragment newInstance(){

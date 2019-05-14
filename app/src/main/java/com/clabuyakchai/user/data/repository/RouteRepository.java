@@ -14,4 +14,5 @@ public interface RouteRepository {
     Single<List<RouteDto>> findRouteByStaffAndTime(String datetime);
     Single<List<LocalDto>> findLocalByRouteId(Long routeId);
     Completable createRoute(RouteDto routeDto, List<StationItemWithSwitch> stations);
+    Single<List<RouteDto>> findRouteByParam(String from, String to, String datetime);
 }

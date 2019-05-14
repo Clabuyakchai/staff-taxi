@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<Holder> {
     private List<BookingDto> list;
-    private final RouteIdListener listener;
+    private final BookListener listener;
 
-    public BookAdapter(List<BookingDto> routeList, RouteIdListener listener) {
+    public BookAdapter(List<BookingDto> routeList, BookListener listener) {
         this.list = routeList;
         this.listener = listener;
     }
@@ -32,7 +32,7 @@ public class BookAdapter extends RecyclerView.Adapter<Holder> {
         routeHolder.itemView.setOnClickListener(v -> {
             int position = routeHolder.getAdapterPosition();
             if(position != RecyclerView.NO_POSITION){
-                listener.fragmentDetails(list.get(position).getBookingID());
+                listener.onBookItemClicked(list.get(position));
             }
         });
 

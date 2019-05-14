@@ -75,4 +75,13 @@ public interface StaffApi {
 
     @GET(value = "/book/booklocal")
     Single<List<BookingDto>> findBookingByLocalIdAndDatetime(@Query("localID") Long localID, @Query("datetime") String datetime);
+
+    @GET(value = "/book/delete")
+    Completable cancelBook(@Query("bookingID") Long bookingID);
+
+    @GET(value = "/route/routeby")
+    Single<List<RouteDto>> findRouteByParam(@Query("from") String from, @Query("to") String to, @Query("datetime") String datetime);
+
+    @GET(value = "/book/add")
+    Completable createBook(@Query("localID") Long localID, @Query("timetableID") Long timetableID);
 }

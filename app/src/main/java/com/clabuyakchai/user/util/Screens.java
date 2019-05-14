@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.clabuyakchai.user.data.remote.request.BookingDto;
+import com.clabuyakchai.user.data.remote.request.RouteDto;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRouteFragment;
@@ -12,6 +15,8 @@ import com.clabuyakchai.user.ui.fragment.navigation.route.RouteFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailFragment;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragment;
 
 import androidx.annotation.RequiresApi;
@@ -98,6 +103,39 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return BookFragment.newInstance();
+        }
+    }
+
+    public static final class BookDetailScreen extends SupportAppScreen {
+        private final BookingDto bookingDto;
+
+        public BookDetailScreen(BookingDto bookingDto) {
+            this.bookingDto = bookingDto;
+        }
+
+        @Override
+        public Fragment getFragment() {
+            return BookDetailFragment.newInstance(bookingDto);
+        }
+    }
+
+    public static final class TicketScreen extends SupportAppScreen{
+        @Override
+        public Fragment getFragment() {
+            return TicketFragment.newInstance();
+        }
+    }
+
+    public static final class TicketDetailScreen extends SupportAppScreen {
+        private final RouteDto routeDto;
+
+        public TicketDetailScreen(RouteDto routeDto) {
+            this.routeDto = routeDto;
+        }
+
+        @Override
+        public Fragment getFragment() {
+            return TicketDetailFragment.newInstance(routeDto);
         }
     }
 }

@@ -3,7 +3,9 @@ package com.clabuyakchai.user.data.remote.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BookingDto {
+import java.io.Serializable;
+
+public class BookingDto implements Serializable {
     @SerializedName("bookingID")
     @Expose
     private Long bookingID;

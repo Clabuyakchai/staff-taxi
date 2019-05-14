@@ -31,4 +31,6 @@
     <string name="add_staff">Add staff</string>
     <string name="book">My book</string>
     <string name="cancel_reservation">Cancel reservation</string>
+    <string name="navigation_item_title_ticket">Ticket</string>
+    <string name="make_reservation">Make reservation</string>
 </resources>

@@ -3,7 +3,9 @@ package com.clabuyakchai.user.data.remote.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BusDto {
+import java.io.Serializable;
+
+public class BusDto implements Serializable {
     @SerializedName("busID")
     @Expose
     private Long busID;

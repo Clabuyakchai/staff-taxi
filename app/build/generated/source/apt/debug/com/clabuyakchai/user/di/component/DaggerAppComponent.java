@@ -53,6 +53,7 @@ import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_Pro
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_ProvideNewRoutePresenterFactory;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_ProvideRouteDetailPresenterFactory;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_ProvideRoutePresenterFactory;
+import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule_ProvideTicketPresenterFactory;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityPresenter;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity_MembersInjector;
 import com.clabuyakchai.user.ui.base.BaseActivity_MembersInjector;
@@ -73,6 +74,10 @@ import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragmentProvider_BindMyRouteFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment_MembersInjector;
 import com.clabuyakchai.user.ui.fragment.navigation.book.BookPresenter;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailFragmentProvider_BindBookDetailFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailPresenter;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragmentProvider_BindBusFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment_MembersInjector;
@@ -97,6 +102,14 @@ import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragmentProvider_BindStationFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragment_MembersInjector;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationPresenter;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketFragmentProvider_BindTicketFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketPresenter;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailFragmentProvider_BindTicketDetailFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailPresenter;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragment;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragmentProvider_BindTabNavigationFragment;
@@ -650,6 +663,19 @@ public final class DaggerAppComponent implements AppComponent {
     private Provider<BookFragmentProvider_BindMyRouteFragment.BookFragmentSubcomponent.Builder>
         bookFragmentSubcomponentBuilderProvider;
 
+    private Provider<
+            BookDetailFragmentProvider_BindBookDetailFragment.BookDetailFragmentSubcomponent
+                .Builder>
+        bookDetailFragmentSubcomponentBuilderProvider;
+
+    private Provider<TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent.Builder>
+        ticketFragmentSubcomponentBuilderProvider;
+
+    private Provider<
+            TicketDetailFragmentProvider_BindTicketDetailFragment.TicketDetailFragmentSubcomponent
+                .Builder>
+        ticketDetailFragmentSubcomponentBuilderProvider;
+
     private Provider<Cicerone<Router>> provideCiceroneProvider;
 
     private Provider<NavigatorHolder> provideNavigatorHolderProvider;
@@ -668,6 +694,8 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Provider<NewRoutePresenter> provideNewRoutePresenterProvider;
 
+    private Provider<TicketPresenter> provideTicketPresenterProvider;
+
     private NavigationActivitySubcomponentImpl(
         CiceroneModule ciceroneModuleParam,
         NavigationActivityModule navigationActivityModuleParam,
@@ -678,7 +706,7 @@ public final class DaggerAppComponent implements AppComponent {
 
     private Map<Class<?>, Provider<AndroidInjector.Factory<?>>>
         getMapOfClassOfAndProviderOfFactoryOf() {
-      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(10)
+      return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(13)
           .put(
               AuthActivity.class,
               (Provider) DaggerAppComponent.this.authActivitySubcomponentBuilderProvider)
@@ -695,6 +723,11 @@ public final class DaggerAppComponent implements AppComponent {
           .put(BusFragment.class, (Provider) busFragmentSubcomponentBuilderProvider)
           .put(NewRouteFragment.class, (Provider) newRouteFragmentSubcomponentBuilderProvider)
           .put(BookFragment.class, (Provider) bookFragmentSubcomponentBuilderProvider)
+          .put(BookDetailFragment.class, (Provider) bookDetailFragmentSubcomponentBuilderProvider)
+          .put(TicketFragment.class, (Provider) ticketFragmentSubcomponentBuilderProvider)
+          .put(
+              TicketDetailFragment.class,
+              (Provider) ticketDetailFragmentSubcomponentBuilderProvider)
           .build();
     }
 
@@ -793,6 +826,37 @@ public final class DaggerAppComponent implements AppComponent {
               return new BookFragmentSubcomponentBuilder();
             }
           };
+      this.bookDetailFragmentSubcomponentBuilderProvider =
+          new Provider<
+              BookDetailFragmentProvider_BindBookDetailFragment.BookDetailFragmentSubcomponent
+                  .Builder>() {
+            @Override
+            public BookDetailFragmentProvider_BindBookDetailFragment.BookDetailFragmentSubcomponent
+                    .Builder
+                get() {
+              return new BookDetailFragmentSubcomponentBuilder();
+            }
+          };
+      this.ticketFragmentSubcomponentBuilderProvider =
+          new Provider<
+              TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent.Builder>() {
+            @Override
+            public TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent.Builder
+                get() {
+              return new TicketFragmentSubcomponentBuilder();
+            }
+          };
+      this.ticketDetailFragmentSubcomponentBuilderProvider =
+          new Provider<
+              TicketDetailFragmentProvider_BindTicketDetailFragment.TicketDetailFragmentSubcomponent
+                  .Builder>() {
+            @Override
+            public TicketDetailFragmentProvider_BindTicketDetailFragment
+                    .TicketDetailFragmentSubcomponent.Builder
+                get() {
+              return new TicketDetailFragmentSubcomponentBuilder();
+            }
+          };
       this.provideCiceroneProvider =
           DoubleCheck.provider(CiceroneModule_ProvideCiceroneFactory.create(ciceroneModuleParam));
       this.provideNavigatorHolderProvider =
@@ -832,6 +896,11 @@ public final class DaggerAppComponent implements AppComponent {
               NavigationActivityModule_ProvideNewRoutePresenterFactory.create(
                   navigationActivityModuleParam,
                   DaggerAppComponent.this.bindStationRepositoryProvider,
+                  DaggerAppComponent.this.bindRouteRepositoryProvider));
+      this.provideTicketPresenterProvider =
+          DoubleCheck.provider(
+              NavigationActivityModule_ProvideTicketPresenterFactory.create(
+                  navigationActivityModuleParam,
                   DaggerAppComponent.this.bindRouteRepositoryProvider));
     }
 
@@ -1155,6 +1224,129 @@ public final class DaggerAppComponent implements AppComponent {
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         BookFragment_MembersInjector.injectPresenter(instance, getBookPresenter());
+        BookFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
+        return instance;
+      }
+    }
+
+    private final class BookDetailFragmentSubcomponentBuilder
+        extends BookDetailFragmentProvider_BindBookDetailFragment.BookDetailFragmentSubcomponent
+            .Builder {
+      private BookDetailFragment seedInstance;
+
+      @Override
+      public void seedInstance(BookDetailFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public BookDetailFragmentProvider_BindBookDetailFragment.BookDetailFragmentSubcomponent
+          build() {
+        Preconditions.checkBuilderRequirement(seedInstance, BookDetailFragment.class);
+        return new BookDetailFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class BookDetailFragmentSubcomponentImpl
+        implements BookDetailFragmentProvider_BindBookDetailFragment
+            .BookDetailFragmentSubcomponent {
+      private BookDetailFragmentSubcomponentImpl(BookDetailFragment seedInstance) {}
+
+      private BookDetailPresenter getBookDetailPresenter() {
+        return new BookDetailPresenter(DaggerAppComponent.this.bindBookRepositoryProvider.get());
+      }
+
+      @Override
+      public void inject(BookDetailFragment arg0) {
+        injectBookDetailFragment(arg0);
+      }
+
+      private BookDetailFragment injectBookDetailFragment(BookDetailFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        BookDetailFragment_MembersInjector.injectPresenter(instance, getBookDetailPresenter());
+        return instance;
+      }
+    }
+
+    private final class TicketFragmentSubcomponentBuilder
+        extends TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent.Builder {
+      private TicketFragment seedInstance;
+
+      @Override
+      public void seedInstance(TicketFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent build() {
+        Preconditions.checkBuilderRequirement(seedInstance, TicketFragment.class);
+        return new TicketFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class TicketFragmentSubcomponentImpl
+        implements TicketFragmentProvider_BindTicketFragment.TicketFragmentSubcomponent {
+      private TicketFragmentSubcomponentImpl(TicketFragment seedInstance) {}
+
+      @Override
+      public void inject(TicketFragment arg0) {
+        injectTicketFragment(arg0);
+      }
+
+      private TicketFragment injectTicketFragment(TicketFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        TicketFragment_MembersInjector.injectPresenter(
+            instance, NavigationActivitySubcomponentImpl.this.provideTicketPresenterProvider.get());
+        TicketFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
+        return instance;
+      }
+    }
+
+    private final class TicketDetailFragmentSubcomponentBuilder
+        extends TicketDetailFragmentProvider_BindTicketDetailFragment
+            .TicketDetailFragmentSubcomponent.Builder {
+      private TicketDetailFragment seedInstance;
+
+      @Override
+      public void seedInstance(TicketDetailFragment arg0) {
+        this.seedInstance = Preconditions.checkNotNull(arg0);
+      }
+
+      @Override
+      public TicketDetailFragmentProvider_BindTicketDetailFragment.TicketDetailFragmentSubcomponent
+          build() {
+        Preconditions.checkBuilderRequirement(seedInstance, TicketDetailFragment.class);
+        return new TicketDetailFragmentSubcomponentImpl(seedInstance);
+      }
+    }
+
+    private final class TicketDetailFragmentSubcomponentImpl
+        implements TicketDetailFragmentProvider_BindTicketDetailFragment
+            .TicketDetailFragmentSubcomponent {
+      private TicketDetailFragmentSubcomponentImpl(TicketDetailFragment seedInstance) {}
+
+      private TicketDetailPresenter getTicketDetailPresenter() {
+        return new TicketDetailPresenter(DaggerAppComponent.this.bindBookRepositoryProvider.get());
+      }
+
+      @Override
+      public void inject(TicketDetailFragment arg0) {
+        injectTicketDetailFragment(arg0);
+      }
+
+      private TicketDetailFragment injectTicketDetailFragment(TicketDetailFragment instance) {
+        BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
+            instance,
+            NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
+        TicketDetailFragment_MembersInjector.injectPresenter(instance, getTicketDetailPresenter());
         return instance;
       }
     }

@@ -59,6 +59,10 @@ public class TabNavigationFragment extends BaseFragment implements RouterProvide
             getCicerone().getRouter().replaceScreen(new Screens.StationScreen());
         } else if (getContainerName().equals("Home")) {
             getCicerone().getRouter().replaceScreen(new Screens.HomeScreen());
+        } else if (getContainerName().equals("Book")){
+            getCicerone().getRouter().replaceScreen(new Screens.BookScreen());
+        }else if (getContainerName().equals("Ticket")){
+            getCicerone().getRouter().replaceScreen(new Screens.TicketScreen());
         }
     }
 

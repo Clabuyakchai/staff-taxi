@@ -4,12 +4,15 @@ import com.clabuyakchai.user.di.scope.ActivityScope;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule;
 import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragmentProvider;
+import com.clabuyakchai.user.ui.fragment.navigation.bookdetail.BookDetailFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRouteFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.route.RouteFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragmentProvider;
+import com.clabuyakchai.user.ui.fragment.navigation.ticket.TicketFragmentProvider;
+import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.TicketDetailFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragmentProvider;
 import dagger.Binds;
 import dagger.Module;
@@ -39,7 +42,10 @@ public abstract class ActivityModule_BindNavActivity {
       StationFragmentProvider.class,
       BusFragmentProvider.class,
       NewRouteFragmentProvider.class,
-      BookFragmentProvider.class
+      BookFragmentProvider.class,
+      BookDetailFragmentProvider.class,
+      TicketFragmentProvider.class,
+      TicketDetailFragmentProvider.class
     }
   )
   @ActivityScope

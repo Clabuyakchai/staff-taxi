@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -26,5 +27,16 @@ public class BookRepositoryImpl implements BookRepository {
     public Single<List<BookingDto>> findBookingByLocalIdAndDatetime(String datetime) {
         return database.userDao().getUser().subscribeOn(Schedulers.io())
                 .flatMap(users -> staffApi.findBookingByLocalIdAndDatetime(users.get(0).getUserID(), datetime));
+    }
+
+    @Override
+    public Completable cancelBook(Long bookId) {
+        return staffApi.cancelBook(bookId);
+    }
+
+    @Override
+    public Completable createBook(Long timetableId) {
+        return database.userDao().getUser().subscribeOn(Schedulers.io())
+                .flatMap(users -> staffApi.createBook(users.get(0).getUserID(), timetableId).toSingle(() -> "")).ignoreElement();
     }
 }

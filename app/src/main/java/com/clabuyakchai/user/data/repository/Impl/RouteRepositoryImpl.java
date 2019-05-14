@@ -49,6 +49,11 @@ public class RouteRepositoryImpl implements RouteRepository {
                         })).ignoreElement();
     }
 
+    @Override
+    public Single<List<RouteDto>> findRouteByParam(String from, String to, String datetime) {
+        return staffApi.findRouteByParam(from, to, datetime);
+    }
+
     private List<StationDto> mapForRequest(List<StationItemWithSwitch> stations){
         List<StationDto> list = new ArrayList<>();
         for (StationItemWithSwitch s: stations) {

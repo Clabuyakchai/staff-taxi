@@ -3,9 +3,10 @@ package com.clabuyakchai.user.data.remote.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RouteDto {
+public class RouteDto implements Serializable {
     @SerializedName("routeID")
     @Expose
     private Long routeID;
