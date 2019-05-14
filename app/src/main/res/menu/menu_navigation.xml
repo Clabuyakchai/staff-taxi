@@ -3,24 +3,28 @@
     <item
         android:id="@+id/navigation_item_route_staff"
         android:icon="@drawable/ic_route_black_24dp"
-        android:title="@string/navigation_item_title_route" />
+        android:title="@string/navigation_item_title_route"
+        android:visible="false"/>
     <item
         android:id="@+id/navigation_item_station"
         android:icon="@drawable/ic_add_location_black_24dp"
-        android:title="@string/station" />
+        android:title="@string/station"
+        android:visible="false"/>
 
     <item
         android:id="@+id/navigation_item_book"
         android:icon="@drawable/ic_book_black_24dp"
-        android:title="@string/book" />
+        android:title="@string/book"
+        android:visible="false"/>
 
     <item
         android:id="@+id/navigation_item_route_user"
         android:icon="@drawable/ic_ticket"
-        android:title="@string/navigation_item_title_ticket"/>
+        android:title="@string/navigation_item_title_ticket"
+        android:visible="false"/>
 
     <item
         android:id="@+id/navigation_item_user"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/navigation_item_title_user" />
+        android:title="@string/navigation_item_title_user"/>
 </menu>
