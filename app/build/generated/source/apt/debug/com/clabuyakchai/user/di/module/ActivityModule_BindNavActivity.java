@@ -3,6 +3,7 @@ package com.clabuyakchai.user.di.module;
 import com.clabuyakchai.user.di.scope.ActivityScope;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivityModule;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRouteFragmentProvider;
@@ -37,7 +38,8 @@ public abstract class ActivityModule_BindNavActivity {
       TabNavigationFragmentProvider.class,
       StationFragmentProvider.class,
       BusFragmentProvider.class,
-      NewRouteFragmentProvider.class
+      NewRouteFragmentProvider.class,
+      BookFragmentProvider.class
     }
   )
   @ActivityScope

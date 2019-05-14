@@ -19,6 +19,10 @@ import com.clabuyakchai.user.ui.fragment.auth.registration.RegistrationFragment;
 import com.clabuyakchai.user.ui.fragment.auth.registration.RegistrationFragment$$PresentersBinder;
 import com.clabuyakchai.user.ui.fragment.auth.registration.RegistrationPresenter;
 import com.clabuyakchai.user.ui.fragment.auth.registration.RegistrationPresenter$$ViewStateProvider;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment$$PresentersBinder;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookPresenter;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookPresenter$$ViewStateProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment$$PresentersBinder;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusPresenter;
@@ -63,6 +67,7 @@ public final class MoxyReflector {
 		sViewStateProviders.put(AuthCodePresenter.class, new AuthCodePresenter$$ViewStateProvider());
 		sViewStateProviders.put(AuthPhonePresenter.class, new AuthPhonePresenter$$ViewStateProvider());
 		sViewStateProviders.put(RegistrationPresenter.class, new RegistrationPresenter$$ViewStateProvider());
+		sViewStateProviders.put(BookPresenter.class, new BookPresenter$$ViewStateProvider());
 		sViewStateProviders.put(BusPresenter.class, new BusPresenter$$ViewStateProvider());
 		sViewStateProviders.put(HomePresenter.class, new HomePresenter$$ViewStateProvider());
 		sViewStateProviders.put(NewRoutePresenter.class, new NewRoutePresenter$$ViewStateProvider());
@@ -75,6 +80,7 @@ public final class MoxyReflector {
 		sPresenterBinders.put(AuthCodeFragment.class, Arrays.<Object>asList(new AuthCodeFragment$$PresentersBinder()));
 		sPresenterBinders.put(AuthPhoneFragment.class, Arrays.<Object>asList(new AuthPhoneFragment$$PresentersBinder()));
 		sPresenterBinders.put(RegistrationFragment.class, Arrays.<Object>asList(new RegistrationFragment$$PresentersBinder()));
+		sPresenterBinders.put(BookFragment.class, Arrays.<Object>asList(new BookFragment$$PresentersBinder()));
 		sPresenterBinders.put(BusFragment.class, Arrays.<Object>asList(new BusFragment$$PresentersBinder()));
 		sPresenterBinders.put(HomeFragment.class, Arrays.<Object>asList(new HomeFragment$$PresentersBinder()));
 		sPresenterBinders.put(NewRouteFragment.class, Arrays.<Object>asList(new NewRouteFragment$$PresentersBinder()));

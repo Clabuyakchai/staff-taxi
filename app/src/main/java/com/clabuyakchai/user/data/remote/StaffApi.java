@@ -1,5 +1,6 @@
 package com.clabuyakchai.user.data.remote;
 
+import com.clabuyakchai.user.data.remote.request.BookingDto;
 import com.clabuyakchai.user.data.remote.request.BusDto;
 import com.clabuyakchai.user.data.remote.request.LocalDto;
 import com.clabuyakchai.user.data.remote.request.RouteDto;
@@ -71,4 +72,7 @@ public interface StaffApi {
 
     @GET(value = "/staff/becomedriver")
     Completable addStaff(@Query("phone") String phone);
+
+    @GET(value = "/book/booklocal")
+    Single<List<BookingDto>> findBookingByLocalIdAndDatetime(@Query("localID") Long localID, @Query("datetime") String datetime);
 }

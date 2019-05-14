@@ -750,6 +750,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color black
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1327,6 +1328,7 @@ drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_add_location_black_24dp
+drawable ic_book_black_24dp
 drawable ic_check_white_24dp
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
@@ -1340,6 +1342,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_person_black_24dp
 drawable ic_phone_black_24dp
+drawable ic_plus
 drawable ic_route_black_24dp
 drawable mtrl_dialog_background
 drawable mtrl_dropdown_arrow
@@ -1558,13 +1561,15 @@ id mtrl_card_checked_layer_id
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id my_route_recyclerview
 id name
 id navigation
 id navigation_container
 id navigation_header_container
+id navigation_item_book
 id navigation_item_route
-id navigation_item_staff
 id navigation_item_station
+id navigation_item_user
 id never
 id new_route_date
 id new_route_from
@@ -1833,6 +1838,7 @@ layout mtrl_layout_snackbar_include
 layout mtrl_month_grid
 layout mtrl_picker_actions
 layout mtrl_picker_dialog
+layout my_route_fragment
 layout new_route_fragment
 layout notification_action
 layout notification_action_tombstone
@@ -1920,6 +1926,7 @@ string addbus
 string address
 string app_name
 string appbar_scrolling_view_behavior
+string book
 string bottom_sheet_behavior
 string bus
 string busmodel

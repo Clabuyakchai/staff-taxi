@@ -2,7 +2,6 @@ package com.clabuyakchai.user.ui.activity.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -10,9 +9,7 @@ import com.clabuyakchai.user.ui.activity.StartActivity;
 import com.clabuyakchai.user.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.user.ui.base.BaseActivity;
 import com.clabuyakchai.user.R;
-import com.clabuyakchai.user.util.Preferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -46,9 +43,6 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
 
         idConteiner = R.id.navigation_container;
 
-
-        //TODO
-//        presenter.onRouteClicked();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
@@ -59,8 +53,11 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
             case R.id.navigation_item_station:
                 presenter.onStationClicked();
                 return true;
-            case R.id.navigation_item_staff:
+            case R.id.navigation_item_user:
                 presenter.onHomeClicked();
+                return true;
+            case R.id.navigation_item_book:
+                presenter.onBookClicked();
                 return true;
             default:
                 return false;
@@ -97,10 +94,11 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
     public void showDriverFunction(Boolean isDriver) {
         navigation.getMenu().findItem(R.id.navigation_item_route).setVisible(isDriver);
         navigation.getMenu().findItem(R.id.navigation_item_station).setVisible(isDriver);
+        navigation.getMenu().findItem(R.id.navigation_item_book).setVisible(!isDriver);
         if (isDriver){
             presenter.onRouteClicked();
         } else {
-            presenter.onHomeClicked();
+            presenter.onBookClicked();
         }
     }
 

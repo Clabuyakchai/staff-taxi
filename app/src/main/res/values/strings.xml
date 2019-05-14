@@ -29,4 +29,6 @@
     <string name="price">Price</string>
     <string name="signup">Sign Up</string>
     <string name="add_staff">Add staff</string>
+    <string name="book">My book</string>
+    <string name="cancel_reservation">Cancel reservation</string>
 </resources>

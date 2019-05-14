@@ -12,6 +12,7 @@ import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomeFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRouteFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.route.RouteFragmentProvider;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragmentProvider;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragmentProvider;
@@ -39,7 +40,8 @@ public abstract class ActivityModule {
             TabNavigationFragmentProvider.class,
             StationFragmentProvider.class,
             BusFragmentProvider.class,
-            NewRouteFragmentProvider.class
+            NewRouteFragmentProvider.class,
+            BookFragmentProvider.class
     })
     public abstract NavigationActivity bindNavActivity();
 }

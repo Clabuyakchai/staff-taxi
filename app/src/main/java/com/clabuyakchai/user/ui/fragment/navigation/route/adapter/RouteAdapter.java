@@ -13,7 +13,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder> {
+public class RouteAdapter extends RecyclerView.Adapter<Holder> {
     private List<RouteDto> routeList;
     private final RouteIdListener listener;
 
@@ -24,9 +24,9 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
     @NonNull
     @Override
-    public RouteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_route_item, parent, false);
-        final RouteHolder routeHolder = new RouteHolder(view);
+        final Holder routeHolder = new Holder(view);
 
         routeHolder.itemView.setOnClickListener(v -> {
             int position = routeHolder.getAdapterPosition();
@@ -39,7 +39,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RouteHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.bind(routeList.get(position));
     }
 
@@ -50,24 +50,5 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
     public void setRouteList(List<RouteDto> routeList) {
         this.routeList = routeList;
-    }
-
-    class RouteHolder extends RecyclerView.ViewHolder{
-        private TextView fromToTxt;
-        private TextView datetimeTxt;
-        private TextView priceTxt;
-
-        public RouteHolder(@NonNull View itemView) {
-            super(itemView);
-            fromToTxt = itemView.findViewById(R.id.route_from_to);
-            datetimeTxt = itemView.findViewById(R.id.route_datetime);
-            priceTxt = itemView.findViewById(R.id.route_price);
-        }
-
-        public void bind(RouteDto routeDto){
-            fromToTxt.setText(routeDto.getFrom()+" - " + routeDto.getTo());
-            datetimeTxt.setText(routeDto.getDatetime());
-            priceTxt.setText(routeDto.getPrice().toString());
-        }
     }
 }

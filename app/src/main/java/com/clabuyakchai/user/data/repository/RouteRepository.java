@@ -1,5 +1,6 @@
 package com.clabuyakchai.user.data.repository;
 
+import com.clabuyakchai.user.data.remote.request.BookingDto;
 import com.clabuyakchai.user.data.remote.request.LocalDto;
 import com.clabuyakchai.user.data.remote.request.RouteDto;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.adapter.StationItemWithSwitch;

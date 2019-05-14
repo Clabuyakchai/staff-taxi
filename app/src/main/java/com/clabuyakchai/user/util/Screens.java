@@ -2,16 +2,19 @@ package com.clabuyakchai.user.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.BusFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.home.HomeFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.NewRouteFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.route.RouteFragment;
+import com.clabuyakchai.user.ui.fragment.navigation.book.BookFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.routedetail.RouteDetailFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.station.StationFragment;
 import com.clabuyakchai.user.ui.fragment.tab.TabNavigationFragment;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
@@ -84,9 +87,17 @@ public class Screens {
     }
 
     public static final class NewRouteScreen extends SupportAppScreen{
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public Fragment getFragment() {
             return NewRouteFragment.newInstance();
+        }
+    }
+
+    public static final class BookScreen extends SupportAppScreen{
+        @Override
+        public Fragment getFragment() {
+            return BookFragment.newInstance();
         }
     }
 }

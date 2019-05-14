@@ -37,6 +37,8 @@ public class NavigationActivityPresenter extends MvpPresenter<NavigationView> {
         router.replaceScreen(new Screens.TabScreen("Home"));
     }
 
+    public void onBookClicked(){router.replaceScreen(new Screens.BookScreen());}
+
     public void onBackPressed() {
         router.exit();
     }

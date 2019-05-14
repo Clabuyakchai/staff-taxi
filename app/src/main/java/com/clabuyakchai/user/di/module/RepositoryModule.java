@@ -1,8 +1,10 @@
 package com.clabuyakchai.user.di.module;
 
 import com.clabuyakchai.user.data.repository.AuthRepository;
+import com.clabuyakchai.user.data.repository.BookRepository;
 import com.clabuyakchai.user.data.repository.HomeRepository;
 import com.clabuyakchai.user.data.repository.Impl.AuthRepositoryImpl;
+import com.clabuyakchai.user.data.repository.Impl.BookRepositoryImpl;
 import com.clabuyakchai.user.data.repository.Impl.HomeRepositoryImpl;
 import com.clabuyakchai.user.data.repository.Impl.RouteRepositoryImpl;
 import com.clabuyakchai.user.data.repository.Impl.StationRepositoryImpl;
@@ -30,4 +32,8 @@ public interface RepositoryModule {
     @ApplicationScope
     @Binds
     StationRepository bindStationRepository(StationRepositoryImpl stationRepository);
+
+    @ApplicationScope
+    @Binds
+    BookRepository bindBookRepository(BookRepositoryImpl bookRepository);
 }
