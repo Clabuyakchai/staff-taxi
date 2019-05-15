@@ -43,15 +43,16 @@
         <activity
             android:name="com.clabuyakchai.user.ui.activity.auth.AuthActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.clabuyakchai.user.ui.activity.navigation.NavigationActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.clabuyakchai.user.ui.activity.navigation.NavigationActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
@@ -132,11 +133,6 @@
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <provider
-            android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="com.clabuyakchai.user.com.android.tools.ir.server.InstantRunContentProvider"
-            android:multiprocess="true" />
     </application>
 
 </manifest>
