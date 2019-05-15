@@ -16,6 +16,7 @@ import com.clabuyakchai.user.ui.fragment.navigation.route.adapter.RouteAdapter;
 import com.clabuyakchai.user.ui.fragment.navigation.route.adapter.RouteIdListener;
 import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
+import com.clabuyakchai.user.ui.fragment.tab.RouterProvider;
 import com.clabuyakchai.user.util.DateHelper;
 import com.clabuyakchai.user.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,7 +57,7 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-        presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
+        presenter.setRouter(localCiceroneHolder.getCicerone(getArguments().getString(EXTRA_NAME)).getRouter());
         calendarTxt = view.findViewById(R.id.route_calendar);
         newRouteBtn = view.findViewById(R.id.route_add_float);
         recyclerView = view.findViewById(R.id.recycler_route);

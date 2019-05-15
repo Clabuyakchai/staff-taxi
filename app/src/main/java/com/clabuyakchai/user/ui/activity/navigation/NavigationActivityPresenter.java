@@ -67,4 +67,5 @@ public class NavigationActivityPresenter extends MvpPresenter<NavigationView> {
     void onDestroyActivity() {
         compositeDisposable.dispose();
     }
+
 }

@@ -918,6 +918,7 @@ public final class DaggerAppComponent implements AppComponent {
           instance, provideNavigatorHolderProvider.get());
       NavigationActivity_MembersInjector.injectPresenter(
           instance, getNavigationActivityPresenter());
+      NavigationActivity_MembersInjector.injectRouter(instance, provideRouterProvider.get());
       return instance;
     }
 
@@ -1186,6 +1187,9 @@ public final class DaggerAppComponent implements AppComponent {
         NewRouteFragment_MembersInjector.injectPresenter(
             instance,
             NavigationActivitySubcomponentImpl.this.provideNewRoutePresenterProvider.get());
+        NewRouteFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }

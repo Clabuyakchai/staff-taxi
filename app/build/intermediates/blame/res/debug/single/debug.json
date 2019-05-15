@@ -68,24 +68,24 @@
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c461474b4bd5bd2a185e3326922929e7\\res\\interpolator-v21\\mtrl_fast_out_linear_in.xml"
     },
     {
-        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
-        "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
-    },
-    {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_dropdown_arrow.xml.flat",
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c461474b4bd5bd2a185e3326922929e7\\res\\drawable\\mtrl_dropdown_arrow.xml"
+    },
+    {
+        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
+        "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
     },
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\animator_design_fab_hide_motion_spec.xml.flat",
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c461474b4bd5bd2a185e3326922929e7\\res\\animator\\design_fab_hide_motion_spec.xml"
     },
     {
-        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_checkbox_to_checked_icon_null_animation.xml.flat",
-        "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\anim\\btn_checkbox_to_checked_icon_null_animation.xml"
-    },
-    {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_btn_checkbox_checked_mtrl_animation_interpolator_1.xml.flat",
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\interpolator\\btn_checkbox_checked_mtrl_animation_interpolator_1.xml"
+    },
+    {
+        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_checkbox_to_checked_icon_null_animation.xml.flat",
+        "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\anim\\btn_checkbox_to_checked_icon_null_animation.xml"
     },
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
