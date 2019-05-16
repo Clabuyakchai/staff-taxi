@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
 MERGED from [com.google.android.material:material:1.1.0-alpha06] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\c461474b4bd5bd2a185e3326922929e7\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.dagger:dagger-android-support:2.21] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\286240bc1391ec5ce5da7afb42fcbde0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0-alpha02] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\1741cff484b19ee28b587660ef2da0db\AndroidManifest.xml:17:1-22:12
@@ -70,22 +70,22 @@ MERGED from [androidx.savedstate:savedstate:1.0.0-alpha02] C:\Users\rytnikovrv\.
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\e8e6b383df99d77caae4894bf56c48c1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\f2a6fd3f4b6f6011837cf86e57ffcfd4\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0-alpha04] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\8361111c518b4e7ff6ce633fc475340f\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
 	package
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:4:5-36
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:1-35:12
 		INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:2:11-69
@@ -106,7 +106,7 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:16.5.0] C:
 	android:name
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:8:5-36:19
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:8:5-33:19
 MERGED from [com.google.android.material:material:1.1.0-alpha06] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\c461474b4bd5bd2a185e3326922929e7\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0-alpha06] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\c461474b4bd5bd2a185e3326922929e7\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\rytnikovrv\.gradle\caches\transforms-2\files-2.1\ccd53651914ac84f086999dfca8e68eb\AndroidManifest.xml:9:5-20
@@ -194,27 +194,27 @@ MERGED from [com.google.android.gms:play-services-basement:16.2.0] C:\Users\rytn
 	android:name
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:22:13-58
 activity#com.clabuyakchai.user.ui.activity.auth.AuthActivity
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:25:9-27:20
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:25:9-31:20
 	android:screenOrientation
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:25:65-101
 	android:name
 		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:25:19-64
-activity#com.clabuyakchai.user.ui.activity.navigation.NavigationActivity
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:28:9-35:20
-	android:screenOrientation
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:28:77-113
-	android:name
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:28:19-76
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:30:13-34:29
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:31:17-69
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:31:25-66
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:33:17-77
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:33:27-74
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:29:27-74
+activity#com.clabuyakchai.user.ui.activity.navigation.NavigationActivity
+ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:32:9-115
+	android:screenOrientation
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:32:77-113
+	android:name
+		ADDED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml:32:19-76
 uses-sdk
 INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Projects\Staff\staff-taxi\app\src\main\AndroidManifest.xml

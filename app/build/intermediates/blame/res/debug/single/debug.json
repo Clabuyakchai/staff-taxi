@@ -320,10 +320,6 @@
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
-        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_button.xml.flat",
-        "source": "D:\\Projects\\Staff\\staff-taxi\\app\\src\\main\\res\\drawable\\background_button.xml"
-    },
-    {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\818e62c02917eddb85d215e2161dc5cb\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
@@ -822,6 +818,10 @@
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_background_color.xml.flat",
         "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c461474b4bd5bd2a185e3326922929e7\\res\\color\\mtrl_chip_background_color.xml"
+    },
+    {
+        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancel_button.xml.flat",
+        "source": "D:\\Projects\\Staff\\staff-taxi\\app\\src\\main\\res\\drawable\\cancel_button.xml"
     },
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_design_ic_visibility.png.flat",
@@ -2302,6 +2302,10 @@
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "D:\\Projects\\Staff\\staff-taxi\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable_normal_button.xml.flat",
+        "source": "D:\\Projects\\Staff\\staff-taxi\\app\\src\\main\\res\\drawable\\normal_button.xml"
     },
     {
         "merged": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_small_material.xml.flat",

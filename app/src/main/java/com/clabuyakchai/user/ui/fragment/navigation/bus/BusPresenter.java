@@ -9,10 +9,12 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class BusPresenter extends BasePresenter<BusView> {
     private final HomeRepository repository;
+    private Router router;
 
     @Inject
     public BusPresenter(HomeRepository repository) {
@@ -58,5 +60,13 @@ public class BusPresenter extends BasePresenter<BusView> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(busDtos -> getViewState().setBusAdapter(busDtos), Throwable::printStackTrace);
         compositeDisposable.add(disposable);
+    }
+
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    public void onBackPressed() {
+        router.exit();
     }
 }

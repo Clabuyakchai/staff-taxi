@@ -8,10 +8,12 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class TicketDetailPresenter extends BasePresenter<TicketDetailView> {
     private final BookRepository bookRepository;
+    private Router router;
 
     @Inject
     public TicketDetailPresenter(BookRepository bookRepository) {
@@ -36,7 +38,15 @@ public class TicketDetailPresenter extends BasePresenter<TicketDetailView> {
         Disposable disposable = bookRepository
                 .createBook(timetableId)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> getViewState().showSnackBar("Successful"), Throwable::printStackTrace);
+                .subscribe(this::onBackPressed, Throwable::printStackTrace);
         compositeDisposable.add(disposable);
+    }
+
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    public void onBackPressed() {
+        router.exit();
     }
 }

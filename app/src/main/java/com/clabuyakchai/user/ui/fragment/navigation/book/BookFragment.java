@@ -13,6 +13,7 @@ import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookListener;
 import com.clabuyakchai.user.ui.fragment.navigation.route.adapter.RouteIdListener;
 import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookAdapter;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BookFragment extends BaseFragment implements BookView, BookListener {
+public class BookFragment extends BaseFragment implements BookView, BookListener, BackButtonListener {
     private RecyclerView recyclerView;
     private BookAdapter adapter;
 
@@ -73,5 +74,11 @@ public class BookFragment extends BaseFragment implements BookView, BookListener
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

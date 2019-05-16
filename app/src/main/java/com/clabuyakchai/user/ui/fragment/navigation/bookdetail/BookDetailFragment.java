@@ -12,6 +12,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.clabuyakchai.user.R;
 import com.clabuyakchai.user.data.remote.request.BookingDto;
 import com.clabuyakchai.user.ui.base.BaseFragment;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
@@ -19,7 +21,7 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class BookDetailFragment extends BaseFragment implements BookDetailView {
+public class BookDetailFragment extends BaseFragment implements BookDetailView, BackButtonListener {
     private static final String ARG_BOOK = "arg_book";
     private TextView datetimeTxt;
     private TextView fromTxt;
@@ -36,6 +38,9 @@ public class BookDetailFragment extends BaseFragment implements BookDetailView {
         return presenter;
     }
 
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class BookDetailFragment extends BaseFragment implements BookDetailView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-
+        presenter.setRouter(localCiceroneHolder.getCicerone("Book").getRouter());
         datetimeTxt = view.findViewById(R.id.book_detail_datetime_txt);
         fromTxt = view.findViewById(R.id.book_detail_from_txt);
         toTxt = view.findViewById(R.id.book_detail_to_txt);
@@ -87,5 +92,11 @@ public class BookDetailFragment extends BaseFragment implements BookDetailView {
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

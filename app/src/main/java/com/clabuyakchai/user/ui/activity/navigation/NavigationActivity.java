@@ -113,9 +113,9 @@ public class NavigationActivity extends BaseActivity implements StartActivity, N
         navigation.getMenu().findItem(R.id.navigation_item_book).setVisible(!isDriver);
         navigation.getMenu().findItem(R.id.navigation_item_route_user).setVisible(!isDriver);
         if (isDriver){
-//            navigation.setSelectedItemId(0);
+            navigation.setSelectedItemId(R.id.navigation_item_route_staff);
         } else {
-//            navigation.setSelectedItemId(0); //TODO поменять id
+            navigation.setSelectedItemId(R.id.navigation_item_book); //TODO поменять id
         }
     }
 

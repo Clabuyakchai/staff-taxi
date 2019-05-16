@@ -114,6 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/book_detail_price_txt"
-        android:text="@string/cancel_reservation"/>
+        android:text="@string/cancel_reservation"
+        style="@style/CancelButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

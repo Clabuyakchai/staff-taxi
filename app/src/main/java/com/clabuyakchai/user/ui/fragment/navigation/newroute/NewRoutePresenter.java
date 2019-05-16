@@ -48,9 +48,7 @@ public class NewRoutePresenter extends BasePresenter<NewRouteView> {
     private void createRoute(RouteDto routeDto, List<StationItemWithSwitch> stations){
         Disposable disposable = routeRepository.createRoute(routeDto, stations)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {
-                    getViewState().showSnackBar("Route was created");
-                }, Throwable::printStackTrace);
+                .subscribe(this::onBackPressed, Throwable::printStackTrace);
         compositeDisposable.add(disposable);
     }
 

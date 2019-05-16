@@ -17,6 +17,7 @@ import com.clabuyakchai.user.data.remote.request.RouteDto;
 import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.ticket.adapter.TicketAdapter;
 import com.clabuyakchai.user.ui.fragment.navigation.ticket.adapter.TicketItemListener;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.user.util.DateHelper;
 
@@ -32,7 +33,7 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TicketFragment extends BaseFragment implements TicketView, TicketItemListener {
+public class TicketFragment extends BaseFragment implements TicketView, TicketItemListener, BackButtonListener {
     private AppCompatSpinner fromSpin;
     private AppCompatSpinner toSpin;
     private TextView dateTxt;
@@ -164,5 +165,11 @@ public class TicketFragment extends BaseFragment implements TicketView, TicketIt
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

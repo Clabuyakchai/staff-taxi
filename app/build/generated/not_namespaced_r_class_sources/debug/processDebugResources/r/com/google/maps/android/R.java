@@ -91,9 +91,9 @@ public final class R {
         public static final int satellite = 0x7f080105;
         public static final int standard = 0x7f080134;
         public static final int terrain = 0x7f080147;
-        public static final int webview = 0x7f080182;
-        public static final int wide = 0x7f080183;
-        public static final int window = 0x7f080184;
+        public static final int webview = 0x7f080183;
+        public static final int wide = 0x7f080184;
+        public static final int window = 0x7f080185;
     }
     public static final class integer {
         private integer() {}
@@ -154,9 +154,9 @@ public final class R {
     public static final class style {
         private style() {}
 
-        public static final int amu_Bubble_TextAppearance_Dark = 0x7f110275;
-        public static final int amu_Bubble_TextAppearance_Light = 0x7f110276;
-        public static final int amu_ClusterIcon_TextAppearance = 0x7f110277;
+        public static final int amu_Bubble_TextAppearance_Dark = 0x7f110278;
+        public static final int amu_Bubble_TextAppearance_Light = 0x7f110279;
+        public static final int amu_ClusterIcon_TextAppearance = 0x7f11027a;
     }
     public static final class styleable {
         private styleable() {}

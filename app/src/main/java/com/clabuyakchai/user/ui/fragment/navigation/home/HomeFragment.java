@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.clabuyakchai.user.data.remote.request.BusDto;
 import com.clabuyakchai.user.ui.activity.StartActivity;
 import com.clabuyakchai.user.ui.activity.navigation.NavigationActivity;
 import com.clabuyakchai.user.ui.base.BaseFragment;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.user.util.Preferences;
 import com.clabuyakchai.user.R;
@@ -25,14 +27,14 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class HomeFragment extends BaseFragment implements HomeView {
+public class HomeFragment extends BaseFragment implements HomeView, BackButtonListener {
 
     private EditText nameEdtx;
     private EditText phoneEdtx;
     private EditText emailEdtx;
     private EditText addressEdtx;
     private EditText busEdtx;
-    private TextView changeUserTxt;
+    private Button changeUserBtn;
     private TextView editTxt;
     private TextView addStaffTxt;
     private EditText addStaffEdtx;
@@ -69,7 +71,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         phoneEdtx = view.findViewById(R.id.home_phone);
         emailEdtx = view.findViewById(R.id.home_email);
         addressEdtx = view.findViewById(R.id.home_address);
-        changeUserTxt = view.findViewById(R.id.change_user);
+        changeUserBtn = view.findViewById(R.id.change_user);
         editTxt = view.findViewById(R.id.edit_user);
         saveTxt = view.findViewById(R.id.save_user);
         busEdtx = view.findViewById(R.id.home_bus);
@@ -95,7 +97,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
             presenter.updateUser(user);
         });
 
-        changeUserTxt.setOnClickListener(view1 -> {
+        changeUserBtn.setOnClickListener(view1 -> {
             presenter.signOut();
         });
 
@@ -140,7 +142,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
         phoneEdtx.setEnabled(enabled);
         emailEdtx.setEnabled(enabled);
         addressEdtx.setEnabled(enabled);
-        busEdtx.setEnabled(enabled);
         if (enabled) {
             editTxt.setVisibility(View.GONE);
             saveTxt.setVisibility(View.VISIBLE);
@@ -195,5 +196,11 @@ public class HomeFragment extends BaseFragment implements HomeView {
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

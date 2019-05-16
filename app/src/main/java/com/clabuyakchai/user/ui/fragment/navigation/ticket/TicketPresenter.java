@@ -50,4 +50,8 @@ public class TicketPresenter extends BasePresenter<TicketView> {
     public void onItemTicketClicked(RouteDto routeDto){
         router.navigateTo(new Screens.TicketDetailScreen(routeDto));
     }
+
+    public void onBackPressed() {
+        router.exit();
+    }
 }

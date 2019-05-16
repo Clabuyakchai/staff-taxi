@@ -3,6 +3,7 @@ package com.clabuyakchai.user.ui.fragment.navigation.ticketdetail;
 
 import androidx.fragment.app.Fragment;
 import com.clabuyakchai.user.ui.base.BaseFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
@@ -14,18 +15,23 @@ public final class TicketDetailFragment_MembersInjector
 
   private final Provider<TicketDetailPresenter> presenterProvider;
 
+  private final Provider<LocalCiceroneHolder> localCiceroneHolderProvider;
+
   public TicketDetailFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<TicketDetailPresenter> presenterProvider) {
+      Provider<TicketDetailPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
     this.presenterProvider = presenterProvider;
+    this.localCiceroneHolderProvider = localCiceroneHolderProvider;
   }
 
   public static MembersInjector<TicketDetailFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<TicketDetailPresenter> presenterProvider) {
+      Provider<TicketDetailPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     return new TicketDetailFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider, localCiceroneHolderProvider);
   }
 
   @Override
@@ -33,10 +39,16 @@ public final class TicketDetailFragment_MembersInjector
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectLocalCiceroneHolder(instance, localCiceroneHolderProvider.get());
   }
 
   public static void injectPresenter(
       TicketDetailFragment instance, TicketDetailPresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectLocalCiceroneHolder(
+      TicketDetailFragment instance, LocalCiceroneHolder localCiceroneHolder) {
+    instance.localCiceroneHolder = localCiceroneHolder;
   }
 }

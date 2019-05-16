@@ -48,4 +48,8 @@ public class BookPresenter extends BasePresenter<BookView> {
     public void onItemBookClicked(BookingDto bookingDto){
         router.navigateTo(new Screens.BookDetailScreen(bookingDto));
     }
+
+    public void onBackPressed() {
+        router.exit();
+    }
 }
