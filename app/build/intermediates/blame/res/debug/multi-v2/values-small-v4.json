@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "outputFile": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c461474b4bd5bd2a185e3326922929e7\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

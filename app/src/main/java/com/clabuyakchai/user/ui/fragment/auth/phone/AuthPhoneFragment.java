@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -23,11 +24,16 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class AuthPhoneFragment extends BaseFragment implements AuthPhoneView {
+    private static final String TITLE = "Phone";
 
     private EditText phone;
     private Button sendPhone;
+    private Toolbar toolbar;
+    private TextView toolbarTitle;
 
     @Inject
     @InjectPresenter
@@ -54,6 +60,10 @@ public class AuthPhoneFragment extends BaseFragment implements AuthPhoneView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+//
+//        toolbar = view.findViewById(R.id.toolbar);
+//        toolbarTitle = view.findViewById(R.id.toolbar_title);
+//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         phone = view.findViewById(R.id.phone_number);
         sendPhone = view.findViewById(R.id.send_phone);

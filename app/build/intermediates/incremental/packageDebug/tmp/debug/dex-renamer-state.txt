@@ -1,7 +1,7 @@
-#Thu May 16 18:03:10 MSK 2019
-base.0=D\:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+#Thu May 16 20:54:23 MSK 2019
+base.0=F\:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=D\:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+base.1=F\:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1

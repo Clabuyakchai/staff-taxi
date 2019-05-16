@@ -833,6 +833,7 @@
     <string name="station">Station</string>
     <string name="station_name">Station Name</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="toolbar_title_auth_phone">Phone</string>
     <string name="virification_code">Verification Code</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
@@ -3474,6 +3475,14 @@
         <item name="android:textAlignment">center</item>
         <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:theme">@style/ThemeOverlay.AppCompat.ActionBar</item>
+    </style>
+    <style name="ToolbarTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textAlignment">center</item>
     </style>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>

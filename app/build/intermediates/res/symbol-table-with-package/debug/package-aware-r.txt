@@ -1750,6 +1750,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toolbar
+id toolbar_title
 id top
 id topPanel
 id touch_outside
@@ -2052,6 +2053,7 @@ string signup
 string station
 string station_name
 string status_bar_notification_info_overflow
+string toolbar_title_auth_phone
 string virification_code
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -2527,6 +2529,7 @@ style ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense
 style ThemeOverlay_MaterialComponents_Toolbar_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Surface
 style Toolbar
+style ToolbarTitle
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar

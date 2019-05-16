@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Projects\\Staff\\staff-taxi\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+            "outputFile": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rytnikovrv\\.gradle\\caches\\transforms-2\\files-2.1\\c5cc425a0b1cac6852cc83e38f453323\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
