@@ -33,4 +33,5 @@
     <string name="cancel_reservation">Cancel reservation</string>
     <string name="navigation_item_title_ticket">Ticket</string>
     <string name="make_reservation">Make reservation</string>
+    <string name="toolbar_title_auth_phone">Phone</string>
 </resources>
