@@ -13,12 +13,14 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
 
-public class TabNavigationFragment extends BaseFragment implements RouterProvider{
+public class TabNavigationFragment extends BaseFragment implements RouterProvider, BackButtonListener {
     private static final String EXTRA_NAME = "tcf_extra_name";
 
     private Navigator navigator;
@@ -53,16 +55,18 @@ public class TabNavigationFragment extends BaseFragment implements RouterProvide
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (getContainerName().equals("Route")) {
-            getCicerone().getRouter().replaceScreen(new Screens.RouteScreen(getContainerName()));
-        } else if (getContainerName().equals("Station")) {
-            getCicerone().getRouter().replaceScreen(new Screens.StationScreen());
-        } else if (getContainerName().equals("Home")) {
-            getCicerone().getRouter().replaceScreen(new Screens.HomeScreen());
-        } else if (getContainerName().equals("Book")){
-            getCicerone().getRouter().replaceScreen(new Screens.BookScreen());
-        }else if (getContainerName().equals("Ticket")){
-            getCicerone().getRouter().replaceScreen(new Screens.TicketScreen());
+        if (getChildFragmentManager().findFragmentById(R.id.tab_container) == null) {
+            if (getContainerName().equals("Route")) {
+                getCicerone().getRouter().replaceScreen(new Screens.RouteScreen(getContainerName()));
+            } else if (getContainerName().equals("Station")) {
+                getCicerone().getRouter().replaceScreen(new Screens.StationScreen());
+            } else if (getContainerName().equals("Home")) {
+                getCicerone().getRouter().replaceScreen(new Screens.HomeScreen());
+            } else if (getContainerName().equals("Book")) {
+                getCicerone().getRouter().replaceScreen(new Screens.BookScreen());
+            } else if (getContainerName().equals("Ticket")) {
+                getCicerone().getRouter().replaceScreen(new Screens.TicketScreen());
+            }
         }
     }
 
@@ -88,5 +92,18 @@ public class TabNavigationFragment extends BaseFragment implements RouterProvide
             navigator = new SupportAppNavigator(getActivity(), getChildFragmentManager(), R.id.tab_container);
         }
         return navigator;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        Fragment fragment = getChildFragmentManager().findFragmentById(R.id.tab_container);
+        if (fragment != null
+                && fragment instanceof BackButtonListener
+                && ((BackButtonListener) fragment).onBackPressed()) {
+            return true;
+        } else {
+            ((RouterProvider) getActivity()).getRouter().exit();
+            return true;
+        }
     }
 }

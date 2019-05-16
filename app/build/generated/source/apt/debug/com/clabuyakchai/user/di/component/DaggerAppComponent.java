@@ -918,6 +918,7 @@ public final class DaggerAppComponent implements AppComponent {
           instance, provideNavigatorHolderProvider.get());
       NavigationActivity_MembersInjector.injectPresenter(
           instance, getNavigationActivityPresenter());
+      NavigationActivity_MembersInjector.injectRouter(instance, provideRouterProvider.get());
       return instance;
     }
 
@@ -1150,6 +1151,9 @@ public final class DaggerAppComponent implements AppComponent {
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         BusFragment_MembersInjector.injectPresenter(
             instance, NavigationActivitySubcomponentImpl.this.provideBusPresenterProvider.get());
+        BusFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }
@@ -1186,6 +1190,9 @@ public final class DaggerAppComponent implements AppComponent {
         NewRouteFragment_MembersInjector.injectPresenter(
             instance,
             NavigationActivitySubcomponentImpl.this.provideNewRoutePresenterProvider.get());
+        NewRouteFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }
@@ -1268,6 +1275,9 @@ public final class DaggerAppComponent implements AppComponent {
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         BookDetailFragment_MembersInjector.injectPresenter(instance, getBookDetailPresenter());
+        BookDetailFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }
@@ -1347,6 +1357,9 @@ public final class DaggerAppComponent implements AppComponent {
             instance,
             NavigationActivitySubcomponentImpl.this.getDispatchingAndroidInjectorOfFragment());
         TicketDetailFragment_MembersInjector.injectPresenter(instance, getTicketDetailPresenter());
+        TicketDetailFragment_MembersInjector.injectLocalCiceroneHolder(
+            instance,
+            NavigationActivitySubcomponentImpl.this.provideLocalCiceroneHolderProvider.get());
         return instance;
       }
     }

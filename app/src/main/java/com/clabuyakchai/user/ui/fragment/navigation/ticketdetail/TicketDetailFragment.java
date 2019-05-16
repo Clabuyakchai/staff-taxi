@@ -13,6 +13,8 @@ import com.clabuyakchai.user.R;
 import com.clabuyakchai.user.data.remote.request.RouteDto;
 import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.ticketdetail.adapter.TicketDetailAdapter;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
@@ -22,7 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TicketDetailFragment extends BaseFragment implements TicketDetailView {
+public class TicketDetailFragment extends BaseFragment implements TicketDetailView, BackButtonListener {
     private static final String ARG_ROUTE = "args_route";
     private TextView datetimeTxt;
     private TextView fromTxt;
@@ -42,6 +44,8 @@ public class TicketDetailFragment extends BaseFragment implements TicketDetailVi
         return presenter;
     }
 
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
 
     @Nullable
     @Override
@@ -52,6 +56,7 @@ public class TicketDetailFragment extends BaseFragment implements TicketDetailVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+        presenter.setRouter(localCiceroneHolder.getCicerone("Ticket").getRouter());
         datetimeTxt = view.findViewById(R.id.ticket_detail_datetime_txt);
         fromTxt = view.findViewById(R.id.ticket_detail_from_txt);
         toTxt = view.findViewById(R.id.ticket_detail_to_txt);
@@ -102,5 +107,11 @@ public class TicketDetailFragment extends BaseFragment implements TicketDetailVi
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

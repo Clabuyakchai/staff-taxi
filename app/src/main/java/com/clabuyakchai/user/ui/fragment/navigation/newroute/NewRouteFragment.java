@@ -21,6 +21,8 @@ import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.adapter.NewRouteAdapter;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.adapter.StationClickListener;
 import com.clabuyakchai.user.ui.fragment.navigation.newroute.adapter.StationItemWithSwitch;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.clabuyakchai.user.util.DateHelper;
 import com.clabuyakchai.user.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,7 +43,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class NewRouteFragment extends BaseFragment implements NewRouteView, StationClickListener {
+public class NewRouteFragment extends BaseFragment implements NewRouteView, StationClickListener, BackButtonListener {
     private AppCompatSpinner fromSpin;
     private AppCompatSpinner toSpin;
     private EditText priceEdtx;
@@ -64,6 +66,9 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
         return presenter;
     }
 
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,7 +78,7 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-
+        presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
         fromSpin = view.findViewById(R.id.new_route_from);
         toSpin = view.findViewById(R.id.new_route_to);
         priceEdtx = view.findViewById(R.id.new_route_price);
@@ -220,5 +225,11 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

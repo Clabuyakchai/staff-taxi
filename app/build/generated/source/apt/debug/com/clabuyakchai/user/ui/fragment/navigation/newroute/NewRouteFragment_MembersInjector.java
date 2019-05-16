@@ -3,6 +3,7 @@ package com.clabuyakchai.user.ui.fragment.navigation.newroute;
 
 import androidx.fragment.app.Fragment;
 import com.clabuyakchai.user.ui.base.BaseFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
@@ -13,18 +14,23 @@ public final class NewRouteFragment_MembersInjector implements MembersInjector<N
 
   private final Provider<NewRoutePresenter> presenterProvider;
 
+  private final Provider<LocalCiceroneHolder> localCiceroneHolderProvider;
+
   public NewRouteFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<NewRoutePresenter> presenterProvider) {
+      Provider<NewRoutePresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
     this.presenterProvider = presenterProvider;
+    this.localCiceroneHolderProvider = localCiceroneHolderProvider;
   }
 
   public static MembersInjector<NewRouteFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<NewRoutePresenter> presenterProvider) {
+      Provider<NewRoutePresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     return new NewRouteFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider, localCiceroneHolderProvider);
   }
 
   @Override
@@ -32,9 +38,15 @@ public final class NewRouteFragment_MembersInjector implements MembersInjector<N
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectLocalCiceroneHolder(instance, localCiceroneHolderProvider.get());
   }
 
   public static void injectPresenter(NewRouteFragment instance, NewRoutePresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectLocalCiceroneHolder(
+      NewRouteFragment instance, LocalCiceroneHolder localCiceroneHolder) {
+    instance.localCiceroneHolder = localCiceroneHolder;
   }
 }

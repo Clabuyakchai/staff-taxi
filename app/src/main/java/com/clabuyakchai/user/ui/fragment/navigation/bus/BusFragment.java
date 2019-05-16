@@ -14,6 +14,8 @@ import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.adapter.BusAdapter;
 import com.clabuyakchai.user.ui.fragment.navigation.bus.adapter.BusIdListener;
 import com.clabuyakchai.user.R;
+import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -25,7 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BusFragment extends BaseFragment implements BusView, BusIdListener {
+public class BusFragment extends BaseFragment implements BusView, BusIdListener, BackButtonListener {
     private EditText busModelEdtxt;
     private EditText busNumberEdtxt;
     private Button saveBusBtn;
@@ -41,6 +43,9 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener 
         return presenter;
     }
 
+    @Inject
+    LocalCiceroneHolder localCiceroneHolder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+        presenter.setRouter(localCiceroneHolder.getCicerone("Home").getRouter());
         busModelEdtxt = view.findViewById(R.id.bus_model);
         busNumberEdtxt = view.findViewById(R.id.bus_number);
         saveBusBtn = view.findViewById(R.id.save_bus);
@@ -74,6 +80,7 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener 
     @Override
     public void onBusClicked(Long busId) {
         presenter.onItemClicked(busId);
+        onBackPressed();
     }
 
     @Override
@@ -90,5 +97,11 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener 
     public void onDestroyView() {
         presenter.onViewDestroy();
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        presenter.onBackPressed();
+        return true;
     }
 }

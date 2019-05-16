@@ -7,6 +7,7 @@ import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
 import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
 
 public final class NavigationActivity_MembersInjector
     implements MembersInjector<NavigationActivity> {
@@ -19,27 +20,33 @@ public final class NavigationActivity_MembersInjector
 
   private final Provider<NavigationActivityPresenter> presenterProvider;
 
+  private final Provider<Router> routerProvider;
+
   public NavigationActivity_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> supportFragmentInjectorProvider,
       Provider<DispatchingAndroidInjector<android.app.Fragment>> frameworkFragmentInjectorProvider,
       Provider<NavigatorHolder> navigatorHolderProvider,
-      Provider<NavigationActivityPresenter> presenterProvider) {
+      Provider<NavigationActivityPresenter> presenterProvider,
+      Provider<Router> routerProvider) {
     this.supportFragmentInjectorProvider = supportFragmentInjectorProvider;
     this.frameworkFragmentInjectorProvider = frameworkFragmentInjectorProvider;
     this.navigatorHolderProvider = navigatorHolderProvider;
     this.presenterProvider = presenterProvider;
+    this.routerProvider = routerProvider;
   }
 
   public static MembersInjector<NavigationActivity> create(
       Provider<DispatchingAndroidInjector<Fragment>> supportFragmentInjectorProvider,
       Provider<DispatchingAndroidInjector<android.app.Fragment>> frameworkFragmentInjectorProvider,
       Provider<NavigatorHolder> navigatorHolderProvider,
-      Provider<NavigationActivityPresenter> presenterProvider) {
+      Provider<NavigationActivityPresenter> presenterProvider,
+      Provider<Router> routerProvider) {
     return new NavigationActivity_MembersInjector(
         supportFragmentInjectorProvider,
         frameworkFragmentInjectorProvider,
         navigatorHolderProvider,
-        presenterProvider);
+        presenterProvider,
+        routerProvider);
   }
 
   @Override
@@ -50,6 +57,7 @@ public final class NavigationActivity_MembersInjector
         instance, frameworkFragmentInjectorProvider.get());
     injectNavigatorHolder(instance, navigatorHolderProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectRouter(instance, routerProvider.get());
   }
 
   public static void injectNavigatorHolder(
@@ -60,5 +68,9 @@ public final class NavigationActivity_MembersInjector
   public static void injectPresenter(
       NavigationActivity instance, NavigationActivityPresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectRouter(NavigationActivity instance, Router router) {
+    instance.router = router;
   }
 }

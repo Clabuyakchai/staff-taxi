@@ -3,6 +3,7 @@ package com.clabuyakchai.user.ui.fragment.navigation.bus;
 
 import androidx.fragment.app.Fragment;
 import com.clabuyakchai.user.ui.base.BaseFragment_MembersInjector;
+import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
 import dagger.MembersInjector;
 import dagger.android.DispatchingAndroidInjector;
 import javax.inject.Provider;
@@ -13,18 +14,23 @@ public final class BusFragment_MembersInjector implements MembersInjector<BusFra
 
   private final Provider<BusPresenter> presenterProvider;
 
+  private final Provider<LocalCiceroneHolder> localCiceroneHolderProvider;
+
   public BusFragment_MembersInjector(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<BusPresenter> presenterProvider) {
+      Provider<BusPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     this.fragmentDispatchingAndroidInjectorProvider = fragmentDispatchingAndroidInjectorProvider;
     this.presenterProvider = presenterProvider;
+    this.localCiceroneHolderProvider = localCiceroneHolderProvider;
   }
 
   public static MembersInjector<BusFragment> create(
       Provider<DispatchingAndroidInjector<Fragment>> fragmentDispatchingAndroidInjectorProvider,
-      Provider<BusPresenter> presenterProvider) {
+      Provider<BusPresenter> presenterProvider,
+      Provider<LocalCiceroneHolder> localCiceroneHolderProvider) {
     return new BusFragment_MembersInjector(
-        fragmentDispatchingAndroidInjectorProvider, presenterProvider);
+        fragmentDispatchingAndroidInjectorProvider, presenterProvider, localCiceroneHolderProvider);
   }
 
   @Override
@@ -32,9 +38,15 @@ public final class BusFragment_MembersInjector implements MembersInjector<BusFra
     BaseFragment_MembersInjector.injectFragmentDispatchingAndroidInjector(
         instance, fragmentDispatchingAndroidInjectorProvider.get());
     injectPresenter(instance, presenterProvider.get());
+    injectLocalCiceroneHolder(instance, localCiceroneHolderProvider.get());
   }
 
   public static void injectPresenter(BusFragment instance, BusPresenter presenter) {
     instance.presenter = presenter;
+  }
+
+  public static void injectLocalCiceroneHolder(
+      BusFragment instance, LocalCiceroneHolder localCiceroneHolder) {
+    instance.localCiceroneHolder = localCiceroneHolder;
   }
 }

@@ -48,7 +48,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_input_bus_number"
-        android:text="@string/addbus"/>
+        android:layout_margin="10dp"
+        android:text="@string/addbus"
+        style="@style/NormalButton"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bus_recycler"

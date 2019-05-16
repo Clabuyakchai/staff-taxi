@@ -106,4 +106,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void onViewDestroy() {
         super.onViewDestroy();
     }
+
+    public void onBackPressed() {
+        router.exit();
+    }
 }

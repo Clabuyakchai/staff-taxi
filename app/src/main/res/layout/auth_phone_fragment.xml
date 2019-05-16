@@ -29,13 +29,15 @@
 
     <Button
         android:id="@+id/send_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        style="@style/NormalButton"
         android:text="@string/send_phone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_phone_numper" />
+        app:layout_constraintEnd_toEndOf="@+id/text_input_phone_numper"
+        app:layout_constraintStart_toStartOf="@+id/text_input_phone_numper"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_phone_numper"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

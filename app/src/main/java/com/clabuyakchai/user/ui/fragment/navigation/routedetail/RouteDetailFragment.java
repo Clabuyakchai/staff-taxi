@@ -99,7 +99,7 @@ public class RouteDetailFragment extends BaseFragment implements RouteDetailView
     @Override
     public boolean onBackPressed() {
         presenter.onBackPressed();
-        return false;
+        return true;
     }
 
     @Override
