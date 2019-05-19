@@ -23,6 +23,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class RegistrationFragment extends BaseFragment implements RegistrationView {
     private static final String ARG_PHONE = "phone_key";
@@ -32,6 +34,7 @@ public class RegistrationFragment extends BaseFragment implements RegistrationVi
     private RadioGroup staffGender;
     private Button signUp;
     private String gender = "male";
+    private Toolbar toolbar;
 
     @Inject
     @InjectPresenter
@@ -55,6 +58,10 @@ public class RegistrationFragment extends BaseFragment implements RegistrationVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
+
+        toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         staffName = view.findViewById(R.id.name);
         staffPhone = view.findViewById(R.id.phone);

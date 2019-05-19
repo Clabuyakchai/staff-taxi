@@ -15,6 +15,7 @@ import com.clabuyakchai.user.ui.activity.FragmentStack;
 import com.clabuyakchai.user.ui.activity.StartActivity;
 import com.clabuyakchai.user.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.user.ui.base.BaseFragment;
+import com.clabuyakchai.user.ui.base.MvpAppCompatActivity;
 import com.clabuyakchai.user.ui.fragment.auth.code.AuthCodeFragment;
 import com.clabuyakchai.user.util.Preferences;
 import com.clabuyakchai.user.R;
@@ -60,11 +61,11 @@ public class AuthPhoneFragment extends BaseFragment implements AuthPhoneView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
-//
-//        toolbar = view.findViewById(R.id.toolbar);
-//        toolbarTitle = view.findViewById(R.id.toolbar_title);
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
+        toolbar = view.findViewById(R.id.toolbar);
+        toolbarTitle = view.findViewById(R.id.toolbar_title);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         phone = view.findViewById(R.id.phone_number);
         sendPhone = view.findViewById(R.id.send_phone);
 

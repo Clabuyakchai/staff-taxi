@@ -24,6 +24,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +58,9 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener,
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone("Home").getRouter());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         busModelEdtxt = view.findViewById(R.id.bus_model);
         busNumberEdtxt = view.findViewById(R.id.bus_number);
         saveBusBtn = view.findViewById(R.id.save_bus);
@@ -80,7 +85,6 @@ public class BusFragment extends BaseFragment implements BusView, BusIdListener,
     @Override
     public void onBusClicked(Long busId) {
         presenter.onItemClicked(busId);
-        onBackPressed();
     }
 
     @Override

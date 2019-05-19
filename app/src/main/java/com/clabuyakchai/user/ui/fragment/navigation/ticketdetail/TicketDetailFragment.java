@@ -21,6 +21,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,6 +59,9 @@ public class TicketDetailFragment extends BaseFragment implements TicketDetailVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone("Ticket").getRouter());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         datetimeTxt = view.findViewById(R.id.ticket_detail_datetime_txt);
         fromTxt = view.findViewById(R.id.ticket_detail_from_txt);
         toTxt = view.findViewById(R.id.ticket_detail_to_txt);

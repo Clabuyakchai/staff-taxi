@@ -6593,8 +6593,20 @@ public final class R {
     public static final int station=0x7f100070;
     public static final int station_name=0x7f100071;
     public static final int status_bar_notification_info_overflow=0x7f100072;
-    public static final int toolbar_title_auth_phone=0x7f100073;
-    public static final int virification_code=0x7f100074;
+    public static final int toolbar_title_auth_code=0x7f100073;
+    public static final int toolbar_title_auth_phone=0x7f100074;
+    public static final int toolbar_title_auth_sign_up=0x7f100075;
+    public static final int toolbar_title_book_detail=0x7f100076;
+    public static final int toolbar_title_bus=0x7f100077;
+    public static final int toolbar_title_home=0x7f100078;
+    public static final int toolbar_title_my_route=0x7f100079;
+    public static final int toolbar_title_new_route=0x7f10007a;
+    public static final int toolbar_title_route=0x7f10007b;
+    public static final int toolbar_title_route_detail=0x7f10007c;
+    public static final int toolbar_title_station=0x7f10007d;
+    public static final int toolbar_title_ticket=0x7f10007e;
+    public static final int toolbar_title_ticket_detail=0x7f10007f;
+    public static final int virification_code=0x7f100080;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f110000;

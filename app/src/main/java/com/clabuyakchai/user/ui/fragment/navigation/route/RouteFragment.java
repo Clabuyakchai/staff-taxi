@@ -29,6 +29,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,6 +60,9 @@ public class RouteFragment extends BaseFragment implements RouteView, RouteIdLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone(getArguments().getString(EXTRA_NAME)).getRouter());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         calendarTxt = view.findViewById(R.id.route_calendar);
         newRouteBtn = view.findViewById(R.id.route_add_float);
         recyclerView = view.findViewById(R.id.recycler_route);

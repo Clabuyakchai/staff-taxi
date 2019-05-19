@@ -51,7 +51,7 @@ public class BusPresenter extends BasePresenter<BusView> {
     private void driveBus(Long busId){
         Disposable disposable = repository.driveBus(busId)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> {getViewState().showSnackBar("Drive bus");}, Throwable::printStackTrace);
+                .subscribe(this::onBackPressed, Throwable::printStackTrace);
         compositeDisposable.add(disposable);
     }
 

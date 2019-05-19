@@ -34,4 +34,16 @@
     <string name="navigation_item_title_ticket">Ticket</string>
     <string name="make_reservation">Make reservation</string>
     <string name="toolbar_title_auth_phone">Phone</string>
+    <string name="toolbar_title_auth_code">Verification Code</string>
+    <string name="toolbar_title_auth_sign_up">Sign Up</string>
+    <string name="toolbar_title_book_detail">Book details</string>
+    <string name="toolbar_title_bus">Bus</string>
+    <string name="toolbar_title_home">Home</string>
+    <string name="toolbar_title_my_route">Book</string>
+    <string name="toolbar_title_new_route">New Route</string>
+    <string name="toolbar_title_route_detail">Route Details</string>
+    <string name="toolbar_title_route">Route</string>
+    <string name="toolbar_title_station">Station</string>
+    <string name="toolbar_title_ticket_detail">Ticket Details</string>
+    <string name="toolbar_title_ticket">Ticket</string>
 </resources>

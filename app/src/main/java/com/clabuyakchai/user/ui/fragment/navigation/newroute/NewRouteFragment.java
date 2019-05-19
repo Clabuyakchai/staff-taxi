@@ -38,7 +38,9 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,6 +81,9 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone("Route").getRouter());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         fromSpin = view.findViewById(R.id.new_route_from);
         toSpin = view.findViewById(R.id.new_route_to);
         priceEdtx = view.findViewById(R.id.new_route_price);

@@ -20,6 +20,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class BookDetailFragment extends BaseFragment implements BookDetailView, BackButtonListener {
     private static final String ARG_BOOK = "arg_book";
@@ -51,6 +53,9 @@ public class BookDetailFragment extends BaseFragment implements BookDetailView, 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         presenter.setRouter(localCiceroneHolder.getCicerone("Book").getRouter());
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         datetimeTxt = view.findViewById(R.id.book_detail_datetime_txt);
         fromTxt = view.findViewById(R.id.book_detail_from_txt);
         toTxt = view.findViewById(R.id.book_detail_to_txt);

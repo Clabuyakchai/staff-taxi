@@ -4,6 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+
+            android:id="@+id/toolbar_title"
+            style="@style/ToolbarTitle"
+            android:text="@string/toolbar_title_auth_sign_up" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <EditText
         android:id="@+id/name"
         android:layout_width="0dp"

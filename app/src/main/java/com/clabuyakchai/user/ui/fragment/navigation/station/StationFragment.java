@@ -31,6 +31,8 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class StationFragment extends BaseFragment implements StationView, OnMapReadyCallback, StationDialogListener {
     private static final String TAG_DIALOG = "dialog_station";
@@ -61,7 +63,9 @@ public class StationFragment extends BaseFragment implements StationView, OnMapR
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         presenter.onViewCreated();
         MapsInitializer.initialize(view.getContext());
-
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         cityEdt = view.findViewById(R.id.station_city);
         cityEdt.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {

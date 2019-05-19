@@ -6,6 +6,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+
+            android:id="@+id/toolbar_title"
+            style="@style/ToolbarTitle"
+            android:text="@string/toolbar_title_route" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/route_calendar"
         android:layout_width="wrap_content"
@@ -15,7 +30,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_route"
