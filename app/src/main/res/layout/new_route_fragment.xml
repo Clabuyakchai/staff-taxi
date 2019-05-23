@@ -20,29 +20,30 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <EditText
         android:id="@+id/new_route_from"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/from"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/new_route_price"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:textAlignment="center"/>
+        android:inputType="text"/>
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <EditText
         android:id="@+id/new_route_to"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/new_route_price"
+        android:hint="@string/to"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/new_route_from"
+        app:layout_constraintStart_toStartOf="@+id/new_route_from"
         app:layout_constraintTop_toBottomOf="@id/new_route_from"
-        android:textAlignment="center" />
+        android:inputType="text"/>
 
     <TextView
         android:id="@+id/new_route_date"
@@ -70,14 +71,15 @@
         android:id="@+id/new_route_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toEndOf="@id/new_route_from"
-        tools:text="5.5"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="@string/price"
-        android:textAlignment="center"/>
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/new_route_time"
+        app:layout_constraintTop_toBottomOf="@+id/new_route_to"
+        tools:text="5.5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/new_route_recylerview"

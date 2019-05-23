@@ -46,4 +46,6 @@
     <string name="toolbar_title_station">Station</string>
     <string name="toolbar_title_ticket_detail">Ticket Details</string>
     <string name="toolbar_title_ticket">Ticket</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>

@@ -41,8 +41,10 @@ public class NewRoutePresenter extends BasePresenter<NewRouteView> {
         createRoute(routeDto, stations);
     }
 
-    public void onSpinnerSelected(String cityFrom, String cityTo){
-        getStationsByCity(cityFrom, cityTo);
+    public void onTextChanged(String cityFrom, String cityTo){
+        if(cityFrom != null && cityTo != null) {
+            getStationsByCity(cityFrom, cityTo);
+        }
     }
 
     private void createRoute(RouteDto routeDto, List<StationItemWithSwitch> stations){

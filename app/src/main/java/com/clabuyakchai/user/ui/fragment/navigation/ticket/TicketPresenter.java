@@ -33,7 +33,9 @@ public class TicketPresenter extends BasePresenter<TicketView> {
     }
 
     public void onSelected(String from, String to, String datetime){
-        findRouteByParam(from, to, datetime);
+        if(from != null && to != null) {
+            findRouteByParam(from, to, datetime);
+        }
     }
 
     private void findRouteByParam(String from, String to, String datetime){

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -58,6 +59,18 @@ public class BookFragment extends BaseFragment implements BookView, BookListener
         presenter.setRouter(localCiceroneHolder.getCicerone("Book").getRouter());
         recyclerView = view.findViewById(R.id.my_route_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getActivity(), "STOP", Toast.LENGTH_SHORT).show();
     }
 
     @Override

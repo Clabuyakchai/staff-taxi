@@ -2,12 +2,15 @@ package com.clabuyakchai.user.ui.fragment.navigation.ticket;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -30,14 +33,13 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TicketFragment extends BaseFragment implements TicketView, TicketItemListener, BackButtonListener {
-    private AppCompatSpinner fromSpin;
-    private AppCompatSpinner toSpin;
+    private EditText fromEdtx;
+    private EditText toEdtx;
     private TextView dateTxt;
     private RecyclerView recyclerView;
     private TicketAdapter adapter;
@@ -68,8 +70,8 @@ public class TicketFragment extends BaseFragment implements TicketView, TicketIt
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-        fromSpin = view.findViewById(R.id.ticket_from);
-        toSpin = view.findViewById(R.id.ticket_to);
+        fromEdtx = view.findViewById(R.id.ticket_from);
+        toEdtx = view.findViewById(R.id.ticket_to);
         dateTxt = view.findViewById(R.id.ticket_date);
         recyclerView = view.findViewById(R.id.ticket_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -78,9 +80,8 @@ public class TicketFragment extends BaseFragment implements TicketView, TicketIt
         setDatePicker();
         setDateText(DateHelper.formatDate());
 
-        setSpinnerAdapter();
-        fromSpin.setOnItemSelectedListener(itemSelectedListener);
-        toSpin.setOnItemSelectedListener(itemSelectedListener);
+        fromEdtx.addTextChangedListener(watcher);
+        toEdtx.addTextChangedListener(watcher);
 
         dateTxt.setOnClickListener(v -> {
             datePickerDialog.show();
@@ -108,14 +109,19 @@ public class TicketFragment extends BaseFragment implements TicketView, TicketIt
         }
     };
 
-    private AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+    private TextWatcher watcher = new TextWatcher() {
         @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             findRouteByParam();
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
+        public void afterTextChanged(Editable editable) {
 
         }
     };
@@ -139,16 +145,8 @@ public class TicketFragment extends BaseFragment implements TicketView, TicketIt
         return Calendar.getInstance();
     }
 
-    private void setSpinnerAdapter() {
-        String[] cities = {"--Select--", "Minsk", "Volozhin"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, cities);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fromSpin.setAdapter(adapter);
-        toSpin.setAdapter(adapter);
-    }
-
     private void findRouteByParam() {
-        presenter.onSelected(fromSpin.getSelectedItem().toString(), toSpin.getSelectedItem().toString(), dateTxt.getText().toString());
+        presenter.onSelected(fromEdtx.getText().toString(), toEdtx.getText().toString(), dateTxt.getText().toString());
     }
 
     public static TicketFragment newInstance() {

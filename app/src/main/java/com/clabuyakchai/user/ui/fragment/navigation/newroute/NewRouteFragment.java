@@ -4,11 +4,12 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,15 +40,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class NewRouteFragment extends BaseFragment implements NewRouteView, StationClickListener, BackButtonListener {
-    private AppCompatSpinner fromSpin;
-    private AppCompatSpinner toSpin;
+    private EditText fromEdtx;
+    private EditText toEdtx;
     private EditText priceEdtx;
     private TextView dateTxt;
     private TextView timeTxt;
@@ -84,8 +84,8 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-        fromSpin = view.findViewById(R.id.new_route_from);
-        toSpin = view.findViewById(R.id.new_route_to);
+        fromEdtx = view.findViewById(R.id.new_route_from);
+        toEdtx = view.findViewById(R.id.new_route_to);
         priceEdtx = view.findViewById(R.id.new_route_price);
         dateTxt = view.findViewById(R.id.new_route_date);
         timeTxt = view.findViewById(R.id.new_route_time);
@@ -96,9 +96,8 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
         adapter = new NewRouteAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        setSpinnerAdapter();
-        fromSpin.setOnItemSelectedListener(itemSelectedListener);
-        toSpin.setOnItemSelectedListener(itemSelectedListener);
+        fromEdtx.addTextChangedListener(watcher);
+        toEdtx.addTextChangedListener(watcher);
 
         setDatePicker();
         setTimePicker();
@@ -114,8 +113,8 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
         });
 
         saveBtn.setOnClickListener(v -> {
-            RouteDto routeDto = new RouteDto(1L ,fromSpin.getSelectedItem().toString(),
-                    toSpin.getSelectedItem().toString(),
+            RouteDto routeDto = new RouteDto(1L , fromEdtx.getText().toString(),
+                    toEdtx.getText().toString(),
                     Float.parseFloat(priceEdtx.getText().toString()),
                     dateTxt.getText().toString() + " " + timeTxt.getText().toString());
 
@@ -123,25 +122,22 @@ public class NewRouteFragment extends BaseFragment implements NewRouteView, Stat
         });
     }
 
-    private AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+    private TextWatcher watcher = new TextWatcher() {
         @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            presenter.onSpinnerSelected(fromSpin.getSelectedItem().toString(), toSpin.getSelectedItem().toString());
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            presenter.onTextChanged(fromEdtx.getText().toString(), toEdtx.getText().toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
 
         }
     };
-
-    private void setSpinnerAdapter() {
-        String[] cities = {"--Select--" ,"Minsk", "Volozhin"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, cities);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fromSpin.setAdapter(adapter);
-        toSpin.setAdapter(adapter);
-    }
 
     private void setTimePicker() {
         Calendar calendar = getInstance();

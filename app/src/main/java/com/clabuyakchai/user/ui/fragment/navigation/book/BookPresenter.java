@@ -26,6 +26,9 @@ public class BookPresenter extends BasePresenter<BookView> {
     @Override
     public void onViewCreated() {
         super.onViewCreated();
+    }
+
+    public void onResume(){
         findBookingByLocalIdAndDatetime(DateHelper.formatDate());
     }
 
