@@ -3,9 +3,6 @@ package com.clabuyakchai.user.ui.fragment.navigation.station.map;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import com.clabuyakchai.user.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,14 +30,6 @@ public class ClusterRenderer extends DefaultClusterRenderer<StationItem> {
         IconGenerator iconGenerator = new IconGenerator(context);
         Drawable marker = context.getResources().getDrawable(R.drawable.bg_marker);
         iconGenerator.setBackground(marker);
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.custom_marker, null, false);
-
-        TextView textMarker = view.findViewById(R.id.custom_marker_text);
-        textMarker.setText(item.getTitle());
-
-        iconGenerator.setContentView(view);
 
         Bitmap icon = Bitmap.createScaledBitmap(iconGenerator.makeIcon(), markerWidth, markerHeight, false);
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));

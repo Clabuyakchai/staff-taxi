@@ -36,7 +36,7 @@
             android:id="@+id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="phone"
             android:hint="@string/hint_phone"
             android:textAlignment="center"/>
 
@@ -52,7 +52,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_input_phone_numper"
         app:layout_constraintStart_toStartOf="@+id/text_input_phone_numper"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_phone_numper"
-        android:textColor="@color/white"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_input_phone_numper"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

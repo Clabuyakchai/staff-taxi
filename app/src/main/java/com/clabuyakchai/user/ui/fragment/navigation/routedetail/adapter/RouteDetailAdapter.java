@@ -32,7 +32,7 @@ public class RouteDetailAdapter extends RecyclerView.Adapter<RouteDetailAdapter.
         holder.itemView.setOnClickListener(v -> {
             int position = holder.getAdapterPosition();
             if (position != RecyclerView.NO_POSITION){
-                holder.itemView.setBackgroundColor(view.getResources().getColor(R.color.green));
+                holder.itemView.setBackgroundColor(view.getResources().getColor(R.color.colorAccent));
             }
         });
 

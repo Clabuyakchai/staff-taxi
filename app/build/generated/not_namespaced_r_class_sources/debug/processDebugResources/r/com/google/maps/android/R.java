@@ -82,18 +82,18 @@ public final class R {
         public static final int adjust_width = 0x7f08003e;
         public static final int amu_text = 0x7f080042;
         public static final int auto = 0x7f080044;
-        public static final int dark = 0x7f080074;
-        public static final int hybrid = 0x7f0800a5;
-        public static final int icon_only = 0x7f0800a8;
-        public static final int light = 0x7f0800b4;
-        public static final int none = 0x7f0800e1;
-        public static final int normal = 0x7f0800e2;
-        public static final int satellite = 0x7f080105;
-        public static final int standard = 0x7f080134;
-        public static final int terrain = 0x7f080147;
-        public static final int webview = 0x7f080184;
-        public static final int wide = 0x7f080185;
-        public static final int window = 0x7f080186;
+        public static final int dark = 0x7f080075;
+        public static final int hybrid = 0x7f0800a6;
+        public static final int icon_only = 0x7f0800a9;
+        public static final int light = 0x7f0800b5;
+        public static final int none = 0x7f0800e2;
+        public static final int normal = 0x7f0800e3;
+        public static final int satellite = 0x7f080106;
+        public static final int standard = 0x7f080135;
+        public static final int terrain = 0x7f080148;
+        public static final int webview = 0x7f080185;
+        public static final int wide = 0x7f080186;
+        public static final int window = 0x7f080187;
     }
     public static final class integer {
         private integer() {}
@@ -154,9 +154,9 @@ public final class R {
     public static final class style {
         private style() {}
 
-        public static final int amu_Bubble_TextAppearance_Dark = 0x7f110279;
-        public static final int amu_Bubble_TextAppearance_Light = 0x7f11027a;
-        public static final int amu_ClusterIcon_TextAppearance = 0x7f11027b;
+        public static final int amu_Bubble_TextAppearance_Dark = 0x7f11027a;
+        public static final int amu_Bubble_TextAppearance_Light = 0x7f11027b;
+        public static final int amu_ClusterIcon_TextAppearance = 0x7f11027c;
     }
     public static final class styleable {
         private styleable() {}

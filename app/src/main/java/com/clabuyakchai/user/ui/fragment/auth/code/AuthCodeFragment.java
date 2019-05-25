@@ -15,6 +15,7 @@ import com.clabuyakchai.user.ui.activity.FragmentStack;
 import com.clabuyakchai.user.ui.activity.StartActivity;
 import com.clabuyakchai.user.ui.activity.auth.AuthActivity;
 import com.clabuyakchai.user.ui.base.BaseFragment;
+import com.clabuyakchai.user.ui.fragment.auth.phone.AuthPhoneFragment;
 import com.clabuyakchai.user.ui.fragment.auth.registration.RegistrationFragment;
 import com.clabuyakchai.user.util.Preferences;
 import com.clabuyakchai.user.R;

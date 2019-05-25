@@ -35,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="5dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="5dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +73,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:drawableStart="@drawable/ic_email_black_24dp"
+            android:drawablePadding="5dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:drawableStart="@drawable/ic_home_black_24dp"
+            android:drawablePadding="5dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +114,9 @@
             android:hint="@string/bus"
             android:inputType="none"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusableInTouchMode="false"
+            android:drawableStart="@drawable/ic_route_black_24dp"
+            android:drawablePadding="5dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,6 +149,7 @@
         android:layout_height="wrap_content"
         android:text="@string/change_user"
         android:layout_marginBottom="40dp"
+        android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

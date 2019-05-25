@@ -23,7 +23,7 @@ public class AuthCodePresenter extends BasePresenter<AuthCodeView> {
             if (aBoolean) {
                 signIn(phone);
             } else {
-                // TODO неверный код, что будем делать
+                // TODO
             }
         }, Throwable::printStackTrace);
         compositeDisposable.add(disposable);

@@ -12,7 +12,6 @@ import com.clabuyakchai.user.R;
 import com.clabuyakchai.user.data.remote.request.BookingDto;
 import com.clabuyakchai.user.ui.base.BaseFragment;
 import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookListener;
-import com.clabuyakchai.user.ui.fragment.navigation.route.adapter.RouteIdListener;
 import com.clabuyakchai.user.ui.fragment.navigation.book.adapter.BookAdapter;
 import com.clabuyakchai.user.ui.fragment.tab.BackButtonListener;
 import com.clabuyakchai.user.ui.fragment.tab.LocalCiceroneHolder;
@@ -47,7 +46,7 @@ public class BookFragment extends BaseFragment implements BookView, BookListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.my_route_fragment, container, false);
+        return inflater.inflate(R.layout.book_fragment, container, false);
     }
 
     @Override

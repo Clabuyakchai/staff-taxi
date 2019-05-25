@@ -36,6 +36,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\animator-v21\\design_appbar_state_list_animator.xml"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_email_black_24dp.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_email_black_24dp.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_auth_registration_fragment.xml.flat",
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\auth_registration_fragment.xml"
     },
@@ -288,12 +292,12 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-xhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_disabled.xml.flat",
-        "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\cd7397309193e33ac117a6d0cc6ef037\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
-    },
-    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_text_btn_ripple_color.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\color\\mtrl_btn_text_btn_ripple_color.xml"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_disabled.xml.flat",
+        "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\cd7397309193e33ac117a6d0cc6ef037\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
@@ -404,6 +408,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\animator\\mtrl_fab_hide_motion_spec.xml"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_search_edtx.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\search_edtx.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_shrink_fade_out_from_bottom.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
@@ -448,6 +456,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-hdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_access_time_white_24dp.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_access_time_white_24dp.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_in.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\anim\\abc_fade_in.xml"
     },
@@ -484,10 +496,6 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\color\\design_error.xml"
     },
     {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_route_fragment.xml.flat",
-        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\my_route_fragment.xml"
-    },
-    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_auth.xml.flat",
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\activity_auth.xml"
     },
@@ -498,6 +506,10 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_list_divider_material.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-v21\\abc_list_divider_material.xml"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_color_selector.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\color_selector.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_transformation_sheet_collapse_spec.xml.flat",
@@ -872,6 +884,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\anim\\btn_checkbox_to_unchecked_icon_null_animation.xml"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_exit_button.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\exit_button.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_bottom_sheet_dialog.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\layout\\design_bottom_sheet_dialog.xml"
     },
@@ -926,6 +942,10 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_btn_checkable.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_drawable_selector.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\drawable_selector.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_btn_unelevated_state_list_anim.xml.flat",
@@ -1068,6 +1088,10 @@
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_home_black_24dp.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_home_black_24dp.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
@@ -1184,6 +1208,10 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-xxxhdpi-v4\\abc_ic_star_black_48dp.png"
     },
     {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_today_white_24dp.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_today_white_24dp.xml"
+    },
+    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
@@ -1234,10 +1262,6 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tooltip_frame_dark.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable\\tooltip_frame_dark.xml"
-    },
-    {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_marker.xml.flat",
-        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\custom_marker.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -1332,10 +1356,6 @@
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\5aca1de8e9cfc87b84b17f2e79b76f33\\res\\layout\\notification_template_part_time.xml"
     },
     {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancel_button.xml.flat",
-        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\cancel_button.xml"
-    },
-    {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_new_route_fragment.xml.flat",
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\new_route_fragment.xml"
     },
@@ -1378,6 +1398,10 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_to.xml.flat",
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_to.xml"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_today_black_24dp.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_today_black_24dp.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_arrow_down_black_24dp.xml.flat",
@@ -1522,10 +1546,6 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_home_fragment.xml.flat",
         "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\home_fragment.xml"
-    },
-    {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_flight_takeoff_black_24dp.xml.flat",
-        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_flight_takeoff_black_24dp.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -1702,6 +1722,10 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_fab_ripple_color.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\542673ebea41b27dfc7370a596a38938\\res\\color\\mtrl_fab_ripple_color.xml"
+    },
+    {
+        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_book_fragment.xml.flat",
+        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\layout\\book_fragment.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_layout_snackbar.xml.flat",
@@ -2426,10 +2450,6 @@
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\Clabuyakchai\\.gradle\\caches\\transforms-2\\files-2.1\\f46ccdf8d0a67bbc56d7dc8b3669ff1d\\res\\drawable\\abc_btn_check_material.xml"
-    },
-    {
-        "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_flight_land_black_24dp.xml.flat",
-        "source": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\src\\main\\res\\drawable\\ic_flight_land_black_24dp.xml"
     },
     {
         "merged": "F:\\JavaProjects\\DIPLOMA\\Staff\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
